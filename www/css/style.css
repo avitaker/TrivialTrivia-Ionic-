@@ -1,0 +1,57 @@
+/* Empty. Add your own CSS if you like */
+.correct_choice{
+	color:green;
+}
+
+.wrong_choice{
+	color:red;
+}
+
+#quiz_area{
+	height:80%;
+}
+
+.button{
+	padding:0% 2.5%;
+}
+
+.button-bar{
+	padding:0.5% 2.5%;
+}
+
+.button-block{
+	padding:0% 2.5%;
+}
+.button-full{
+	background-color:"e06721";
+}
+
+#overall_perf_stats {
+	background-color:#779ECB;
+}
+
+#question_perf_stats {
+	background-color:#FDFD96;
+}
+
+#category_records_stats {
+	background-color:#77DD77;
+}
+
+.image_div{
+	background: #ffb76b; /* Old browsers */
+background: -moz-linear-gradient(top,  #ffb76b 0%, #ff7c00 41%, #ff7c00 41%, #ffa73d 60%, #ff7f04 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffb76b), color-stop(41%,#ff7c00), color-stop(41%,#ff7c00), color-stop(60%,#ffa73d), color-stop(100%,#ff7f04)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #ffb76b 0%,#ff7c00 41%,#ff7c00 41%,#ffa73d 60%,#ff7f04 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #ffb76b 0%,#ff7c00 41%,#ff7c00 41%,#ffa73d 60%,#ff7f04 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #ffb76b 0%,#ff7c00 41%,#ff7c00 41%,#ffa73d 60%,#ff7f04 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #ffb76b 0%,#ff7c00 41%,#ff7c00 41%,#ffa73d 60%,#ff7f04 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffb76b', endColorstr='#ff7f04',GradientType=0 ); /* IE6-9 */
+
+}
+
+.start_quiz_button{
+	background-color:#e06721;
+	width:100%;
+	height:56%;
+}

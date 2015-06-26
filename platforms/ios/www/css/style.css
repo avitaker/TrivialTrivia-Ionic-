@@ -1,0 +1,28 @@
+/* Empty. Add your own CSS if you like */
+.correct_choice{
+	color:green;
+}
+
+.wrong_choice{
+	color:red;
+}
+
+#quiz_area{
+	height:80%;
+}
+
+.button{
+	padding:0% 2.5%;
+}
+
+.button-bar{
+	padding:0% 2.5%;
+}
+
+.button-block{
+	padding:0% 2.5%;
+}
+
+#welcome_div{
+	padding:2.5%;
+}

@@ -1,0 +1,22 @@
+<ion-view title="Home">
+	<!-- <ion-nav-buttons side="left">
+    	<button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons> -->
+    <ion-content class="first_page">
+      <div>
+        <img class="first_page_image" src="http://www.lifescrazyjoke.com/wp-content/uploads/2012/07/Millionaire.png">
+      </div>
+    	<!-- <div class="list">
+    		<div class="item item-divider">Please select your desired categories</div>
+    		<label ng-repeat="item in finalCategors">
+    			<ion-checkbox ng-model="item.chosen">{{item.category|uppercase}}</ion-checkbox>
+    		</label>
+    	</div> -->
+      <!-- <div class="button-bar">
+        <a class='button start_quiz_button'  ng-click='startQuiz()'>Reset and Start Quiz</a>
+      </div> -->
+      <button class="button button-block button-energized" ng-click="startQuiz()">Start the game</button>
+      <button class="button button-block button-positive" ng-click="setPage('statistics')">Statistics</button>
+      <button class="button button-block button-calm" ng-click="setPage('acknowledgements')">Acknowledgements</button>
+    </ion-content>
+</ion-view>

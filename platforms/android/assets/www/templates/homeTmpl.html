@@ -1,0 +1,16 @@
+<ion-view title="Home">
+	<!-- <ion-nav-buttons side="left">
+    	<button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons> -->
+    <ion-content>
+    	<div class="list">
+    		<div class="item item-divider">Please select your desired categories</div>
+    		<label ng-repeat="item in finalCategors">
+    			<ion-checkbox ng-model="item.chosen">{{item.category|uppercase}}</ion-checkbox>
+    		</label>
+    	</div>
+      <div class="button-bar">
+        <a class='button button-full button-royal' ng-click='startQuiz()'>Reset and Start Quiz</a>
+      </div>
+    </ion-content>
+</ion-view>

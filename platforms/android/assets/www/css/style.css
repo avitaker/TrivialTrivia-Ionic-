@@ -1,0 +1,36 @@
+/* Empty. Add your own CSS if you like */
+.correct_choice{
+	color:green;
+}
+
+.wrong_choice{
+	color:red;
+}
+
+#quiz_area{
+	height:80%;
+}
+
+.button{
+	padding:0% 2.5%;
+}
+
+.button-bar{
+	padding:0.5% 2.5%;
+}
+
+.button-block{
+	padding:0% 2.5%;
+}
+
+#overall_perf_stats {
+	background-color:#779ECB;
+}
+
+#question_perf_stats {
+	background-color:#FDFD96;
+}
+
+#category_records_stats {
+	background-color:#77DD77;
+}
