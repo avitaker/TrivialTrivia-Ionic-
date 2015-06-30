@@ -1,27 +1,43 @@
 <ion-view title="Quiz">
 
-    <ion-content class="first_page" ng-controller='QuizController'>
+    <ion-content class="first_page">
       <div class="progress-bar-div">
         <div class="semicircle-bg"></div>
         <div class="progress_bar"
           round-progress
-          max="moneyOptions.length-1"
+          max="20"
           current="questionNumber"
-          color="#45ccce"
+          color="orange"
           bgcolor="grey"
           semi='true'
-          radius="120"
-          stroke="25"
+          radius="130"
+          stroke="20"
           rounded="false"
           clockwise="true"
-          iterations="50"
-          animation="easeInOutBack">
+          iterations="10"
+          animation="linearEase">
         </div>
         <div class="progress-text">{{progress|currency}}</div>
       </div>
+      <div class="timer">
+        <div class="progress_bar"
+          round-progress
+          max="20"
+          current="timer"
+          color="#ADD8E6"
+          bgcolor="grey"
+          semi='false'
+          radius="25"
+          stroke="10"
+          rounded="false"
+          clockwise="true"
+          iterations="10"
+          animation="linearEase">
+        </div>
+      </div>
         <div class="card" ng-show="noCategory"><div class="item item-text-wrap">You must pick a category before continuing</div></div>
         <!-- <div id="welcome_div" ng-hide="hideWelcomeDiv">Welcome to my quiz. Please click "Next" to continue <a href='google.com'></a></div> -->
-        <div class="question_div">
+        <div>
           <question-div id="quiz_area" ng-show='isQuizActive' ng-hide="noCategory"></question-div>
         </div>
         <div class ="card" id="final_results" ng-show="scoreQuizNow">

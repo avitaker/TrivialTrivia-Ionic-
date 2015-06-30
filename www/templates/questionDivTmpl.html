@@ -1,9 +1,26 @@
-<div class="card" id="quiz_area_div" display="flex">
-    <div class="item item-divider item-text-wrap question_question" ng-click="nextButtonOnclick()"><b>{{quizObjectJSON[questionNumber].question}}</b></div>
-        <div id="choices_here">
-            <label><ion-radio class="item item-text-wrap question_option" ng-model="answeredQuiz[questionNumber].userAnswer" ng-value="0">1. {{quizObjectJSON[questionNumber].choices[0]}}</ion-radio></label>
-            <label><ion-radio class="item item-text-wrap question_option" ng-model="answeredQuiz[questionNumber].userAnswer" ng-value="1">2. {{quizObjectJSON[questionNumber].choices[1]}}</ion-radio></label>
-            <label><ion-radio class="item item-text-wrap question_option" ng-model="answeredQuiz[questionNumber].userAnswer" ng-value="2">3. {{quizObjectJSON[questionNumber].choices[2]}}</ion-radio></label>
-            <label><ion-radio class="item item-text-wrap question_option" ng-model="answeredQuiz[questionNumber].userAnswer" ng-value="3">4. {{quizObjectJSON[questionNumber].choices[3]}}</ion-radio></label>
+<div class="flip-container">
+    <div id="flipCard" class="flipper">
+        <div class="front">
+          <div class="card">
+              <div class="item item-divider item-text-wrap question_questions" ng-click="nextButtonOnclick()"><b>{{quizObjectJSON[questionNumber].question}}</b></div>
+                  <div id="choices_here">
+                      <label><ion-radio class="item item-text-wrap question_options" ng-model="answeredQuiz[questionNumber].userAnswer" ng-value="0">1. {{quizObjectJSON[questionNumber].choices[0]}}</ion-radio></label>
+                      <label><ion-radio class="item item-text-wrap question_options" ng-model="answeredQuiz[questionNumber].userAnswer" ng-value="1">2. {{quizObjectJSON[questionNumber].choices[1]}}</ion-radio></label>
+                      <label><ion-radio class="item item-text-wrap question_options" ng-model="answeredQuiz[questionNumber].userAnswer" ng-value="2">3. {{quizObjectJSON[questionNumber].choices[2]}}</ion-radio></label>
+                      <label><ion-radio class="item item-text-wrap question_options" ng-model="answeredQuiz[questionNumber].userAnswer" ng-value="3">4. {{quizObjectJSON[questionNumber].choices[3]}}</ion-radio></label>
+                  </div>
+          </div>
         </div>
+        <div class="back">
+          <div class="card">
+              <div class="item item-divider item-text-wrap question_questions" ng-click="nextButtonOnclick()"><b>{{quizObjectJSON[questionNumber].question}}</b></div>
+                  <div id="choices_here">
+                      <label><ion-radio class="item item-text-wrap question_options" ng-model="answeredQuiz[questionNumber].userAnswer" ng-value="0">1. {{quizObjectJSON[questionNumber].choices[0]}}</ion-radio></label>
+                      <label><ion-radio class="item item-text-wrap question_options" ng-model="answeredQuiz[questionNumber].userAnswer" ng-value="1">2. {{quizObjectJSON[questionNumber].choices[1]}}</ion-radio></label>
+                      <label><ion-radio class="item item-text-wrap question_options" ng-model="answeredQuiz[questionNumber].userAnswer" ng-value="2">3. {{quizObjectJSON[questionNumber].choices[2]}}</ion-radio></label>
+                      <label><ion-radio class="item item-text-wrap question_options" ng-model="answeredQuiz[questionNumber].userAnswer" ng-value="3">4. {{quizObjectJSON[questionNumber].choices[3]}}</ion-radio></label>
+                  </div>
+                </div>
+        </div>
+    </div>
 </div>

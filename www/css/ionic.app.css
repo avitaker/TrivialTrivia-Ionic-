@@ -26,6 +26,149 @@ $dark:                            #444 !default;
   used under CC BY http://creativecommons.org/licenses/by/4.0/
   Modified icons to fit ionicon’s grid from original.
 */
+/*Custom*/
+
+
+.flip-container {
+  -webkit-perspective: 1000;
+  -moz-perspective: 1000;
+  -o-perspective: 1000;
+  perspective: 1000;
+}
+
+.back {
+	-webkit-transform: rotateY(180deg);
+	-moz-transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
+	transform: rotateY(180deg);
+}
+
+
+.flip-container, .front, .back {
+  position:absolute;
+  top:240px;
+	width: 375px;
+	height: 375px;
+}
+
+.flipper {
+	-webkit-transition: 0.6s;
+	-webkit-transform-style: preserve-3d;
+
+	-moz-transition: 0.6s;
+	-moz-transform-style: preserve-3d;
+
+  -o-transition: 0.6s;
+	-o-transform-style: preserve-3d;
+
+	transition: 0.6s;
+	transform-style: preserve-3d;
+
+	position: relative;
+}
+
+.front, .back {
+	-webkit-backface-visibility: hidden;
+	-moz-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+	backface-visibility: hidden;
+
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.testQuestionCounter{
+    position: absolute;
+  font-size: 1.7rem;
+  top: 25px;
+  left: 16px;
+  width: 40px;
+  text-align: center;
+  height: 40px;
+}
+.front {
+	z-index: 2;
+}
+
+.timer{
+  position:absolute;
+  top:200px;
+  width:90px;
+  height:90px;
+  left:170px;
+}
+
+
+.first_page{
+  background: linear-gradient(90deg, #6441A5 10%, #2a0845 90%); /* W3C */
+}
+
+.first_page_image{
+  position:relative;
+  padding-top:11.5%;
+  padding-bottom:30%;
+  /*bottom:10%;
+  top:25%;*/
+  left:15%;
+  height:70%;
+  width:70%;
+}
+
+.question_div{
+  position:relative;
+  padding-top:55px;
+}
+
+.question_questions{
+  min-height: 80px;
+  background-color: black;
+  color:white;
+}
+
+.question_options{
+  min-height: 80px;
+  background-color: black;
+}
+
+.progress-bar-div{
+  position:relative;
+  padding-top:20px;
+  left:70px;
+  height:140px;
+}
+
+.progress_bar{
+  position:absolute;
+  left:-10px;
+  width:100px;
+}
+
+.progress-text{
+  position:absolute;
+  width:240px;
+  top:110px;
+  text-align:center;
+  color:orange;
+  font-size:150%;
+  font-family: 'Century Gothic', sans-serif;
+}
+
+.semicircle-bg{
+    position:absolute;
+    top:31px;
+    left:1px;
+     height:120px;
+     width:238px;
+     border-radius: 130px 130px 0 0;
+     -moz-border-radius: 125px 125px 0 0;
+     -webkit-border-radius: 125px 125px 0 0;
+     background:black;
+}
+
+.buttons-here{
+  padding-top:180px;
+}
+
 @font-face {
   font-family: "Ionicons";
   src: url("../lib/ionic/fonts/ionicons.eot?v=2.0.1");
@@ -6234,7 +6377,7 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
 
 .item-radio .item-content {
   /* give some room to the right for the checkmark icon */
-  padding-right: 0px; }
+  padding-right: 64px; }
 
 .item-radio .radio-icon {
   /* checkmark icon will be hidden by default */
@@ -6253,10 +6396,10 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
   left: -9999px; }
   .item-radio input:checked ~ .item-content {
     /* style the item content when its checked */
-    background: #28b721; }
+    background: #f7f7f7; }
   .item-radio input:checked ~ .radio-icon {
     /* show the checkmark icon when its checked */
-    visibility: invisible; }
+    visibility: visible; }
 
 .platform-android.grade-b .item-radio, .platform-android.grade-c .item-radio {
   -webkit-animation: androidCheckedbugfix infinite 1s; }
@@ -6584,11 +6727,8 @@ progress {
     padding-right: 0;
     padding-left: .2em; }
   .button.button-block, .button.button-full {
-    line-height: 290%;
-    border-style:outset;
-    font-size:25px;
-    margin-top: 0px;
-    margin-bottom: 0px; }
+    margin-top: 10px;
+    margin-bottom: 10px; }
   .button.button-light {
     border-color: #ddd;
     background-color: #fff;
@@ -6645,7 +6785,7 @@ progress {
         color: #fff; }
   .button.button-positive {
     border-color: #0c60ee;
-    background-color: #f7a604;
+    background-color: #387ef5;
     color: #fff; }
     .button.button-positive:hover {
       color: #fff;
@@ -6672,7 +6812,7 @@ progress {
         color: #fff; }
   .button.button-calm {
     border-color: #0a9dc7;
-    background-color: #ede217;
+    background-color: #11c1f3;
     color: #fff; }
     .button.button-calm:hover {
       color: #fff;
@@ -7401,70 +7541,6 @@ a.button {
 .rounded {
   border-radius: 4px; }
 
-/*Custom*/
-.first_page{
-  background:         linear-gradient(90deg, #6441A5 10%, #2a0845 90%); /* W3C */
-}
-
-.first_page_image{
-  position:relative;
-  padding-top:11.5%;
-  padding-bottom:30%;
-  /*bottom:10%;
-  top:25%;*/
-  left:15%;
-  height:70%;
-  width:70%;
-}
-
-.question_div{
-  position:relative;
-  padding-top:55px;
-}
-
-.question_question{
-  min-height: 80px;
-  background-color: black;
-  color:white;
-}
-
-.question_option{
-  min-height: 80px;
-  background-color: black;
-}
-
-.progress-bar-div{
-  position:relative;
-  padding-top:40px;
-  left:70px;
-  height:140px;
-}
-
-.progress_bar{
-  position:absolute;
-  width:100px;
-}
-
-.progress-text{
-  position:absolute;
-  width:240px;
-  top:110px;
-  text-align:center;
-  color:white;
-  font-size:150%;
-}
-
-.semicircle-bg{
-    position:absolute;
-    padding-top:5px;
-    left:1px;
-     height:120px;
-     width:238px;
-     border-radius: 130px 130px 0 0;
-     -moz-border-radius: 125px 125px 0 0;
-     -webkit-border-radius: 125px 125px 0 0;
-     background:#d3d3d3;
-}
 /**
  * Utility Colors
  * --------------------------------------------------
@@ -7472,7 +7548,6 @@ a.button {
  * notice we purposely do not use words like "red" or "blue", but
  * instead have colors which represent an emotion or generic theme.
  */
-
 .light, a.light {
   color: #fff; }
 
@@ -7495,7 +7570,7 @@ a.button {
   color: #387ef5; }
 
 .positive-bg {
-  background-color: #f7a604; }
+  background-color: #387ef5; }
 
 .positive-border {
   border-color: #0c60ee; }
