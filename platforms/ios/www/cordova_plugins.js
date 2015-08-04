@@ -41,6 +41,14 @@ module.exports = [
         "clobbers": [
             "window.StatusBar"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-vibration/www/vibration.js",
+        "id": "cordova-plugin-vibration.notification",
+        "merges": [
+            "navigator.notification",
+            "navigator"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -51,7 +59,8 @@ module.exports.metadata =
     "cordova-plugin-device": "1.0.0",
     "cordova-plugin-splashscreen": "2.0.0",
     "cordova-plugin-whitelist": "1.0.0",
-    "org.apache.cordova.statusbar": "0.1.10"
+    "org.apache.cordova.statusbar": "0.1.10",
+    "cordova-plugin-vibration": "1.2.0"
 }
 // BOTTOM OF METADATA
 });

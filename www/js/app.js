@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('quizApp', ['ionic','angular-svg-round-progress'])
+angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
 
 .run(function ($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -63,6 +63,10 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress'])
     url:'/statistics',
     templateUrl:'templates/statisticsTmpl.html',
     controller:'StatisticsContr'
+  })
+  .state('instructions',{
+    url:'/instructions',
+    templateUrl:'templates/instructionsTmpl.html',
   });
   $urlRouterProvider.otherwise('/choose');
 }])
@@ -225,7 +229,7 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress'])
 }).directive('questionDiv',function(){
   return{
     restrict:'E',
-    replace:true,
+    replace:false,
     //scope:{questionNumber:'='},
     templateUrl:'templates/questionDivTmpl.html',
   }
@@ -241,6 +245,9 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress'])
   $scope.finalCategors=[{"category":"all"},{"category":"trivia"},{"category":"science"},{"category":"world"},{"category":"history"},{"category":"economics"}];
   $scope.thisIsIt=[];
   $scope.thisIsSelected;
+  $scope.goInstructions=function(){
+    $state.go('instructions');
+  }
   $scope.whichCategory=function(){
     for (var s=0;s<$scope.finalCategors.length;s++){
       if (!$scope.finalCategors[s].chosen) {continue;}
@@ -258,9 +265,25 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress'])
     Data.sortCategories(["all"]);
     $state.transitionTo('quiz');
   }
-}]).controller('QuizController',['$scope','Data','$state','$rootScope','$ionicPopup','Stats','$interval',"$timeout",function($scope,Data,$state,$rootScope,$ionicPopup,Stats,$interval, $timeout){
+}]).controller('QuizController',['$scope','Data','$state','$rootScope','$ionicPopup','Stats','$interval',"$timeout","$cordovaVibration",function($scope,Data,$state,$rootScope,$ionicPopup,Stats,$interval, $timeout,$cordovaVibration){
   $scope.moneyOptions=Data.moneyOptions;
-  $scope.progress=$scope.moneyOptions[$scope.questionNumber];
+  $scope.timeLimit;
+  $scope.timeOut=function(){
+    if ($scope.isQuizActive===true){
+      $scope.timeLimit=$timeout(
+        function(){
+          $scope.nextButtonOnclick();
+        },
+        20000
+      );
+    }
+    else {$timeout.cancel($scope.timeLimit);}
+  }
+  $scope.restartTimeout=function(){
+    $timeout.cancel($scope.timeLimit);
+    $scope.timeLimit=undefined;
+    $scope.timeOut();
+  }
   $scope.timer=0;
   var timerInterval;
   $scope.runTimer=function(){
@@ -282,7 +305,7 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress'])
   if (Data.finalObject.length===0){$scope.noCategory=true;}
   $scope.restartQuiz=function(){
     $scope.questionNumber=Data.questionNumberS;
-    $scope.progress=$scope.moneyOptions[$scope.questionNumber];
+    $scope.progress=0-(0-$scope.quizObjectJSON.length);
     $scope.isQuizActive=true;
     $scope.scoreQuizNow=false;
     $scope.quizIsDone=false;
@@ -295,6 +318,7 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress'])
     Stats.currentFinalScore=0;
     Stats.currentNumQuestions=0;
     $scope.restartTimer();
+    $scope.restartTimeout();
   }
   $scope.setNewTopic=function(){
       $scope.answeredQuiz=Data.finalObject;
@@ -329,12 +353,8 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress'])
        }
      });
    };
-   var rotation =0;
-  $scope.nextButtonOnclick=function(){
-    rotation =rotation+180;
-      document.getElementById('flipCard').setAttribute('style','-webkit-transform: rotateY('+rotation+'deg);moz-transform: rotateY('+rotation+'deg); -o-transform: rotateY('+rotation+'deg); transform: rotateY('+rotation+'deg);')
-
-    $scope.restartTimer();
+  //  var rotation =0;
+  $scope.moveOn=function(){
     var goOn=false;
     $scope.isQuizActive=true;
     if ($scope.questionNumber<$scope.quizObjectJSON.length) {
@@ -399,8 +419,42 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress'])
     }
     $scope.$watch(function(scope){return scope.answeredQuiz},
       function(){Data.answeredQuiz=$scope.answeredQuiz});
-    $scope.progress=$scope.moneyOptions[$scope.questionNumber];
+    $scope.progress=0-($scope.questionNumber-$scope.quizObjectJSON.length);
     return goOn;
+  }
+  $scope.flipToBack=function(){
+    // console.log('to back');
+    angular.element(questionContainer).addClass('flip');
+    angular.element(cardContent).removeClass('front');
+    $scope.moveOn();
+    angular.element(cardContent).addClass('back');
+  }
+  $scope.flipToFront=function(){
+    // console.log('to front');
+    angular.element(questionContainer).addClass('flip');
+    angular.element(cardContent).removeClass('back');
+    angular.element(cardContent).addClass('front');
+    angular.element(questionContainer).removeClass('flip');
+    $scope.moveOn();
+  }
+  $scope.doTheFlip=function(){
+    if (angular.element(cardContent).hasClass('front')){
+      return $scope.flipToBack();
+      // $scope.flipToggle=true;
+    }
+    else {
+      return $scope.flipToFront();
+      // $scope.flipToggle=false;
+      // angular.element(questionContainer).toggleClass('flip');
+    }
+  }
+
+  $scope.nextButtonOnclick=function(){
+    $scope.doTheFlip();
+    $cordovaVibration.vibrate(70);
+    $scope.restartTimer();
+    $scope.restartTimeout();
+
   }
 }]).controller('AcknowledgementsContr',function($scope,Data){
     $scope.thankYou=Data;

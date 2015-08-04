@@ -1,4 +1,135 @@
 /* Empty. Add your own CSS if you like */
+
+/*Start CSS backup*/
+
+.flip-container {
+	perspective: 1000;
+}
+
+  .flip-container.flip .flipper {
+  	transform: rotateY(180deg);
+  }
+
+.flip-container, .front, .back {
+	width: 375px;
+	height: 480px;
+}
+
+/* flip speed goes here */
+.flipper {
+	transition: 0.3s;
+	transform-style: preserve-3d;
+
+	position: relative;
+}
+
+/* hide back of pane during swap */
+.front, .back {
+	/*backface-visibility: hidden;*/
+
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+/* front pane, placed above back */
+.front {
+	z-index: 2;
+	/* for firefox 31 */
+	transform: rotateY(0deg);
+}
+
+/* back, initially hidden pane */
+.back {
+	transform: rotateY(180deg);
+}
+
+.first_page_image {
+  max-width:140px;
+}
+
+#image_container{
+  text-align:center;
+  padding-top:20px;
+  padding-bottom:20px;
+  font-family:"DiscoFont",sans-serif;
+  font-size:17px;
+}
+
+#instructions{
+  text-align:center;
+  font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif;
+}
+
+#instructions_div{
+  font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif;
+}
+
+.question_questions{
+  font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif;
+  min-height:90px;
+}
+
+.question_options{
+  min-height:90px;
+}
+
+#choices_here label {
+  vertical-align: middle;
+}
+
+.first_page{
+  background-color:#eeead3;
+}
+
+.quiz_page{
+  background-color:#d3d7ee;
+}
+
+.instructions_page{
+  background-color:#eed3d7;
+}
+
+.statistics_page{
+  background-color:#d3e5ee;
+}
+
+.progress-bar-div{
+  /*position:absolute;*/
+  text-align:center;
+  padding-top:10px;
+}
+
+.progress-text{
+  margin-top:-25px;
+  font-family:"DiscoFont",sans-serif;
+  font-size:25px;
+}
+
+.timer{
+  margin-top:10px;
+  margin-bottom:-20px;
+  text-align:center;
+}
+
+.bar.bar-transparent{
+  background-color:#ded6a9;
+  color:black;
+}
+
+.item.item-clear{
+  border-color: #b2b2b2;
+  background:none;
+}
+
+@font-face{
+  font-family:"DiscoFont";
+  src: url("../lib/ionic/fonts/DISCO___.ttf");
+  font-weight:400;
+}
+
+/*End CSS backup*/
+
 .correct_choice{
 	color:green;
 }

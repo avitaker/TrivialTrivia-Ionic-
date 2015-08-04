@@ -22,6 +22,70 @@
   used under CC BY http://creativecommons.org/licenses/by/4.0/
   Modified icons to fit ionicon’s grid from original.
 */
+.first_page{
+  background:         linear-gradient(90deg, #6441A5 10%, #2a0845 90%); /* W3C */
+}
+
+.first_page_image{
+  position:relative;
+  padding-top:11.5%;
+  padding-bottom:30%;
+  /*bottom:10%;
+  top:25%;*/
+  left:15%;
+  height:70%;
+  width:70%;
+}
+
+.question_div{
+  position:relative;
+  padding-top:55px;
+}
+
+.question_questions{
+  min-height: 80px;
+  background-color: black;
+  color:white;
+}
+
+.question_options{
+  min-height: 80px;
+  background-color: black;
+}
+
+.progress-bar-div{
+  position:relative;
+  padding-top:40px;
+  left:70px;
+  height:140px;
+}
+
+.progress_bar{
+  position:absolute;
+  width:100px;
+}
+
+.progress-text{
+  position:absolute;
+  width:240px;
+  top:110px;
+  text-align:center;
+  color:white;
+  font-size:150%;
+}
+
+.semicircle-bg{
+    position:absolute;
+    padding-top:5px;
+    left:1px;
+     height:120px;
+     width:238px;
+     border-radius: 130px 130px 0 0;
+     -moz-border-radius: 125px 125px 0 0;
+     -webkit-border-radius: 125px 125px 0 0;
+     background:#d3d3d3;
+}
+
 @font-face {
   font-family: "Ionicons";
   src: url("../fonts/ionicons.eot?v=2.0.1");

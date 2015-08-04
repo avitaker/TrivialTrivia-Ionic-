@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('quizApp', ['ionic'])
+angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
 
 .run(function ($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -21,30 +21,38 @@ angular.module('quizApp', ['ionic'])
   });
 }).config(['$stateProvider','$urlRouterProvider',function($stateProvider, $urlRouterProvider){
   $stateProvider
-  .state('tab',{
-    url:'/tab',
-    abstract:true,
-    templateUrl:'templates/tabs.html'
-  }
-
-  )
-  .state('tab.choose',{
+  // .state('tab',{
+  //   url:'/tab',
+  //   abstract:true,
+  //   templateUrl:'templates/tabs.html'
+  // })
+  // .state('tab.choose',{
+  //   url:'/choose',
+  //   views:{
+  //     'tab-choose':{
+  //       templateUrl:'templates/homeTmpl.html',
+  //       controller:'StartController'
+  //     }
+  //   }
+  // })
+  // .state('tab.quiz',{
+  //   url:'/quiz',
+  //   views:{
+  //     'tab-quiz':{
+  //       templateUrl:'templates/quizStateTmpl.html',
+  //       controller:'QuizController'
+  //     }
+  //   }
+  // })
+  .state('choose',{
     url:'/choose',
-    views:{
-      'tab-choose':{
-        templateUrl:'templates/homeTmpl.html',
-        controller:'StartController'
-      }
-    }
+    templateUrl:'templates/homeTmpl.html',
+    controller:'StartController'
   })
-  .state('tab.quiz',{
+  .state('quiz',{
     url:'/quiz',
-    views:{
-      'tab-quiz':{
-        templateUrl:'templates/quizStateTmpl.html',
-        controller:'QuizController'
-      }
-    }
+    templateUrl:'templates/quizStateTmpl.html',
+    controller:'QuizController'
   })
   .state('acknowledgements',{
     url:'/acknowledgements',
@@ -55,8 +63,12 @@ angular.module('quizApp', ['ionic'])
     url:'/statistics',
     templateUrl:'templates/statisticsTmpl.html',
     controller:'StatisticsContr'
+  })
+  .state('instructions',{
+    url:'/instructions',
+    templateUrl:'templates/instructionsTmpl.html',
   });
-  $urlRouterProvider.otherwise('/tab/choose');
+  $urlRouterProvider.otherwise('/choose');
 }])
 // .factory('$localstorage', ['$window', function($window) {
 //   return {
@@ -140,6 +152,7 @@ angular.module('quizApp', ['ionic'])
     factory.answeredQuiz=[];
     factory.answeredQuiz=factory.finalObject;
   }
+  factory.moneyOptions=[500,1000,2000,3000,5000,7500,10000,12500,15000,25000,50000,100000,250000,500000,1000000];
   return factory;
 }).factory("Stats",function(){
   if (!factory){
@@ -216,7 +229,7 @@ angular.module('quizApp', ['ionic'])
 }).directive('questionDiv',function(){
   return{
     restrict:'E',
-    replace:true,
+    replace:false,
     //scope:{questionNumber:'='},
     templateUrl:'templates/questionDivTmpl.html',
   }
@@ -232,6 +245,9 @@ angular.module('quizApp', ['ionic'])
   $scope.finalCategors=[{"category":"all"},{"category":"trivia"},{"category":"science"},{"category":"world"},{"category":"history"},{"category":"economics"}];
   $scope.thisIsIt=[];
   $scope.thisIsSelected;
+  $scope.goInstructions=function(){
+    $state.go('instructions');
+  }
   $scope.whichCategory=function(){
     for (var s=0;s<$scope.finalCategors.length;s++){
       if (!$scope.finalCategors[s].chosen) {continue;}
@@ -239,17 +255,57 @@ angular.module('quizApp', ['ionic'])
     }
   }
 
+  $scope.setPage=function(page){
+    $state.transitionTo(page);
+  }
+
   $scope.startQuiz=function(){
     $scope.thisIsIt=[];
     $scope.whichCategory();
-    Data.sortCategories($scope.thisIsIt);
-    $state.transitionTo('tab.quiz');
+    Data.sortCategories(["all"]);
+    $state.transitionTo('quiz');
   }
-}]).controller('QuizController',['$scope','Data','$state','$rootScope','$ionicPopup','Stats',function($scope,Data,$state,$rootScope,$ionicPopup,Stats){
+}]).controller('QuizController',['$scope','Data','$state','$rootScope','$ionicPopup','Stats','$interval',"$timeout","$cordovaVibration",function($scope,Data,$state,$rootScope,$ionicPopup,Stats,$interval, $timeout,$cordovaVibration){
+  $scope.moneyOptions=Data.moneyOptions;
+  $scope.timeLimit;
+  $scope.timeOut=function(){
+    if ($scope.isQuizActive===true){
+      $scope.timeLimit=$timeout(
+        function(){
+          $scope.nextButtonOnclick();
+        },
+        20000
+      );
+    }
+    else {$timeout.cancel($scope.timeLimit);}
+  }
+  $scope.restartTimeout=function(){
+    $timeout.cancel($scope.timeLimit);
+    $scope.timeLimit=undefined;
+    $scope.timeOut();
+  }
+  $scope.timer=0;
+  var timerInterval;
+  $scope.runTimer=function(){
+    $scope.timer=0;
+    timerInterval=$interval(
+      function(){
+        $scope.timer+=1;
+      },
+      1000,
+      20
+    );
+  };
+  $scope.restartTimer=function(){
+    $interval.cancel(timerInterval);
+    timerInterval=undefined;
+    $scope.runTimer();
+  }
   $scope.noCategory=false;
   if (Data.finalObject.length===0){$scope.noCategory=true;}
   $scope.restartQuiz=function(){
     $scope.questionNumber=Data.questionNumberS;
+    $scope.progress=0-(0-$scope.quizObjectJSON.length);
     $scope.isQuizActive=true;
     $scope.scoreQuizNow=false;
     $scope.quizIsDone=false;
@@ -261,26 +317,28 @@ angular.module('quizApp', ['ionic'])
     $scope.notAnswereds=[];
     Stats.currentFinalScore=0;
     Stats.currentNumQuestions=0;
+    $scope.restartTimer();
+    $scope.restartTimeout();
   }
   $scope.setNewTopic=function(){
-    $scope.answeredQuiz=Data.finalObject;
-    $scope.quizObjectJSON=Data.finalObject;
-    $scope.restartQuiz();
+      $scope.answeredQuiz=Data.finalObject;
+      $scope.quizObjectJSON=Data.finalObject;
+      $scope.restartQuiz();
   }
   $scope.setNewTopic();
-  $scope.$watch(function(Data){return Data.finalObject},
-    function(){
-      for (var l=0;l<$scope.answeredQuiz.length;l++){
-        $scope.answeredQuiz[l].userAnswer=null;
-      }
-      $scope.restartQuiz();
-  });
+  // $scope.$watch(function(Data){return Data.finalObject},
+  //   function(){
+  //     for (var l=0;l<$scope.answeredQuiz.length;l++){
+  //       $scope.answeredQuiz[l].userAnswer=null;
+  //     }
+  //     $scope.restartQuiz();
+  // });
   $rootScope.$on("$stateChangeStart",
       function(){
         for (var l=0;l<$scope.answeredQuiz.length;l++){
           $scope.answeredQuiz[l].userAnswer=null;
         }
-        $scope.setNewTopic();
+        // $scope.setNewTopic();
   });
   $scope.showConfirm = function() {
      var confirmPopup = $ionicPopup.confirm({
@@ -290,77 +348,113 @@ angular.module('quizApp', ['ionic'])
      confirmPopup.then(function(res) {
        if(res) {
          $scope.questionNumber++; goOn=true;
-       } else {
+       }
+       else {
        }
      });
    };
-  $scope.nextButtonOnclick=function(){
+  //  var rotation =0;
+  $scope.moveOn=function(){
     var goOn=false;
     $scope.isQuizActive=true;
     if ($scope.questionNumber<$scope.quizObjectJSON.length) {
-      if (!$scope.answeredQuiz[$scope.questionNumber].userAnswer){
-        if ($scope.answeredQuiz[$scope.questionNumber].userAnswer===0){
-          $scope.questionNumber++;
-          goOn=true;
+      if ($scope.answeredQuiz[$scope.questionNumber].userAnswer===Data.finalObject[$scope.questionNumber].correctAnswer){
+        if (!$scope.answeredQuiz[$scope.questionNumber].userAnswer){
+          if ($scope.answeredQuiz[$scope.questionNumber].userAnswer===0){
+            $scope.questionNumber++;
+            goOn=true;
+          }
+          else {
+            $scope.showConfirm();
+          }
         }
-        else {
-          $scope.showConfirm();
-        }
+        else {$scope.questionNumber++;goOn=true;}
       }
-      else {$scope.questionNumber++;goOn=true;}
+      else {
+        goOn=true;
+        $scope.isQuizActive=false;
+        $scope.scoreQuizNow=true;
+        for (var i=0;i<Data.answeredQuiz.length;i++){
+          if (Data.answeredQuiz[i].userAnswer===Data.answeredQuiz[i].correctAnswer){
+            $scope.finalScore+=1;
+            for (var l=0;l<Stats.scoresByCategory.length;l++){
+              if (Data.answeredQuiz[i].category===Stats.scoresByCategory[l].category){
+                Stats.scoresByCategory[l].correctlyAnswered+=1;
+              }
+              else {continue;}
+            }
+          }
+          else if (Data.answeredQuiz[i].userAnswer!=Data.answeredQuiz[i].correctAnswer && Data.answeredQuiz[i].userAnswer!=null|undefined){
+            $scope.wrongAnswers.push(Data.answeredQuiz[i]);
+            $scope.anyWrong=true;
+            for (var l=0;l<Stats.scoresByCategory.length;l++){
+              if (Data.answeredQuiz[i].category===Stats.scoresByCategory[l].category){
+                Stats.scoresByCategory[l].wronglyAnswered+=1;
+              }
+              else {continue;}
+            }
+          }
+          else {
+            $scope.notAnswereds.push(Data.answeredQuiz[i]);
+            $scope.anyMissed=true;
+            for (var l=0;l<Stats.scoresByCategory.length;l++){
+              if (Data.answeredQuiz[i].category===Stats.scoresByCategory[l].category){
+                Stats.scoresByCategory[l].unanswered+=1;
+              }
+              else {continue;}
+            }
+          }
+        }
+        Stats.recordCurrentQuizPercentage($scope.finalScore,Data.answeredQuiz.length);
+        Stats.allScores.push($scope.finalScore);
+        Stats.allTotals.push(Data.answeredQuiz.length);
+        Stats.determineIndividualPercents();
+        for (var j=0;j<Stats.scoresByCategory.length;j++){
+          Stats.scoresByCategory[j].individualScores.push({"score":$scope.finalScore,"totalQuestions":$scope.wrongAnswers.length+$scope.notAnswereds.length})
+        }
+        $scope.scoreQuizNow=true;
+        $scope.isQuizDone=true;
+        if ($scope.finalScore===10){$scope.perfectQuiz=true;}
+      }
     }
     $scope.$watch(function(scope){return scope.answeredQuiz},
-      function(){Data.answeredQuiz=scope.answeredQuiz})
+      function(){Data.answeredQuiz=$scope.answeredQuiz});
+    $scope.progress=0-($scope.questionNumber-$scope.quizObjectJSON.length);
     return goOn;
   }
-  $scope.backButtonOnclick=function(){
-    $scope.questionNumber=0;
+  $scope.flipToBack=function(){
+    // console.log('to back');
+    angular.element(questionContainer).addClass('flip');
+    angular.element(cardContent).removeClass('front');
+    $scope.moveOn();
+    angular.element(cardContent).addClass('back');
   }
-  $scope.finishButtonOnclick=function(){
-    if ($scope.nextButtonOnclick()){
-      $scope.isQuizActive=false;
-      for (var i=0;i<Data.answeredQuiz.length;i++){
-        if (Data.answeredQuiz[i].userAnswer===Data.answeredQuiz[i].correctAnswer){
-          $scope.finalScore+=1;
-          for (var l=0;l<Stats.scoresByCategory.length;l++){
-            if (Data.answeredQuiz[i].category===Stats.scoresByCategory[l].category){
-              Stats.scoresByCategory[l].correctlyAnswered+=1;
-            }
-            else {continue;}
-          }
-        }
-        else if (Data.answeredQuiz[i].userAnswer!=Data.answeredQuiz[i].correctAnswer && Data.answeredQuiz[i].userAnswer!=null|undefined){
-          $scope.wrongAnswers.push(Data.answeredQuiz[i]);
-          $scope.anyWrong=true;
-          for (var l=0;l<Stats.scoresByCategory.length;l++){
-            if (Data.answeredQuiz[i].category===Stats.scoresByCategory[l].category){
-              Stats.scoresByCategory[l].wronglyAnswered+=1;
-            }
-            else {continue;}
-          }
-        }
-        else {
-          $scope.notAnswereds.push(Data.answeredQuiz[i]);
-          $scope.anyMissed=true;
-          for (var l=0;l<Stats.scoresByCategory.length;l++){
-            if (Data.answeredQuiz[i].category===Stats.scoresByCategory[l].category){
-              Stats.scoresByCategory[l].unanswered+=1;
-            }
-            else {continue;}
-          }
-        }
-      }
-      Stats.recordCurrentQuizPercentage($scope.finalScore,Data.answeredQuiz.length);
-      Stats.allScores.push($scope.finalScore);
-      Stats.allTotals.push(Data.answeredQuiz.length);
-      Stats.determineIndividualPercents();
-      for (var j=0;j<Stats.scoresByCategory.length;j++){
-        Stats.scoresByCategory[j].individualScores.push({"score":$scope.finalScore,"totalQuestions":$scope.wrongAnswers.length+$scope.notAnswereds.length})
-      }
-      $scope.scoreQuizNow=true;
-      $scope.isQuizDone=true;
-      if ($scope.finalScore===10){$scope.perfectQuiz=true;}
+  $scope.flipToFront=function(){
+    // console.log('to front');
+    angular.element(questionContainer).addClass('flip');
+    angular.element(cardContent).removeClass('back');
+    angular.element(cardContent).addClass('front');
+    angular.element(questionContainer).removeClass('flip');
+    $scope.moveOn();
+  }
+  $scope.doTheFlip=function(){
+    if (angular.element(cardContent).hasClass('front')){
+      return $scope.flipToBack();
+      // $scope.flipToggle=true;
     }
+    else {
+      return $scope.flipToFront();
+      // $scope.flipToggle=false;
+      // angular.element(questionContainer).toggleClass('flip');
+    }
+  }
+
+  $scope.nextButtonOnclick=function(){
+    $scope.doTheFlip();
+    $cordovaVibration.vibrate(100);
+    $scope.restartTimer();
+    $scope.restartTimeout();
+
   }
 }]).controller('AcknowledgementsContr',function($scope,Data){
     $scope.thankYou=Data;

@@ -1,31 +1,31 @@
 <ion-view title="Quiz">
 
-    <ion-content class="first_page">
+    <ion-content class="quiz_page">
       <div class="progress-bar-div">
         <div class="semicircle-bg"></div>
         <div class="progress_bar"
           round-progress
           max="20"
           current="questionNumber"
-          color="orange"
-          bgcolor="grey"
+          color="#5ab847"
+          bgcolor="#f33013"
           semi='true'
-          radius="130"
+          radius="100"
           stroke="20"
           rounded="false"
           clockwise="true"
           iterations="10"
           animation="linearEase">
         </div>
-        <div class="progress-text">{{progress|currency}}</div>
+        <div class="progress-text">{{questionNumber+1}} of {{quizObjectJSON.length}}</div>
       </div>
-      <div class="timer">
+      <div class="timer" ng-show="isQuizActive" ng-click="nextButtonOnclick()">
         <div class="progress_bar"
           round-progress
           max="20"
           current="timer"
-          color="#ADD8E6"
-          bgcolor="grey"
+          color="#a8c7fb"
+          bgcolor="#9b9b9b"
           semi='false'
           radius="25"
           stroke="10"

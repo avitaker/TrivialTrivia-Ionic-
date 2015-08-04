@@ -1,7 +1,7 @@
 quizApp.directive('questionDiv',function(){
   return{
     restrict:'E',
-    replace:true,
+    replace:false,
     //scope:{questionNumber:'='},
     templateUrl:'questionDivInline.html',
   }
