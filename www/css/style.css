@@ -1,6 +1,8 @@
 /* Empty. Add your own CSS if you like */
 
 /*Start CSS backup*/
+
+/*change border-radius of ".button" to 0px*/
 .item-animate.ng-hide {
   height:0;
   opacity:0;

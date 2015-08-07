@@ -94,7 +94,7 @@ $dark:                            #444 !default;
   flex:2;
   text-align:center;
   padding-top:5%;
-  padding-bottom:5%;
+  padding-bottom:15%;
   font-family:"DiscoFont",sans-serif;
   font-size:17px;
 }
@@ -6749,7 +6749,7 @@ progress {
   min-height: 47px;
   border-width: 1px;
   border-style: solid;
-  border-radius: 2px;
+  border-radius: 0px;
   vertical-align: top;
   text-align: center;
   text-overflow: ellipsis;

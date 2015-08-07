@@ -4,10 +4,10 @@
     </ion-nav-buttons> -->
     <ion-content class="first_page">
       <div class="home-container">
-      <div class="srow3i">
-        <img class="first_page_image" src="https://cdn3.iconfinder.com/data/icons/brain-games/1042/Quiz-Games.png"><br>
-        <b>AVI'S QUIZ</b>
-      </div>
+        <div class="srow3i">
+          <img class="first_page_image" src="https://cdn3.iconfinder.com/data/icons/brain-games/1042/Quiz-Games.png"><br>
+          <b>AVI'S QUIZ</b>
+        </div>
 
     	<!-- <div class="list">
     		<div class="item item-divider">Please select your desired categories</div>
@@ -19,10 +19,15 @@
         <a class='button start_quiz_button'  ng-click='startQuiz()'>Reset and Start Quiz</a>
       </div> -->
       <!-- <div class="buttons-here"> -->
-        <button class="button icon-left ion-arrow-right-b button-block button-outline button-royal" ng-click="openPopover($event)">Start the game</button>
-        <button class="button icon-left ion-help button-block button-outline button-assertive" ng-click="goInstructions()">Instructions</button>
-        <button class="button icon-left ion-stats-bars button-block button-outline button-positive" ng-click="setPage('statistics')">Statistics</button>
-        <button class="button icon-left ion-beer button-block button-outline button-dark" ng-click="setPage('acknowledgements')">Acknowledgements</button>
       </div>
+        <div class="row">
+          <button class="button button-large button-royal col" ng-click="openPopover($event)"><i class="ion-arrow-right-b"></i><br>Start the game</button>
+          <button class="button button-large button-assertive col" ng-click="goInstructions()"><i class="ion-help"></i><br>Instructions</button>
+        </div>
+        <div class="row">
+          <button class="button button-large button-positive col" ng-click="setPage('statistics')"><i class="ion-stats-bars"></i><br>Statistics</button>
+          <button class="button button-large button-dark col" ng-click="setPage('acknowledgements')"><i class="ion-beer"></i><br>Thank you</button>
+        </div>
+      <!-- </div> -->
     </ion-content>
 </ion-view>
