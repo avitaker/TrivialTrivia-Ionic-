@@ -1,0 +1,19 @@
+<ion-modal-view>
+    <ion-header-bar class="bar-royal">
+      <h1 class="title">Choose Quiz Length</h1>
+    </ion-header-bar>
+    <ion-content class="quiz_page">
+      <div class="list">
+        <h4 class="item item-divider item-text-wrap">Please enter a number between 1-37</h4>
+        <label class="item item-input">
+          <input type="number" placeholder="Click Here" ng-model="chosenLength.chosen"></input>
+        </label>
+        <div class="item item-divider item-icon-right" ng-click="convertThem()">{{selectText}} <i class="icon ion-plus-circled" ng-hide="showCategors"></i><i class="icon ion-minus-round" ng-show="showCategors"></i></div>
+        <ion-toggle class="item-animate" toggle-class="toggle-balanced" ng-repeat="thing in finalCategors track by $index" ng-show="showCategors" ng-model="finalCategors[$index].chosen" ng-click="selectedCategories($index)">{{thing.category|uppercase}}</ion-toggle>
+        <button class="button button-block button-outline button-assertive" ng-click="killPopover()">Start!</button>
+        <button class="button button-block button-outline button-dark" ng-click="cancelModal()">
+          Cancel
+        </button>
+      </div>
+    </ion-content>
+  </ion-modal-view>

@@ -212,3 +212,14 @@
 2015-06-06 10:00:50.502 myApp[13022:369792] Resetting plugins due to page load.
 2015-06-06 10:00:50.718 myApp[13022:369792] Finished load of: file:///Users/avinashdavid/Library/Developer/CoreSimulator/Devices/EE8646E6-938C-4089-BF29-D42D11B57BC1/data/Containers/Bundle/Application/BA395E7C-7112-4E26-8C49-6BD8925956E0/myApp.app/www/index.html
 2015-06-06 11:08:27.068 myApp[13022:385712] Terminating since there is no system app.
+2015-08-04 12:47:53.304 Quiz app tabs[5173:507991] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/avinashdavid/Library/Developer/CoreSimulator/Devices/7E65C545-D4C3-48C1-8936-3A958328E7CD/data/Containers/Data/Application/0A23B3FC-DA04-4949-9FBD-05B8FBC4235B/Library/Cookies/Cookies.binarycookies
+2015-08-04 12:47:53.660 Quiz app tabs[5173:507991] Apache Cordova native platform version 3.8.0 is starting.
+2015-08-04 12:47:53.660 Quiz app tabs[5173:507991] Multi-tasking -> Device: YES, App: YES
+2015-08-04 12:47:53.681 Quiz app tabs[5173:507991] Unlimited access to network resources
+2015-08-04 12:47:54.124 Quiz app tabs[5173:507991] [CDVTimer][keyboard] 0.120044ms
+2015-08-04 12:47:54.395 Quiz app tabs[5173:507991] [CDVTimer][splashscreen] 270.933986ms
+2015-08-04 12:47:54.401 Quiz app tabs[5173:507991] [CDVTimer][statusbar] 5.760968ms
+2015-08-04 12:47:54.413 Quiz app tabs[5173:507991] [CDVTimer][file] 12.465000ms
+2015-08-04 12:47:54.414 Quiz app tabs[5173:507991] [CDVTimer][TotalPluginStartup] 291.512012ms
+2015-08-04 12:47:54.842 Quiz app tabs[5173:507991] Resetting plugins due to page load.
+2015-08-04 12:47:55.421 Quiz app tabs[5173:507991] Finished load of: file:///Users/avinashdavid/Library/Developer/CoreSimulator/Devices/7E65C545-D4C3-48C1-8936-3A958328E7CD/data/Containers/Bundle/Application/EEAE1DE5-8892-4C77-AD8A-C11D6547BF78/Quiz%20app%20tabs.app/www/index.html#/choose

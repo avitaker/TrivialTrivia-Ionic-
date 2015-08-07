@@ -88,28 +88,54 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
 // }])
 .factory("Data",function(){
   var factory={};
-  var quizObjectRaw=[{"category":"trivia","question": "Grand Central Terminal, Park Avenue, New York is the world's", "choices": ["largest railway station","highest railway station","longest railway station","None of the above"], "correctAnswer":0},
-  {"category":"science","question": "Entomology is the science that studies", "choices": ["Behavior of human beings","Insects","The origin and history of technical and scientific terms","the formation of rocks"], "correctAnswer":1},
-  {"category":"world","question": "Eritrea, which became the 182nd member of the UN in 1993, is in the continent of", "choices": ["Asia","Europe","Africa","Australia"], "correctAnswer":2},
-  {"category":"world","question": "Garampani sanctuary is located in the Indian town of", "choices": ["Diphu, Assam","Junagarh, Gujarat","Gangtok, Sikkim","Kohima, Nagaland"], "correctAnswer":0},
-  {"category":"trivia","question": "For which of the following disciplines is Nobel Prize awarded?", "choices": ["Physics and Chemistry","Literature, Peace and Economics","Physiology or Medicine","All of the above"], "correctAnswer":3},
-  {"category":"history","question": "Hitler's party, which came into power in 1933, is known as", "choices": ["Ku-Klux-Klan","Labour Party","Democratic Party","Nazi Party"], "correctAnswer":3},
-  {"category":"science","question": "Galileo was an Italian astronomer who", "choices": ["discovered four satellites of Jupiter","discovered that the movement of pendulum produces a regular time measurement","developed the telescope","All of the above"], "correctAnswer":3},
-  {"category":"science","question": "Exposure to sunlight helps improve a person's health because", "choices": ["resistance power increases","the ultraviolet rays convert skin oil into Vitamin D","the infrared light kills bacteria in the body","the pigment cells in the skin get stimulated and produce a healthy tan"], "correctAnswer":1},
-  {"category":"history","question": "First China War was fought between", "choices": ["China and Britain","China and France","China and Egypt","China and Greece"], "correctAnswer":0},
-  {"category":"world","question": "Famous Indian sculptures depicting art of love built some time in 950 AD - 1050 AD are at", "choices": ["Mahabalipuram temples","Jama Masjid","Khajuraho temples","Sun temple"], "correctAnswer":2},
-  {"category":"economics","question":"In economics, dumping is","choices":["selling of goods abroad at a price well below the production cost at the home market price","the process by which the supply of a manufacture's product remains low in the domestic market, which batches him better price","prohibited by regulations of GATT","All of the above"],"correctAnswer":3},
-  {"category":"science","question":"Friction can be reduced by changing from","choices":["sliding to rolling","rolling to sliding","potential energy to kinetic energy","dynamic to static"],"correctAnswer":0},
-  //{"category":"history","question":"During World War II, when did Germany attack France?","choices":["1915","1940","1943","1962"],"correctAnswer":1},
-  {"category":"science","question":"The ozone layer restricts which of the following types of radiation?","choices":["Visible light","Infrared radiation","X-rays and gamma rays","Ultraviolet radiation"],"correctAnswer":3},
-  {"category":"history","question":"During World War II, when did Germany attack France?","choices":["1915","1940","1943","1962"],"correctAnswer":1},
-  {"category":"trivia","question":"Eugenics is the study of","choices":["people of European origin","different races of mankind","altering human beings by changing their genetic components","genetics of plants"],"correctAnswer":2},
-  {"category":"science","question":"Escape velocity of a rocket fired from the earth towards the moon is a velocity to get rid of the","choices":["Moon's gravitational pull","Earth's gravitational pull","Centripetal force due to the earth's rotation","Pressure of the atmosphere"],"correctAnswer":1},
-  {"category":"history","question":"Hamid Karzai was chosen president of Afghanistan in","choices":["2002","1978","2010","1899"],"correctAnswer":0},
-  {"category":"world","question":"Headquarters of UNO are located at","choices":["Geneva (Switzerland)","Paris (France)","Hague (Netherlands)","New York (USA)"],"correctAnswer":3},
-  {"category":"trivia","question":"For seeing objects at the surface of water from a submarine under water, the instrument used is","choices":["telescope","spectroscope","periscope","noScope 360"],"correctAnswer":2}];
+  factory.chosenLength={};
+  factory.customCategories=[];
+  //factory.chosenLength.chosen=null;
+  var quizObjectRaw=[
+    {"category":"general","question": "Grand Central Terminal, Park Avenue, New York is the world's", "choices": ["largest railway station","highest railway station","longest railway station","None of the above"], "correctAnswer":0},
+    {"category":"science","question": "Entomology is the science that studies", "choices": ["Behavior of human beings","Insects","The origin and history of technical and scientific terms","the formation of rocks"], "correctAnswer":1},
+    {"category":"world","question": "Eritrea, which became the 182nd member of the UN in 1993, is in the continent of", "choices": ["Asia","Europe","Africa","Australia"], "correctAnswer":2},
+    {"category":"world","question": "Garampani sanctuary is located in the Indian town of", "choices": ["Diphu, Assam","Junagarh, Gujarat","Gangtok, Sikkim","Kohima, Nagaland"], "correctAnswer":0},
+    {"category":"general","question": "For which of the following disciplines is Nobel Prize awarded?", "choices": ["Physics and Chemistry","Literature, Peace and Economics","Physiology or Medicine","All of the above"], "correctAnswer":3},
+    {"category":"history","question": "Hitler's party, which came into power in 1933, is known as", "choices": ["Ku-Klux-Klan","Labour Party","Democratic Party","Nazi Party"], "correctAnswer":3},
+    {"category":"science","question": "Galileo was an Italian astronomer who", "choices": ["discovered four satellites of Jupiter","discovered that the movement of pendulum produces a regular time measurement","developed the telescope","All of the above"], "correctAnswer":3},
+    {"category":"science","question": "Exposure to sunlight helps improve a person's health because", "choices": ["resistance power increases","the ultraviolet rays convert skin oil into Vitamin D","the infrared light kills bacteria in the body","the pigment cells in the skin get stimulated and produce a healthy tan"], "correctAnswer":1},
+    {"category":"history","question": "First China War was fought between", "choices": ["China and Britain","China and France","China and Egypt","China and Greece"], "correctAnswer":0},
+    {"category":"world","question": "Famous Indian sculptures depicting art of love built some time in 950 AD - 1050 AD are at", "choices": ["Mahabalipuram temples","Jama Masjid","Khajuraho temples","Sun temple"], "correctAnswer":2},
+    {"category":"science","question":"Friction can be reduced by changing from","choices":["sliding to rolling","rolling to sliding","potential energy to kinetic energy","dynamic to static"],"correctAnswer":0},
+    //{"category":"history","question":"During World War II, when did Germany attack France?","choices":["1915","1940","1943","1962"],"correctAnswer":1},
+    {"category":"science","question":"The ozone layer restricts which of the following types of radiation?","choices":["Visible light","Infrared radiation","X-rays and gamma rays","Ultraviolet radiation"],"correctAnswer":3},
+    {"category":"history","question":"During World War II, when did Germany attack France?","choices":["1915","1940","1943","1962"],"correctAnswer":1},
+    {"category":"general","question":"Eugenics is the study of","choices":["people of European origin","different races of mankind","altering human beings by changing their genetic components","genetics of plants"],"correctAnswer":2},
+    {"category":"science","question":"Escape velocity of a rocket fired from the earth towards the moon is a velocity to get rid of the","choices":["Moon's gravitational pull","Earth's gravitational pull","Centripetal force due to the earth's rotation","Pressure of the atmosphere"],"correctAnswer":1},
+    {"category":"history","question":"Hamid Karzai was chosen president of Afghanistan in","choices":["2002","1978","2010","1899"],"correctAnswer":0},
+    {"category":"world","question":"Headquarters of UNO are located at","choices":["Geneva (Switzerland)","Paris (France)","Hague (Netherlands)","New York (USA)"],"correctAnswer":3},
+    {"category":"general","question":"For seeing objects at the surface of water from a submarine under water, the instrument used is","choices":["Telescope","Spectroscope","Periscope","No scope 360"],"correctAnswer":2},
+    {"category":"entertainment","question":"Which 1990's TV series won the Emmy Award as best comedy in five consecutive years?","choices":["Friends","Days of our Lives","Ally McBeal","Frasier"],"correctAnswer":3},
+    {"category":"history","question":"Which US holiday came to exist as a result of a presidential Proclamation in 1863?","choices":["Thanksgiving","Labor Day","Veteran's Day","4th of July"],"correctAnswer":0},
+    {"category":"entertainment","question":"Who wrote 'The Raven'?","choices":["Daniel Defoe","Mark Twain","Edgar Allan Poe","Nathaniel Hawthorne"],"correctAnswer":2},
+    {"category":"world","question":"After Los Angeles, which California city not starting with an 'S' has the highest population?","choices":["Long Beach","Fresno","Oakland","Fremont"],"correctAnswer":1},
+    {"category":"entertainment","question":"In which year was the first talkie film, 'The Jazz Singer', released?","choices":["1905","1916","1927","1939"],"correctAnswer":2},
+    {"category":"world","question":"Which American state has the closest proximity to Russia?","choices":["Hawaii","Alaska","California","Oregon"],"correctAnswer":1},
+    {"category":"science","question":"Which word describes a living being that is both male and female?","choices":["Androgynous","Gynandromorph","Hermaphrodite","Gonochorous"],"correctAnswer":2},
+    {"category":"entertainment","question":"In the famous movie 'Rocky', what was Sylvester Stallone's character's last name?","choices":["Marciano","Colavito","Lynch","Balboa"],"correctAnswer":3},
+    {"category":"entertainment","question":"Which female artist has the most top ten Billboard hits?","choices":["Madonna","Whitney Houston","Britney Spears","Janet Jackson"],"correctAnswer":0},
+    {"category":"history","question":"Who was the last president of the Soviet Union?","choices":["Nikita Khrushchev","Gennady Yanayev","Vladimir Lenin","Mikhail Gorbachev"],"correctAnswer":3},
+    {"category":"entertainment","question":"Which 1990s musical group was heavily criticized for releasing a song written by Charles Manson?","choices":["Pearl Jam","Marilyn Manson","Guns and Roses","The Beastie Boys"],"correctAnswer":2},
+    {"category":"entertainment","question":"Which is the largest Sesame Street Puppet?","choices":["Mr. Snuffleupagus","Big Bird","Elmo","this"],"correctAnswer":0},
+    {"category":"science","question":"Who discovered penicillin?","choices":["Louis Pasteur","Joseph Lister","Robert Koch","Alexander Fleming"],"correctAnswer":3},
+    {"category":"science","question":"Approximately how long does light from the sun need to reach the earth?","choices":["8 minutes","24 hours","45 seconds","365 days"],"correctAnswer":0},
+    {"category":"general","question":"What is the smallest country in the world?","choices":["Grenada","Monaco","Vatican","Tuvalu"],"correctAnswer":2},
+    {"category":"general","question":"Which disease is the focus of oncology?","choices":["Glaucoma","HIV","Diabetes","Cancer"],"correctAnswer":3},
+    {"category":"general","question":"What is the most popular sport in the world?","choices":["Hockey","Football/soccer","Basketball","Tennis"],"correctAnswer":1},
+    {"category":"general","question":"What is the hardest substance found in nature?","choices":["Iron","Wurtzite boron nitride","Diamond","Alumina"],"correctAnswer":1},
+    // {"category":"general","question":"this","choices":["this","this","this","this"],"correctAnswer":},
+    // {"category":"this","question":"this","choices":["this","this","this","this"],"correctAnswer":},
+    // {"category":"this","question":"this","choices":["this","this","this","this"],"correctAnswer":},
+  ];
+  factory.quizObjectRaw=quizObjectRaw;
   var quizObjectJSON=[];
-  var randomizeArray=function(targetArr){
+  var randomizeArray=function(targetArr,desiredLength){
     var returnArray=[];
     while (returnArray.length<targetArr.length){
       var shouldAdd=true;
@@ -126,11 +152,11 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
         }
       }
     }
-    return returnArray;
+    return returnArray.slice(0,desiredLength);
   }
   factory.finalObject=[];
   factory.questionNumberS=0;
-  factory.sortCategories=function(arr){
+  factory.sortCategories=function(arr,chosenLength){
     factory.questionNumberS=0;
     quizObjectJSON=[];
     factory.finalObject=[];
@@ -148,16 +174,16 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
         }
       }
     }
-    factory.finalObject=randomizeArray(quizObjectJSON);
+    factory.finalObject=randomizeArray(quizObjectJSON,chosenLength);
     factory.answeredQuiz=[];
     factory.answeredQuiz=factory.finalObject;
   }
-  factory.moneyOptions=[500,1000,2000,3000,5000,7500,10000,12500,15000,25000,50000,100000,250000,500000,1000000];
   return factory;
 }).factory("Stats",function(){
   if (!factory){
     var factory={};
   }
+  factory.numPerfectQuiz=0;
   factory.currentQuizPercentage=function(score,total){
     return ((score/total)*100);
   }
@@ -165,6 +191,34 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
     factory.allPercentages=[];
     factory.allScores=[];
     factory.allTotals=[];
+    factory.allRightTimes=[];
+    factory.allWrongTimes=[];
+  }
+  factory.determineAverageAttempted=function(){
+    var totes=0;
+    var nums=factory.allTotals.length;
+    for (i=0;i<factory.allTotals.length;i++){
+      totes+=factory.allTotals[i];
+    }
+    return (totes/nums);
+  }
+  factory.determineAverageCompleted=function(){
+    var totes=0;
+    var nums=factory.allScores.length;
+    for (i=0;i<factory.allScores.length;i++){
+      totes+=factory.allScores[i];
+    }
+    return (totes/nums);
+  }
+  factory.determineAverageRate=function(){
+    var scores=0;
+    var totes=0;
+    for (i=0;i<factory.allScores.length;i++){
+      scores+=factory.allScores[i];
+      totes+=factory.allTotals[i];
+    }
+    var percent=(scores/totes)*100;
+    return percent;
   }
   // factory.allScores=$localstorage.getObject('allScores');
   // factory.allTotals=$localstorage.getObject('allTotals');
@@ -192,15 +246,39 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
   }
   factory.currentCategoryNum=0;
   factory.scoresByCategory=[{"category":"all","individualScores":[],"correctlyAnswered":0,"wronglyAnswered":0,"unanswered":0,"percentage":0},
-  {"category":"trivia","individualScores":[],"correctlyAnswered":0,"wronglyAnswered":0,"unanswered":0,"percentage":0},
+  {"category":"general","individualScores":[],"correctlyAnswered":0,"wronglyAnswered":0,"unanswered":0,"percentage":0},
   {"category":"science","individualScores":[],"correctlyAnswered":0,"wronglyAnswered":0,"unanswered":0,"percentage":0},
   {"category":"world","individualScores":[],"correctlyAnswered":0,"wronglyAnswered":0,"unanswered":0,"percentage":0},
   {"category":"history","individualScores":[],"correctlyAnswered":0,"wronglyAnswered":0,"unanswered":0,"percentage":0},
-  {"category":"economics","individualScores":[],"correctlyAnswered":0,"wronglyAnswered":0,"unanswered":0,"percentage":0}];
+  {"category":"entertainment","individualScores":[],"correctlyAnswered":0,"wronglyAnswered":0,"unanswered":0,"percentage":0}];
   factory.determineIndividualPercents=function(){
     for (var s=0;s<factory.scoresByCategory.length;s++){
       factory.scoresByCategory[s].percentage=((100*factory.scoresByCategory[s].correctlyAnswered)/(factory.scoresByCategory[s].wronglyAnswered+factory.scoresByCategory[s].unanswered+factory.scoresByCategory[s].correctlyAnswered));
     }
+  }
+  factory.determineCategoryStats=function(category){
+    var totalAnswered=0;
+    var correctAnswered=0;
+    var wrongAnswered=0;
+    var unAnswered=0;
+    for (n=0;n<factory.scoresByCategory.length;n++){
+      if (factory.scoresByCategory[n].category===category){
+        totalAnswered=factory.scoresByCategory[n].correctlyAnswered+factory.scoresByCategory[n].wronglyAnswered+factory.scoresByCategory[n].unanswered;
+        wrongAnswered=factory.scoresByCategory[n].wronglyAnswered;
+        correctAnswered=factory.scoresByCategory[n].correctlyAnswered;
+        unAnswered=factory.scoresByCategory[n].unanswered;
+        break;
+      }
+      else {continue;}
+    }
+    var categoryPercent=((correctAnswered)/totalAnswered)*100;
+    return [
+      {"name":"Total number of questions attempted","val":totalAnswered},
+      {"name":"Correct answers","val":correctAnswered},
+      {"name":"Wrong answers","val":wrongAnswered},
+      {"name":"Not answered","val":unAnswered},
+      {"name":"Percentage score","val":categoryPercent}
+    ];
   }
   factory.determineBestCategory=function(){
     var best='';
@@ -224,6 +302,33 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
     }
     return [worst,lowestPer];
   }
+  factory.determineLongestStreak=function(){
+    var longestStreak=0;
+    for (i=0;i<factory.allScores.length;i++){
+      if (factory.allScores[i]>longestStreak){
+        longestStreak=factory.allScores[i];
+      }
+    }
+    return longestStreak;
+  }
+  factory.determineAveRightTime=function(){
+    var totalTime=0;
+    var numTime=factory.allRightTimes.length;
+    for (i=0;i<factory.allRightTimes.length;i++){
+      totalTime+=factory.allRightTimes[i];
+    }
+    var aveRightTime=(totalTime/numTime);
+    return aveRightTime;
+  }
+  factory.determineAveWrongTime=function(){
+    var totalTime=0;
+    var numTime=factory.allWrongTimes.length;
+    for (i=0;i<factory.allWrongTimes.length;i++){
+      totalTime+=factory.allWrongTimes[i];
+    }
+    var aveWrongTime=(totalTime/numTime);
+    return aveWrongTime;
+  }
   return factory;
 
 }).directive('questionDiv',function(){
@@ -241,29 +346,126 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
   $scope.showMenu = function () {
     $ionicSideMenuDelegate.toggleLeft();
   }
-}).controller("StartController",['$scope','$state','Data',function($scope,$state,Data){
-  $scope.finalCategors=[{"category":"all"},{"category":"trivia"},{"category":"science"},{"category":"world"},{"category":"history"},{"category":"economics"}];
+}).controller("StartController",['$scope','$state','Data','$ionicModal','$rootScope',function($scope,$state,Data,$ionicModal,$rootScope){
+  $scope.finalCategors=[{"category":"general","chosen":false},{"category":"science","chosen":false},{"category":"world","chosen":false},{"category":"history","chosen":false},{"category":"entertainment","chosen":false}];
   $scope.thisIsIt=[];
   $scope.thisIsSelected;
+  $scope.modalCancel=0;
+  $scope.highestAllowed=Data.quizObjectRaw.length;
   $scope.goInstructions=function(){
     $state.go('instructions');
   }
-  $scope.whichCategory=function(){
-    for (var s=0;s<$scope.finalCategors.length;s++){
-      if (!$scope.finalCategors[s].chosen) {continue;}
-      else {$scope.thisIsIt.push($scope.finalCategors[s].category);}
-    }
-  }
+  // $scope.whichCategory=function(){
+  //   for (var s=0;s<$scope.finalCategors.length;s++){
+  //     if (!$scope.finalCategors[s].chosen) {continue;}
+  //     else {$scope.thisIsIt.push($scope.finalCategors[s].category);}
+  //   }
+  // }
 
   $scope.setPage=function(page){
     $state.transitionTo(page);
   }
 
-  $scope.startQuiz=function(){
+  $scope.chosenLength={};
+  $scope.customCategories=[];
+  $scope.isCustomCategory=false;
+  $scope.showCategors=false;
+  $scope.selectText="Choose desired categories (optional)";
+
+  $scope.convertThem=function(){
+    if ($scope.showCategors===true){
+      $scope.showCategors=false;
+      $scope.selectText="Choose desired categories (optional)";
+    }
+    else{
+      $scope.showCategors=true;
+      $scope.selectText="Hide category options";
+    }
+  }
+
+  $scope.lengthPopover;
+
+  $ionicModal.fromTemplateUrl('templates/quizLengthPopover.html', {
+    scope: $scope,
+    animation:'slide-in-up'
+  }).then(function(modal) {
+    $scope.lengthPopover = modal;
+  });
+
+  $rootScope.$on("$stateChangeStart",
+      function(){
+        $ionicModal.fromTemplateUrl('templates/quizLengthPopover.html', {
+          scope: $scope,
+          animation: 'slide-in-up'
+        }).then(function(modal) {
+          $scope.lengthPopover = modal;
+        });
+  });
+
+  $scope.$watch(function(scope){return scope.modalCancel},
+    function(){
+      $ionicModal.fromTemplateUrl('templates/quizLengthPopover.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+      }).then(function(modal) {
+        $scope.lengthPopover = modal;
+      });
+      // Data.customCategories=[];
+      $scope.isCustomCategory=false;
+    })
+
+  $scope.cancelModal=function(){
+    $scope.lengthPopover.hide();
+    $scope.lengthPopover.remove();
+    $scope.modalCancel++;
+  }
+
+  $scope.selectedCategories=function($index){
+    if ($scope.finalCategors[$index].chosen){
+      $scope.customCategories.push($scope.finalCategors[$index].category);
+    }
+    else if ($scope.finalCategors[$index].chosen===false){
+      // var thisUn=$scope.finalCategors[$index].category;
+      for (i=0;i<$scope.customCategories.length;i++){
+        if ($scope.customCategories[i]===$scope.finalCategors[$index].category){
+          $scope.customCategories.splice($scope.customCategories.indexOf($scope.finalCategors[$index].category),1);
+        }
+      }
+    }
+    console.log($scope.customCategories);
+  }
+
+  $scope.populateCategories=function(){
+    if ($scope.customCategories.length<=0){
+      $scope.thisIsIt=["all"]
+    }
+    else {
+      $scope.thisIsIt=$scope.customCategories;
+    }
+    return $scope.thisIsIt;
+  }
+
+  $scope.killPopover=function(){
+    console.log(Data.chosenLength.chosen);
+    if ($scope.chosenLength.chosen>=1 && $scope.chosenLength.chosen<=37){
+      Data.chosenLength.chosen=$scope.chosenLength.chosen;
+      $scope.lengthPopover.hide();
+      $scope.lengthPopover.remove();
+      Data.sortCategories($scope.populateCategories(),Data.chosenLength.chosen);
+      $state.transitionTo('quiz');
+    }
+    else {
+      alert("You must choose an option between 0 and 37");
+      Data.chosenLength.chosen=null;
+    }
+  }
+
+  $scope.openPopover=function($event){
     $scope.thisIsIt=[];
-    $scope.whichCategory();
-    Data.sortCategories(["all"]);
-    $state.transitionTo('quiz');
+    // $scope.whichCategory();
+    // Data.sortCategories(["all"],Data.chosenLength.chosen);
+    $scope.lengthPopover.show($event);
+    //$state.transitionTo('quiz');
   }
 }]).controller('QuizController',['$scope','Data','$state','$rootScope','$ionicPopup','Stats','$interval',"$timeout","$cordovaVibration",function($scope,Data,$state,$rootScope,$ionicPopup,Stats,$interval, $timeout,$cordovaVibration){
   $scope.moneyOptions=Data.moneyOptions;
@@ -305,6 +507,7 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
   if (Data.finalObject.length===0){$scope.noCategory=true;}
   $scope.restartQuiz=function(){
     $scope.questionNumber=Data.questionNumberS;
+    $scope.displayNumber=Data.questionNumberS;
     $scope.progress=0-(0-$scope.quizObjectJSON.length);
     $scope.isQuizActive=true;
     $scope.scoreQuizNow=false;
@@ -340,6 +543,15 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
         }
         // $scope.setNewTopic();
   });
+
+  $scope.goToStatistics=function(){
+    $state.go('statistics')
+  }
+
+  $scope.goHome=function(){
+    $state.go('choose');
+  }
+
   $scope.showConfirm = function() {
      var confirmPopup = $ionicPopup.confirm({
        title: 'Skip question?',
@@ -353,70 +565,111 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
        }
      });
    };
+
+  //  $scope.wrongVibration=function(){
+  //    if (ionic.Platform.isAndroid()){
+  //      $cordovaVibration.vibrate([70,70]);
+  //    }
+  //    else {
+  //      $cordovaVibration.vibrate(140);
+  //    }
+  //  }
   //  var rotation =0;
+  $scope.ifWrong=function(){
+    $scope.isQuizActive=false;
+    $scope.scoreQuizNow=true;
+    // $cordovaVibration.vibrate(140);
+    if (Data.answeredQuiz[Data.answeredQuiz.length-1].userAnswer===Data.answeredQuiz[Data.answeredQuiz.length-1].correctAnswer){
+      $scope.displayNumber+=1;
+      $scope.questionNumber++;
+    }
+    else if (Data.answeredQuiz[Data.answeredQuiz.length-1].userAnswer!=Data.answeredQuiz[Data.answeredQuiz.length-1].correctAnswer){
+      Stats.allWrongTimes.push($scope.timer);
+    }
+    for (var i=0;i<Data.answeredQuiz.length;i++){
+      if (Data.answeredQuiz[i].userAnswer===Data.answeredQuiz[i].correctAnswer){
+        $scope.finalScore+=1;
+        for (var l=0;l<Stats.scoresByCategory.length;l++){
+          if (Data.answeredQuiz[i].category===Stats.scoresByCategory[l].category){
+            Stats.scoresByCategory[l].correctlyAnswered+=1;
+          }
+          else {continue;}
+        }
+      }
+      else if (Data.answeredQuiz[i].userAnswer!=Data.answeredQuiz[i].correctAnswer && Data.answeredQuiz[i].userAnswer!=null|undefined){
+        $scope.wrongAnswers.push(Data.answeredQuiz[i]);
+        $scope.anyWrong=true;
+        for (var l=0;l<Stats.scoresByCategory.length;l++){
+          if (Data.answeredQuiz[i].category===Stats.scoresByCategory[l].category){
+            Stats.scoresByCategory[l].wronglyAnswered+=1;
+          }
+          else {continue;}
+        }
+      }
+      else {
+        $scope.notAnswereds.push(Data.answeredQuiz[i]);
+        $scope.anyMissed=true;
+        $scope.anyWrong=true;
+        for (var l=0;l<Stats.scoresByCategory.length;l++){
+          if (Data.answeredQuiz[i].category===Stats.scoresByCategory[l].category){
+            Stats.scoresByCategory[l].unanswered+=1;
+
+          }
+          else {continue;}
+        }
+        break;
+      }
+    }
+    Stats.recordCurrentQuizPercentage($scope.finalScore,Data.answeredQuiz.length);
+    Stats.allScores.push($scope.finalScore);
+    Stats.allTotals.push(Data.answeredQuiz.length);
+    Stats.determineIndividualPercents();
+    for (var j=0;j<Stats.scoresByCategory.length;j++){
+      Stats.scoresByCategory[j].individualScores.push({"score":$scope.finalScore,"totalQuestions":$scope.wrongAnswers.length+$scope.notAnswereds.length})
+    }
+    $scope.scoreQuizNow=true;
+    $scope.isQuizDone=true;
+    if ($scope.finalScore===Data.answeredQuiz.length){
+      $scope.perfectQuiz=true;
+      Stats.numPerfectQuiz++;
+    }
+  }
   $scope.moveOn=function(){
     var goOn=false;
     $scope.isQuizActive=true;
-    if ($scope.questionNumber<$scope.quizObjectJSON.length) {
+    if ($scope.questionNumber<$scope.quizObjectJSON.length-1) {
       if ($scope.answeredQuiz[$scope.questionNumber].userAnswer===Data.finalObject[$scope.questionNumber].correctAnswer){
         if (!$scope.answeredQuiz[$scope.questionNumber].userAnswer){
           if ($scope.answeredQuiz[$scope.questionNumber].userAnswer===0){
             $scope.questionNumber++;
+            $scope.displayNumber++;
             goOn=true;
           }
           else {
             $scope.showConfirm();
           }
         }
-        else {$scope.questionNumber++;goOn=true;}
+        else {
+          $scope.questionNumber++;
+          $scope.displayNumber++;
+          goOn=true;
+        }
+        Stats.allRightTimes.push($scope.timer);
+        // $cordovaVibration.vibrate(70);
       }
       else {
         goOn=true;
-        $scope.isQuizActive=false;
-        $scope.scoreQuizNow=true;
-        for (var i=0;i<Data.answeredQuiz.length;i++){
-          if (Data.answeredQuiz[i].userAnswer===Data.answeredQuiz[i].correctAnswer){
-            $scope.finalScore+=1;
-            for (var l=0;l<Stats.scoresByCategory.length;l++){
-              if (Data.answeredQuiz[i].category===Stats.scoresByCategory[l].category){
-                Stats.scoresByCategory[l].correctlyAnswered+=1;
-              }
-              else {continue;}
-            }
-          }
-          else if (Data.answeredQuiz[i].userAnswer!=Data.answeredQuiz[i].correctAnswer && Data.answeredQuiz[i].userAnswer!=null|undefined){
-            $scope.wrongAnswers.push(Data.answeredQuiz[i]);
-            $scope.anyWrong=true;
-            for (var l=0;l<Stats.scoresByCategory.length;l++){
-              if (Data.answeredQuiz[i].category===Stats.scoresByCategory[l].category){
-                Stats.scoresByCategory[l].wronglyAnswered+=1;
-              }
-              else {continue;}
-            }
-          }
-          else {
-            $scope.notAnswereds.push(Data.answeredQuiz[i]);
-            $scope.anyMissed=true;
-            for (var l=0;l<Stats.scoresByCategory.length;l++){
-              if (Data.answeredQuiz[i].category===Stats.scoresByCategory[l].category){
-                Stats.scoresByCategory[l].unanswered+=1;
-              }
-              else {continue;}
-            }
-          }
-        }
-        Stats.recordCurrentQuizPercentage($scope.finalScore,Data.answeredQuiz.length);
-        Stats.allScores.push($scope.finalScore);
-        Stats.allTotals.push(Data.answeredQuiz.length);
-        Stats.determineIndividualPercents();
-        for (var j=0;j<Stats.scoresByCategory.length;j++){
-          Stats.scoresByCategory[j].individualScores.push({"score":$scope.finalScore,"totalQuestions":$scope.wrongAnswers.length+$scope.notAnswereds.length})
-        }
-        $scope.scoreQuizNow=true;
-        $scope.isQuizDone=true;
-        if ($scope.finalScore===10){$scope.perfectQuiz=true;}
+        Stats.allWrongTimes.push($scope.timer);
+        $scope.ifWrong();
       }
     }
+    else if ($scope.questionNumber>=$scope.answeredQuiz.length-1){
+      goOn=true
+      $scope.anyWrong=true;
+      // $scope.questionNumber++;
+      $scope.ifWrong();
+    }
+    console.log($scope.finalScore);
     $scope.$watch(function(scope){return scope.answeredQuiz},
       function(){Data.answeredQuiz=$scope.answeredQuiz});
     $scope.progress=0-($scope.questionNumber-$scope.quizObjectJSON.length);
@@ -451,7 +704,10 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
 
   $scope.nextButtonOnclick=function(){
     $scope.doTheFlip();
-    $cordovaVibration.vibrate(100);
+    // if (ionic.Platform.isIOS() || ionic.Platform.isAndroid()){
+    //   $cordovaVibration.vibrate(70);
+    // }
+    // console.log(ionic.Platform.device());
     $scope.restartTimer();
     $scope.restartTimeout();
 
@@ -460,6 +716,51 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
     $scope.thankYou=Data;
 }).controller('StatisticsContr',['$scope','$rootScope','Stats',function($scope,$rootScope,Stats){
   $scope.startThisUp=function(){
+    $scope.showOverall=false;
+    $scope.showAverage=false;
+    $scope.showCategory=false;
+    $scope.listCategories=['general','science','world','history','entertainment'];
+    $scope.allCategories=[
+      {"category":"all","chosen":true},
+      {"category":"general","chosen":false},
+      {"category":"science","chosen":false},
+      {"category":"world","chosen":false},
+      {"category":"history","chosen":false},
+      {"category":"entertainment","chosen":false},
+    ];
+    $scope.chosenCategory="";
+    $scope.getCategoryStats=function(thisOne){
+      $scope.statsList=Stats.determineCategoryStats(thisOne);
+      console.log($scope.statsList);
+    }
+    // $scope.getCategoryStats(0);
+    $scope.convertThem=function(thisOne){
+      var whichOne;
+      if (thisOne==="showOverall"){
+        if ($scope.showOverall===true){
+          $scope.showOverall=false;
+        }
+        else{
+          $scope.showOverall=true;
+        }
+      }
+      else if (thisOne==="showAverage"){
+        if ($scope.showAverage===true){
+          $scope.showAverage=false;
+        }
+        else{
+          $scope.showAverage=true;
+        }
+      }
+      else if (thisOne==="showCategory"){
+        if ($scope.showCategory===true){
+          $scope.showCategory=false;
+        }
+        else{
+          $scope.showCategory=true;
+        }
+      }
+    }
     $scope.byQuestionPercentages=Stats.determineByQuestionPercentage();
     $scope.byQuestionPercentage=$scope.byQuestionPercentages[0];
     $scope.byQuestionTotal=$scope.byQuestionPercentages[1];
@@ -472,6 +773,13 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
     $scope.worstCategoryInfo=Stats.determineWorstCategory();
     $scope.worstCategory=$scope.worstCategoryInfo[0];
     $scope.worstCategoryPercent=$scope.worstCategoryInfo[1];
+    $scope.longestStreak=Stats.determineLongestStreak();
+    $scope.numPerf=Stats.numPerfectQuiz;
+    $scope.aveAttempted=Stats.determineAverageAttempted();
+    $scope.aveCompleted=Stats.determineAverageCompleted();
+    $scope.aveRate=Stats.determineAverageRate();
+    $scope.aveRightTime=Stats.determineAveRightTime();
+    $scope.aveWrongTime=Stats.determineAveWrongTime();
   }
   $scope.startThisUp();
   $rootScope.$on('$stateChangeStart',

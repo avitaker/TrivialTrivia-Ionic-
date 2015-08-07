@@ -3,7 +3,8 @@
     	<button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
     </ion-nav-buttons> -->
     <ion-content class="first_page">
-      <div id="image_container">
+      <div class="home-container">
+      <div class="srow3i">
         <img class="first_page_image" src="https://cdn3.iconfinder.com/data/icons/brain-games/1042/Quiz-Games.png"><br>
         <b>AVI'S QUIZ</b>
       </div>
@@ -18,10 +19,10 @@
         <a class='button start_quiz_button'  ng-click='startQuiz()'>Reset and Start Quiz</a>
       </div> -->
       <!-- <div class="buttons-here"> -->
-        <button class="button icon-left ion-arrow-right-b button-block button-outline button-royal" ng-click="startQuiz()">Start the game</button>
+        <button class="button icon-left ion-arrow-right-b button-block button-outline button-royal" ng-click="openPopover($event)">Start the game</button>
         <button class="button icon-left ion-help button-block button-outline button-assertive" ng-click="goInstructions()">Instructions</button>
         <button class="button icon-left ion-stats-bars button-block button-outline button-positive" ng-click="setPage('statistics')">Statistics</button>
         <button class="button icon-left ion-beer button-block button-outline button-dark" ng-click="setPage('acknowledgements')">Acknowledgements</button>
-      <!-- </div> -->
+      </div>
     </ion-content>
 </ion-view>
