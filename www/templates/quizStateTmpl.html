@@ -43,7 +43,7 @@
         <div class="progress-text" ng-show="perfectQuiz">PERFECT!</div>
         <!-- <div class="progress-text" ng-show="scoreQuizNow">Quiz Complete</div> -->
       </div>
-      <div class="item-animate timer srow" ng-show="isQuizActive" ng-click="nextButtonOnclick()">
+      <div class="item-animate timer srow" ng-show="isQuizActive">
         <div class="progress_bar"
           round-progress
           max="20"
@@ -51,14 +51,17 @@
           color="#a8c7fb"
           bgcolor="#9b9b9b"
           semi='false'
-          radius="25"
+          radius="28"
           stroke="10"
           rounded="false"
           clockwise="true"
           iterations="10"
           animation="linearEase">
         </div>
+        <button class="button-icon button-small balanced icon ion-arrow-right-a next_button" ng-show="optionClick" ng-click="nextButtonOnclick()"></button>
       </div>
+
+      <!-- <button class="button icon-right ion-chevron-right button-balanced" ng-disabled="optionClick" ng-click="nextButtonOnclick()">Next</button> -->
         <div class="card" ng-show="noCategory"><div class="item item-text-wrap">You must pick a category before continuing</div></div>
         <!-- <div id="welcome_div" ng-hide="hideWelcomeDiv">Welcome to my quiz. Please click "Next" to continue <a href='google.com'></a></div> -->
         <div id="questionContainer" class="flip-container item-animate" ng-show='isQuizActive' ng-hide="noCategory">
@@ -66,7 +69,7 @@
                 <div id="cardContent" class="front">
                   <div class="list question-container">
                       <div class="item item-divider item-text-wrap question_questions brow"><b>{{quizObjectJSON[questionNumber].question}}</b></div>
-                      <ion-radio class="item item-text-wrap question_options brow" ng-repeat="choice in quizObjectJSON[questionNumber].choices track by $index" ng-model="answeredQuiz[questionNumber].userAnswer" ng-value="$index">{{choice}}</ion-radio>
+                      <ion-radio class="item item-text-wrap question_options brow" ng-repeat="choice in quizObjectJSON[questionNumber].choices track by $index" ng-model="answeredQuiz[questionNumber].userAnswer" ng-value="$index" ng-click="optionOnclick()">{{choice}}</ion-radio>
                   </div>
                 </div>
 

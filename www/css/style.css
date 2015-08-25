@@ -186,6 +186,15 @@
   z-index:11;
 }
 
+.next_button{
+  /*position:fixed;*/
+  position:absolute;
+  /*top:-13px;*/
+  top:117px;
+  left:170px;
+  height:30px;
+}
+
 .bar.bar-transparent{
   background-color:#D1D1D1;
   color:black;

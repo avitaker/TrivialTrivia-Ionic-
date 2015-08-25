@@ -1,6 +1,8 @@
 /* Empty. Add your own CSS if you like */
 
 /*Start CSS backup*/
+
+/*change border-radius of ".button" to 0px*/
 .item-animate.ng-hide {
   height:0;
   opacity:0;
@@ -182,6 +184,15 @@
   margin-bottom:-0px;
   text-align:center;
   z-index:11;
+}
+
+.next_button{
+  /*position:fixed;*/
+  position:absolute;
+  /*top:-13px;*/
+  top:117px;
+  left:170px;
+  height:30px;
 }
 
 .bar.bar-transparent{

@@ -26,7 +26,6 @@ $dark:                            #444 !default;
   used under CC BY http://creativecommons.org/licenses/by/4.0/
   Modified icons to fit ionicon’s grid from original.
 */
-
 .item-animate.ng-hide {
   height:0;
   opacity:0;
@@ -36,7 +35,7 @@ $dark:                            #444 !default;
 .item-animate.ng-hide-remove,
 .item-animate.ng-hide-add {
   display: block !important;
-  transition: all linear 200ms;
+  transition: all linear 300ms;
 }
 
 .item-animate1.ng-hide{
@@ -94,7 +93,7 @@ $dark:                            #444 !default;
   flex:2;
   text-align:center;
   padding-top:5%;
-  padding-bottom:15%;
+  padding-bottom:5%;
   font-family:"DiscoFont",sans-serif;
   font-size:17px;
 }
@@ -207,7 +206,17 @@ $dark:                            #444 !default;
   margin-top:10px;
   margin-bottom:-0px;
   text-align:center;
-  z-index:11;
+  /*z-index:11;*/
+}
+
+.next_button{
+  /*position:relative;*/
+  position:absolute;
+  /*top:-13px;*/
+  top:111px;
+  text-align:center;
+  /*left:161px;*/
+  height:20px;
 }
 
 .bar.bar-transparent{
@@ -229,6 +238,8 @@ $dark:                            #444 !default;
   src: url("../lib/ionic/fonts/DISCO___.ttf");
   font-weight:400;
 }
+
+
 
 
 @font-face {
@@ -6749,7 +6760,7 @@ progress {
   min-height: 47px;
   border-width: 1px;
   border-style: solid;
-  border-radius: 0px;
+  border-radius: 2px;
   vertical-align: top;
   text-align: center;
   text-overflow: ellipsis;

@@ -446,6 +446,7 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
   }
 
   $scope.killPopover=function(){
+    $scope.chosenLength.chosen=10;
     console.log(Data.chosenLength.chosen);
     if ($scope.chosenLength.chosen>=1 && $scope.chosenLength.chosen<=37){
       Data.chosenLength.chosen=$scope.chosenLength.chosen;
@@ -462,9 +463,22 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
 
   $scope.openPopover=function($event){
     $scope.thisIsIt=[];
+    $scope.chosenLength.chosen=10;
+    console.log(Data.chosenLength.chosen);
+    if ($scope.chosenLength.chosen>=1 && $scope.chosenLength.chosen<=37){
+      Data.chosenLength.chosen=$scope.chosenLength.chosen;
+      $scope.lengthPopover.hide();
+      $scope.lengthPopover.remove();
+      Data.sortCategories($scope.populateCategories(),Data.chosenLength.chosen);
+      $state.transitionTo('quiz');
+    }
+    else {
+      alert("You must choose an option between 0 and 37");
+      Data.chosenLength.chosen=null;
+    }
     // $scope.whichCategory();
     // Data.sortCategories(["all"],Data.chosenLength.chosen);
-    $scope.lengthPopover.show($event);
+    // $scope.lengthPopover.show($event);
     //$state.transitionTo('quiz');
   }
 }]).controller('QuizController',['$scope','Data','$state','$rootScope','$ionicPopup','Stats','$interval',"$timeout","$cordovaVibration",function($scope,Data,$state,$rootScope,$ionicPopup,Stats,$interval, $timeout,$cordovaVibration){
@@ -566,6 +580,10 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
      });
    };
 
+   $scope.optionClick=false;
+   $scope.optionOnclick=function(){
+     $scope.optionClick=true;
+   }
   //  $scope.wrongVibration=function(){
   //    if (ionic.Platform.isAndroid()){
   //      $cordovaVibration.vibrate([70,70]);
@@ -576,15 +594,27 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
   //  }
   //  var rotation =0;
   $scope.ifWrong=function(){
-    $scope.isQuizActive=false;
-    $scope.scoreQuizNow=true;
+    // $scope.isQuizActive=false;
+    // $scope.scoreQuizNow=true;
     // $cordovaVibration.vibrate(140);
     if (Data.answeredQuiz[Data.answeredQuiz.length-1].userAnswer===Data.answeredQuiz[Data.answeredQuiz.length-1].correctAnswer){
       $scope.displayNumber+=1;
       $scope.questionNumber++;
     }
-    else if (Data.answeredQuiz[Data.answeredQuiz.length-1].userAnswer!=Data.answeredQuiz[Data.answeredQuiz.length-1].correctAnswer){
+    else if (Data.answeredQuiz[Data.answeredQuiz.length-1].userAnswer!=Data.answeredQuiz[Data.answeredQuiz.length-1].correctAnswer  && Data.answeredQuiz[Data.answeredQuiz.length-1].userAnswer!=null|undefined){
       Stats.allWrongTimes.push($scope.timer);
+    }
+    else if (Data.answeredQuiz[$scope.questionNumber].userAnswer===null|undefined){
+      $scope.notAnswereds.push(Data.answeredQuiz[$scope.questionNumber]);
+      $scope.anyMissed=true;
+      $scope.anyWrong=true;
+      for (var l=0;l<Stats.scoresByCategory.length;l++){
+        if (Data.answeredQuiz[$scope.questionNumber].category===Stats.scoresByCategory[l].category){
+          Stats.scoresByCategory[l].unanswered+=1;
+
+        }
+        else {continue;}
+      }
     }
     for (var i=0;i<Data.answeredQuiz.length;i++){
       if (Data.answeredQuiz[i].userAnswer===Data.answeredQuiz[i].correctAnswer){
@@ -606,19 +636,20 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
           else {continue;}
         }
       }
-      else {
-        $scope.notAnswereds.push(Data.answeredQuiz[i]);
-        $scope.anyMissed=true;
-        $scope.anyWrong=true;
-        for (var l=0;l<Stats.scoresByCategory.length;l++){
-          if (Data.answeredQuiz[i].category===Stats.scoresByCategory[l].category){
-            Stats.scoresByCategory[l].unanswered+=1;
-
-          }
-          else {continue;}
-        }
-        break;
-      }
+      else {continue;}
+      // else {
+      //   $scope.notAnswereds.push(Data.answeredQuiz[i]);
+      //   $scope.anyMissed=true;
+      //   $scope.anyWrong=true;
+      //   for (var l=0;l<Stats.scoresByCategory.length;l++){
+      //     if (Data.answeredQuiz[i].category===Stats.scoresByCategory[l].category){
+      //       Stats.scoresByCategory[l].unanswered+=1;
+      //
+      //     }
+      //     else {continue;}
+      //   }
+      //   break;
+      // }
     }
     Stats.recordCurrentQuizPercentage($scope.finalScore,Data.answeredQuiz.length);
     Stats.allScores.push($scope.finalScore);
@@ -627,8 +658,8 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
     for (var j=0;j<Stats.scoresByCategory.length;j++){
       Stats.scoresByCategory[j].individualScores.push({"score":$scope.finalScore,"totalQuestions":$scope.wrongAnswers.length+$scope.notAnswereds.length})
     }
-    $scope.scoreQuizNow=true;
-    $scope.isQuizDone=true;
+    // $scope.scoreQuizNow=true;
+    // $scope.isQuizDone=true;
     if ($scope.finalScore===Data.answeredQuiz.length){
       $scope.perfectQuiz=true;
       Stats.numPerfectQuiz++;
@@ -659,12 +690,13 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
       }
       else {
         goOn=true;
+
         Stats.allWrongTimes.push($scope.timer);
         $scope.ifWrong();
       }
     }
     else if ($scope.questionNumber>=$scope.answeredQuiz.length-1){
-      goOn=true
+      goOn=true;
       $scope.anyWrong=true;
       // $scope.questionNumber++;
       $scope.ifWrong();
@@ -703,6 +735,7 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
   }
 
   $scope.nextButtonOnclick=function(){
+    $scope.optionClick=false;
     $scope.doTheFlip();
     // if (ionic.Platform.isIOS() || ionic.Platform.isAndroid()){
     //   $cordovaVibration.vibrate(70);
