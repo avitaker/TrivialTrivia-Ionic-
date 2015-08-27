@@ -182,6 +182,10 @@ $dark:                            #444 !default;
   background-color:#d3d7ee;
 }
 
+.done_quiz_page{
+  background-color:#77DD77;
+}
+
 .instructions_page{
   background-color:#eed3d7;
 }
@@ -214,8 +218,8 @@ $dark:                            #444 !default;
   position:absolute;
   /*top:-13px;*/
   top:111px;
-  text-align:center;
-  /*left:161px;*/
+  /*text-align:center;*/
+  left:161px;
   height:20px;
 }
 

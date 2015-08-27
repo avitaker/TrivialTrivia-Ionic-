@@ -182,6 +182,10 @@ $dark:                            #444 !default;
   background-color:#d3d7ee;
 }
 
+.done_quiz_page{
+  background-color:#77DD77;
+}
+
 .instructions_page{
   background-color:#eed3d7;
 }

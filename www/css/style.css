@@ -183,16 +183,17 @@
   margin-top:10px;
   margin-bottom:-0px;
   text-align:center;
-  z-index:11;
+  /*z-index:11;*/
 }
 
 .next_button{
-  /*position:fixed;*/
+  /*position:relative;*/
   position:absolute;
   /*top:-13px;*/
-  top:117px;
-  left:170px;
-  height:30px;
+  top:111px;
+  /*text-align:center;*/
+  left:161px;
+  height:20px;
 }
 
 .bar.bar-transparent{
@@ -214,6 +215,7 @@
   src: url("../lib/ionic/fonts/DISCO___.ttf");
   font-weight:400;
 }
+
 
 
 

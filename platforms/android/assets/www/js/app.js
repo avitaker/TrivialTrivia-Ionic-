@@ -54,6 +54,11 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
     templateUrl:'templates/quizStateTmpl.html',
     controller:'QuizController'
   })
+  .state('quizFeedback',{
+    url:'/quizFeedback',
+    templateUrl:'templates/quizFeedback.html',
+    controller:'currInfoContr'
+  })
   .state('acknowledgements',{
     url:'/acknowledgements',
     templateUrl:'templates/acknowledgementsTmpl.html',
@@ -178,6 +183,14 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
     factory.answeredQuiz=[];
     factory.answeredQuiz=factory.finalObject;
   }
+  return factory;
+}).factory("currInfo",function(){
+  var factory={};
+  factory.userAnswersWrong=[];
+  factory.incorrectAnswers=[];
+  factory.unanswered=[];
+  factory.score=0;
+  factory.total=0;
   return factory;
 }).factory("Stats",function(){
   if (!factory){
@@ -481,7 +494,7 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
     // $scope.lengthPopover.show($event);
     //$state.transitionTo('quiz');
   }
-}]).controller('QuizController',['$scope','Data','$state','$rootScope','$ionicPopup','Stats','$interval',"$timeout","$cordovaVibration",function($scope,Data,$state,$rootScope,$ionicPopup,Stats,$interval, $timeout,$cordovaVibration){
+}]).controller('QuizController',['$scope','Data','$state','$rootScope','$ionicPopup','Stats','$interval',"$timeout","$cordovaVibration","currInfo",function($scope,Data,$state,$rootScope,$ionicPopup,Stats,$interval, $timeout,$cordovaVibration,currInfo){
   $scope.moneyOptions=Data.moneyOptions;
   $scope.timeLimit;
   $scope.timeOut=function(){
@@ -534,6 +547,11 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
     $scope.notAnswereds=[];
     Stats.currentFinalScore=0;
     Stats.currentNumQuestions=0;
+    currInfo.score=0;
+    currInfo.total=0;
+    currInfo.userAnswersWrong=[];
+    currInfo.incorrectAnswers=[];
+    currInfo.unanswered=[];
     $scope.restartTimer();
     $scope.restartTimeout();
   }
@@ -593,81 +611,83 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
   //    }
   //  }
   //  var rotation =0;
-  $scope.ifWrong=function(){
-    // $scope.isQuizActive=false;
-    // $scope.scoreQuizNow=true;
-    // $cordovaVibration.vibrate(140);
-    if (Data.answeredQuiz[Data.answeredQuiz.length-1].userAnswer===Data.answeredQuiz[Data.answeredQuiz.length-1].correctAnswer){
-      $scope.displayNumber+=1;
-      $scope.questionNumber++;
-    }
-    else if (Data.answeredQuiz[Data.answeredQuiz.length-1].userAnswer!=Data.answeredQuiz[Data.answeredQuiz.length-1].correctAnswer  && Data.answeredQuiz[Data.answeredQuiz.length-1].userAnswer!=null|undefined){
-      Stats.allWrongTimes.push($scope.timer);
-    }
-    else if (Data.answeredQuiz[$scope.questionNumber].userAnswer===null|undefined){
-      $scope.notAnswereds.push(Data.answeredQuiz[$scope.questionNumber]);
-      $scope.anyMissed=true;
-      $scope.anyWrong=true;
-      for (var l=0;l<Stats.scoresByCategory.length;l++){
-        if (Data.answeredQuiz[$scope.questionNumber].category===Stats.scoresByCategory[l].category){
-          Stats.scoresByCategory[l].unanswered+=1;
-
-        }
-        else {continue;}
-      }
-    }
-    for (var i=0;i<Data.answeredQuiz.length;i++){
-      if (Data.answeredQuiz[i].userAnswer===Data.answeredQuiz[i].correctAnswer){
-        $scope.finalScore+=1;
-        for (var l=0;l<Stats.scoresByCategory.length;l++){
-          if (Data.answeredQuiz[i].category===Stats.scoresByCategory[l].category){
-            Stats.scoresByCategory[l].correctlyAnswered+=1;
-          }
-          else {continue;}
-        }
-      }
-      else if (Data.answeredQuiz[i].userAnswer!=Data.answeredQuiz[i].correctAnswer && Data.answeredQuiz[i].userAnswer!=null|undefined){
-        $scope.wrongAnswers.push(Data.answeredQuiz[i]);
-        $scope.anyWrong=true;
-        for (var l=0;l<Stats.scoresByCategory.length;l++){
-          if (Data.answeredQuiz[i].category===Stats.scoresByCategory[l].category){
-            Stats.scoresByCategory[l].wronglyAnswered+=1;
-          }
-          else {continue;}
-        }
-      }
-      else {continue;}
-      // else {
-      //   $scope.notAnswereds.push(Data.answeredQuiz[i]);
-      //   $scope.anyMissed=true;
-      //   $scope.anyWrong=true;
-      //   for (var l=0;l<Stats.scoresByCategory.length;l++){
-      //     if (Data.answeredQuiz[i].category===Stats.scoresByCategory[l].category){
-      //       Stats.scoresByCategory[l].unanswered+=1;
-      //
-      //     }
-      //     else {continue;}
-      //   }
-      //   break;
-      // }
-    }
-    Stats.recordCurrentQuizPercentage($scope.finalScore,Data.answeredQuiz.length);
-    Stats.allScores.push($scope.finalScore);
-    Stats.allTotals.push(Data.answeredQuiz.length);
-    Stats.determineIndividualPercents();
-    for (var j=0;j<Stats.scoresByCategory.length;j++){
-      Stats.scoresByCategory[j].individualScores.push({"score":$scope.finalScore,"totalQuestions":$scope.wrongAnswers.length+$scope.notAnswereds.length})
-    }
-    // $scope.scoreQuizNow=true;
-    // $scope.isQuizDone=true;
-    if ($scope.finalScore===Data.answeredQuiz.length){
-      $scope.perfectQuiz=true;
-      Stats.numPerfectQuiz++;
-    }
-  }
+  // $scope.ifWrong=function(){
+  //   $scope.isQuizActive=false;
+  //   $scope.scoreQuizNow=true;
+  //   // $cordovaVibration.vibrate(140);
+  //   if (Data.answeredQuiz[Data.answeredQuiz.length-1].userAnswer===Data.answeredQuiz[Data.answeredQuiz.length-1].correctAnswer){
+  //     $scope.displayNumber+=1;
+  //     $scope.questionNumber++;
+  //   }
+  //   else if (Data.answeredQuiz[Data.answeredQuiz.length-1].userAnswer!=Data.answeredQuiz[Data.answeredQuiz.length-1].correctAnswer  && Data.answeredQuiz[Data.answeredQuiz.length-1].userAnswer!=null|undefined){
+  //     Stats.allWrongTimes.push($scope.timer);
+  //   }
+  //   else if (Data.answeredQuiz[$scope.questionNumber].userAnswer===null|undefined){
+  //     $scope.notAnswereds.push(Data.answeredQuiz[$scope.questionNumber]);
+  //     $scope.anyMissed=true;
+  //     // $scope.anyWrong=true;
+  //     for (var l=0;l<Stats.scoresByCategory.length;l++){
+  //       if (Data.answeredQuiz[$scope.questionNumber].category===Stats.scoresByCategory[l].category){
+  //         Stats.scoresByCategory[l].unanswered+=1;
+  //
+  //       }
+  //       else {continue;}
+  //     }
+  //   }
+  //   for (var i=0;i<Data.answeredQuiz.length;i++){
+  //     if (Data.answeredQuiz[i].userAnswer===Data.answeredQuiz[i].correctAnswer){
+  //       currInfo.score+=1;
+  //       for (var l=0;l<Stats.scoresByCategory.length;l++){
+  //         if (Data.answeredQuiz[i].category===Stats.scoresByCategory[l].category){
+  //           Stats.scoresByCategory[l].correctlyAnswered+=1;
+  //         }
+  //         else {continue;}
+  //       }
+  //     }
+  //     else if (Data.answeredQuiz[i].userAnswer!=Data.answeredQuiz[i].correctAnswer && Data.answeredQuiz[i].userAnswer!=null|undefined){
+  //       currInfo.incorrectAnswers.push(Data.answeredQuiz[i]);
+  //       $scope.anyWrong=true;
+  //       for (var l=0;l<Stats.scoresByCategory.length;l++){
+  //         if (Data.answeredQuiz[i].category===Stats.scoresByCategory[l].category){
+  //           Stats.scoresByCategory[l].wronglyAnswered+=1;
+  //         }
+  //         else {continue;}
+  //       }
+  //     }
+  //     else {continue;}
+  //     // else {
+  //     //   $scope.notAnswereds.push(Data.answeredQuiz[i]);
+  //     //   $scope.anyMissed=true;
+  //     //   $scope.anyWrong=true;
+  //     //   for (var l=0;l<Stats.scoresByCategory.length;l++){
+  //     //     if (Data.answeredQuiz[i].category===Stats.scoresByCategory[l].category){
+  //     //       Stats.scoresByCategory[l].unanswered+=1;
+  //     //
+  //     //     }
+  //     //     else {continue;}
+  //     //   }
+  //     //   break;
+  //     // }
+  //   }
+  //   // currInfo.incorrectAnswers.push($scope)
+  //   Stats.recordCurrentQuizPercentage($scope.finalScore,Data.answeredQuiz.length);
+  //   Stats.allScores.push($scope.finalScore);
+  //   Stats.allTotals.push(Data.answeredQuiz.length);
+  //   Stats.determineIndividualPercents();
+  //   for (var j=0;j<Stats.scoresByCategory.length;j++){
+  //     Stats.scoresByCategory[j].individualScores.push({"score":$scope.finalScore,"totalQuestions":$scope.wrongAnswers.length+$scope.notAnswereds.length})
+  //   }
+  //   // $scope.scoreQuizNow=true;
+  //   // $scope.isQuizDone=true;
+  //   if ($scope.finalScore===Data.answeredQuiz.length){
+  //     $scope.perfectQuiz=true;
+  //     Stats.numPerfectQuiz++;
+  //   }
+  // }
   $scope.moveOn=function(){
     var goOn=false;
     $scope.isQuizActive=true;
+    // $cordovaVibration.vibrate(70);
     if ($scope.questionNumber<$scope.quizObjectJSON.length-1) {
       if ($scope.answeredQuiz[$scope.questionNumber].userAnswer===Data.finalObject[$scope.questionNumber].correctAnswer){
         if (!$scope.answeredQuiz[$scope.questionNumber].userAnswer){
@@ -686,22 +706,129 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
           goOn=true;
         }
         Stats.allRightTimes.push($scope.timer);
+        // $scope.finalScore+=1;
         // $cordovaVibration.vibrate(70);
       }
-      else {
-        goOn=true;
-
+      else if ($scope.answeredQuiz[$scope.questionNumber].userAnswer!=Data.finalObject[$scope.questionNumber].correctAnswer && $scope.answeredQuiz[$scope.questionNumber].userAnswer!=null|undefined){
         Stats.allWrongTimes.push($scope.timer);
-        $scope.ifWrong();
+        currInfo.userAnswersWrong.push($scope.answeredQuiz[$scope.questionNumber].userAnswer);
+        currInfo.incorrectAnswers[currInfo.incorrectAnswers.length]=(Data.answeredQuiz[$scope.questionNumber]);
+        // $scope.anyWrong=true;
+        $scope.questionNumber++;
+        $scope.displayNumber++;
+        goOn=true;
       }
+      // else if (Data.answeredQuiz[$scope.questionNumber].userAnswer===null|undefined){
+      else {
+        console.log('not answered');
+        currInfo.unanswered.push(Data.answeredQuiz[$scope.questionNumber]);
+        $scope.anyMissed=true;
+        Stats.allWrongTimes.push($scope.timer);
+        // $scope.anyWrong=true;
+        // for (var l=0;l<Stats.scoresByCategory.length;l++){
+        //   if (Data.answeredQuiz[$scope.questionNumber].category===Stats.scoresByCategory[l].category){
+        //     Stats.scoresByCategory[l].unanswered+=1;
+        //
+        //   }
+        //   else {continue;}
+        // }
+        $scope.questionNumber++;
+        $scope.displayNumber++;
+        goOn=true;
+      }
+      // else {
+      //   goOn=true;
+      //
+      //   Stats.allWrongTimes.push($scope.timer);
+      //   $scope.ifWrong();
+      // }
     }
     else if ($scope.questionNumber>=$scope.answeredQuiz.length-1){
       goOn=true;
       $scope.anyWrong=true;
+      $scope.isQuizActive=false;
+      $scope.scoreQuizNow=true;
+      // $cordovaVibration.vibrate(140);
+      if (Data.answeredQuiz[Data.answeredQuiz.length-1].userAnswer===Data.answeredQuiz[Data.answeredQuiz.length-1].correctAnswer){
+        $scope.displayNumber+=1;
+        $scope.questionNumber++;
+      }
+      else if (Data.answeredQuiz[Data.answeredQuiz.length-1].userAnswer!=Data.answeredQuiz[Data.answeredQuiz.length-1].correctAnswer  && Data.answeredQuiz[Data.answeredQuiz.length-1].userAnswer!=null|undefined){
+        Stats.allWrongTimes.push($scope.timer);
+        currInfo.incorrectAnswers.push($scope.answeredQuiz[$scope.answeredQuiz.length-1]);
+      }
+      else if (Data.answeredQuiz[$scope.questionNumber].userAnswer===null|undefined){
+        currInfo.unanswered.push(Data.answeredQuiz[$scope.questionNumber]);
+        $scope.anyMissed=true;
+        // $scope.anyWrong=true;
+        for (var l=0;l<Stats.scoresByCategory.length;l++){
+          if (Data.answeredQuiz[$scope.questionNumber].category===Stats.scoresByCategory[l].category){
+            Stats.scoresByCategory[l].unanswered+=1;
+
+          }
+          else {continue;}
+        }
+      }
+      for (var i=0;i<Data.answeredQuiz.length;i++){
+        currInfo.total+=1;
+        if (Data.answeredQuiz[i].userAnswer===Data.answeredQuiz[i].correctAnswer){
+          currInfo.score+=1;
+          for (var l=0;l<Stats.scoresByCategory.length;l++){
+            if (Data.answeredQuiz[i].category===Stats.scoresByCategory[l].category){
+              Stats.scoresByCategory[l].correctlyAnswered+=1;
+            }
+            else {continue;}
+          }
+        }
+        else if (Data.answeredQuiz[i].userAnswer!=Data.answeredQuiz[i].correctAnswer && Data.answeredQuiz[i].userAnswer!=null|undefined){
+          // currInfo.incorrectAnswers.push(Data.answeredQuiz[i]);
+          // console.log(Data.answeredQuiz[i].userAnswer);
+          // console.log(currInfo.incorrectAnswers);
+          $scope.anyWrong=true;
+          for (var l=0;l<Stats.scoresByCategory.length;l++){
+            if (Data.answeredQuiz[i].category===Stats.scoresByCategory[l].category){
+              Stats.scoresByCategory[l].wronglyAnswered+=1;
+            }
+            else {continue;}
+          }
+        }
+        else {continue;}
+        // else {
+        //   $scope.notAnswereds.push(Data.answeredQuiz[i]);
+        //   $scope.anyMissed=true;
+        //   $scope.anyWrong=true;
+        //   for (var l=0;l<Stats.scoresByCategory.length;l++){
+        //     if (Data.answeredQuiz[i].category===Stats.scoresByCategory[l].category){
+        //       Stats.scoresByCategory[l].unanswered+=1;
+        //
+        //     }
+        //     else {continue;}
+        //   }
+        //   break;
+        // }
+      }
+      // currInfo.incorrectAnswers.push($scope)
+      Stats.recordCurrentQuizPercentage($scope.finalScore,Data.answeredQuiz.length);
+      Stats.allScores.push($scope.finalScore);
+      Stats.allTotals.push(Data.answeredQuiz.length);
+      Stats.determineIndividualPercents();
+      for (var j=0;j<Stats.scoresByCategory.length;j++){
+        Stats.scoresByCategory[j].individualScores.push({"score":$scope.finalScore,"totalQuestions":$scope.wrongAnswers.length+$scope.notAnswereds.length})
+      }
+      // $scope.scoreQuizNow=true;
+      // $scope.isQuizDone=true;
+      if ($scope.finalScore===Data.answeredQuiz.length){
+        $scope.perfectQuiz=true;
+        Stats.numPerfectQuiz++;
+      }
+      // angular.element(questionContainer).removeClass('flip');
+      // angular.element(questionContainer).removeClass('item-animate');
+      // angular.element(questionContainer).addClass('item-animate1');
       // $scope.questionNumber++;
-      $scope.ifWrong();
+      // $scope.ifWrong();
+      $state.go('quizFeedback');
     }
-    console.log($scope.finalScore);
+    // console.log($scope.finalScore);
     $scope.$watch(function(scope){return scope.answeredQuiz},
       function(){Data.answeredQuiz=$scope.answeredQuiz});
     $scope.progress=0-($scope.questionNumber-$scope.quizObjectJSON.length);
@@ -745,13 +872,34 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
     $scope.restartTimeout();
 
   }
-}]).controller('AcknowledgementsContr',function($scope,Data){
+}]).controller("currInfoContr",function($scope,currInfo,$rootScope){
+  console.log('test');
+  $scope.incorrectAnswers=[];
+  $scope.userAnswersWrong=[];
+  $scope.resetField=function(){
+    $scope.userAnswersWrong=currInfo.userAnswersWrong;
+    for (i=0;i<currInfo.incorrectAnswers.length;i++){
+      $scope.incorrectAnswers.push(currInfo.incorrectAnswers[i]);
+      console.log(currInfo.incorrectAnswers[i].userAnswer);
+    }
+    // $scope.incorrectAnswers=currInfo.incorrectAnswers;
+    // console.log(currInfo.incorrectAnswers[]);
+    $scope.unanswered=currInfo.unanswered;
+    $scope.score=currInfo.score;
+    $scope.total=currInfo.total;
+  }
+  $scope.resetField();
+  // $rootScope.$on('$stateChangeStart',
+  //   function(){
+  //     $scope.resetField();
+  //   });
+}).controller('AcknowledgementsContr',function($scope,Data){
     $scope.thankYou=Data;
 }).controller('StatisticsContr',['$scope','$rootScope','Stats',function($scope,$rootScope,Stats){
   $scope.startThisUp=function(){
-    $scope.showOverall=false;
-    $scope.showAverage=false;
-    $scope.showCategory=false;
+    $scope.showOverall=true;
+    $scope.showAverage=true;
+    $scope.showCategory=true;
     $scope.listCategories=['general','science','world','history','entertainment'];
     $scope.allCategories=[
       {"category":"all","chosen":true},

@@ -1,0 +1,25 @@
+<ion-view title="Quiz Score">
+  <ion-content class="done_quiz_page">
+    <div class="list">
+      <p class="item item-divider"> You scored {{score}} out of {{total}} </p>
+      <p class="item item-text-wrap">You left {{unanswered.length}} questions unanswered </p>
+      <p class="item item-text-wrap">You wrongly answered {{incorrectAnswers.length}} questions </p>
+    </div>
+    <div class="card">
+        <div class="item item-divider" ng-repeat-start="wrongAnswer in incorrectAnswers track by $index" background-color="red">Wrongly answered question</div>
+        <div class="item item-text-wrap">Q: <b>{{wrongAnswer.question}}</b> </div>
+          <div class="item item-text-wrap">You selected: <span class="wrong_choice"> {{wrongAnswer.choices[userAnswersWrong[$index]]}} </span> </div>
+          <div class="item item-text-wrap">Correct Answer: <span class="correct_choice">{{wrongAnswer.choices[wrongAnswer.correctAnswer]}} </span> </div>
+
+        <div ng-repeat-end>
+        </div>
+    </div>
+    <div class="card">
+      <div class="item item-divider" ng-repeat-start="unanswer in unanswered">Unanswered question</div>
+      <div class="item item-text-wrap">Q: <b>{{unanswer.question}}</b></div>
+      <div class="item item-text-wrap">The correct answer is: <span class="correct_choice">{{unanswer.choices[unanswer.correctAnswer]}}</span></div>
+      <div ng-repeat-end>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

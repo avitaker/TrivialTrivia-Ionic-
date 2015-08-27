@@ -12,9 +12,9 @@
       <div class="card">
       <div class="item item-divider item-icon-right" id="overall_perf_stats" ng-click="convertThem('showAverage')">Averages <i class="icon ion-ios-arrow-down" ng-hide="showAverage"></i> <i class="icon ion-ios-arrow-up" ng-show="showAverage"></i></div>
       <div class="item-animate1" ng-show="showAverage">
-        <div class="item item-text-wrap row"><p class="col">Average Length of Attempted Quiz </p><p class="col">{{aveAttempted|number:2}} questions</p></div>
-        <div class="item item-text-wrap row"><p class="col">Average Length of Quiz Completed </p><p class="col">{{aveCompleted|number:2}} questions</p></div>
-        <div class="item item-text-wrap row"><p class="col">Average Percentage of Quiz Completed </p><p class="col">{{aveRate|number:2}}%</p></div>
+        <!-- <div class="item item-text-wrap row"><p class="col">Average Length of Attempted Quiz </p><p class="col">{{aveAttempted|number:2}} questions</p></div>
+        <div class="item item-text-wrap row"><p class="col">Average Length of Quiz Completed </p><p class="col">{{aveCompleted|number:2}} questions</p></div> -->
+        <div class="item item-text-wrap row"><p class="col">Average Percentage Score </p><p class="col">{{aveRate|number:2}}%</p></div>
         <div class="item item-text-wrap row"><p class="col">Average Time on Right Answers </p><p class="col">{{aveRightTime|number:2}} seconds</p></div>
         <div class="item item-text-wrap row"><p class="col">Average Time on Wrong Answers </p><p class="col">{{aveWrongTime|number:2}} seconds</p></div>
       </div>
