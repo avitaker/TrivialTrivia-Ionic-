@@ -20,13 +20,41 @@
       </div> -->
       <!-- <div class="buttons-here"> -->
       </div>
-        <div class="row">
-          <button class="button button-large button-royal col" ng-click="openPopover($event)"><i class="ion-arrow-right-b"></i><br>Start the game</button>
-          <button class="button button-large button-assertive col" ng-click="goInstructions()"><i class="ion-help"></i><br>Instructions</button>
+        <div class="card">
+          <a class="item item-avatar" ng-click="openPopover($event)">
+            <!-- <i class="icon ion-arrow-right-b"></i> -->
+            <img src="lib/img/start.jpg">
+            <!-- https://static.pexels.com/photos/2923/young-game-match-kids.jpg -->
+            <h2>Start the game</h2>
+            <p>200 seconds of pain!</p>
+          </a>
         </div>
-        <div class="row">
-          <button class="button button-large button-positive col" ng-click="setPage('statistics')"><i class="ion-stats-bars"></i><br>Statistics</button>
-          <button class="button button-large button-dark col" ng-click="setPage('acknowledgements')"><i class="ion-beer"></i><br>Thank you</button>
+        <div class="card">
+          <a class="item item-avatar" ng-click="goInstructions()">
+            <!-- <i class="icon ion-help"></i> -->
+            <img src="lib/img/instructions.png">
+            <!-- http://40.media.tumblr.com/d41888195734da4b366837b9ad0d9fec/tumblr_npdo0umLmQ1slhhf0o1_1280.jpg -->
+            <h2>Instructions</h2>
+            <p>It's pretty simple, I promise</p>
+          </a>
+        </div>
+        <div class="card">
+          <a class="item item-avatar" ng-click="setPage('statistics')">
+            <!-- <i class="icon ion-stats-bars"></i> -->
+            <img src="lib/img/statistics.jpg">
+            <!-- https://static.pexels.com/photos/5775/calculator-scientific.jpg -->
+            <h2>Statistics</h2>
+            <p>Don't worry, they're already calculated</p>
+          </a>
+        </div>
+        <div class="card">
+          <a class="item item-avatar" ng-click="setPage('acknowledgements')">
+            <!-- <i class="icon ion-beer"></i> -->
+            <img src="lib/img/acknowledgements.jpg">
+            <!-- https://static.pexels.com/photos/519/light-sign-typography-lighting.jpg -->
+            <h2>Acknowledgements</h2>
+            <p>Question and image sources</p>
+          </a>
         </div>
       <!-- </div> -->
     </ion-content>

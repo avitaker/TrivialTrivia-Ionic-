@@ -26,6 +26,7 @@ $dark:                            #444 !default;
   used under CC BY http://creativecommons.org/licenses/by/4.0/
   Modified icons to fit ionicon’s grid from original.
 */
+
 .item-animate.ng-hide {
   height:0;
   opacity:0;
@@ -49,10 +50,131 @@ $dark:                            #444 !default;
   transition: all linear 100ms;
 }
 
+.info-container{
+  background-color:#886aea;
+
+}
+
+.card .cornflowerBlue {
+  color:#6495ed;
+}
+
+.bar.bar-cornflowerBlue {
+  border-color: #64a0ed;
+  background-color: #6495ed;
+  background-image: linear-gradient(0deg, #e42112, #e42112 50%, transparent 50%);
+  color: #fff; }
+  .bar.bar-assertive .title {
+    color: #fff; }
+  .bar.bar-assertive.bar-footer {
+    background-image: linear-gradient(180deg, #e42112, #e42112 50%, transparent 50%); }
+
+.card .pureGold {
+  color:#ffd700;
+}
+
+.bar.bar-pureGold {
+  border-color: #ffec00;
+  background-color: #ffd700;
+  background-image: linear-gradient(0deg, #e42112, #e42112 50%, transparent 50%);
+  color: #fff; }
+  .bar.bar-assertive .title {
+    color: #fff; }
+  .bar.bar-assertive.bar-footer {
+    background-image: linear-gradient(180deg, #e42112, #e42112 50%, transparent 50%); }
+
+.card .lightOrange {
+  color:#ffa500;
+}
+
+.bar.bar-lightOrange {
+  border-color: #ffba00;
+  background-color: #ffa500;
+  background-image: linear-gradient(0deg, #e42112, #e42112 50%, transparent 50%);
+  color: #fff; }
+  .bar.bar-assertive .title {
+    color: #fff; }
+  .bar.bar-assertive.bar-footer {
+    background-image: linear-gradient(180deg, #e42112, #e42112 50%, transparent 50%); }
+
+.card .question_options {
+  min-height:15%;
+}
+
+.current-category {
+  font-family: "Roboto",sans-serif;
+  font-size: 15px;
+  margin-bottom:-8px;
+  margin-top:-6px;
+}
+
+.current-category .left {
+  display:inline-block;
+  width:100%;
+  text-align:left;
+}
+
+.current-category .right {
+  display:inline-block;
+  float:right;
+  text-align:right;
+}
+
+progress[value] {
+  /* Reset the default appearance */
+  -webkit-appearance: none;
+   appearance: none;
+
+  width: 375px;
+  height: 5px;
+  margin-left: -5px;
+  margin-top:-7px;
+  padding:0px;
+}
+
+progress[value]::-webkit-progress-bar {
+  background-color: #eee;
+  border-radius: 1px;
+  /*box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;*/
+}
+
+progress[value]::-webkit-progress-value {
+  /*background-image:
+	   -webkit-linear-gradient(-45deg,
+	                           transparent 33%, rgba(0, 0, 0, .1) 33%,
+	                           rgba(0,0, 0, .1) 66%, transparent 66%),
+	   -webkit-linear-gradient(top,
+	                           rgba(255, 255, 255, .25),
+	                           rgba(0, 0, 0, .25)),
+	   -webkit-linear-gradient(left, #09c, #f44);*/
+    background-color: #886AEA;
+    border-radius: 1px;
+    background-size: 35px 20px, 100% 100%, 100% 100%;
+    -webkit-animation: animate-stripes 5s linear infinite;
+        animation: animate-stripes 5s linear infinite;
+}
+
+@-webkit-keyframes animate-stripes {
+   100% { background-position: -100px 0px; }
+}
+
+@keyframes animate-stripes {
+   100% { background-position: -100px 0px; }
+}
+
+.progress-text{
+  text-align: center;
+  margin-top:-20px;
+  font-family:"DiscoFont",sans-serif;
+  font-size:20px;
+  color:white;
+  margin-top:2px;
+}
+
 .question-container {
      display: flex;
      flex-direction: column;
-     height: 73%;
+     height: 70%;
 }
 
 .srow{
@@ -107,7 +229,7 @@ $dark:                            #444 !default;
   }
 
 .flip-container, .front, .back {
-	width: 375px;
+	width: 360px;
 	height: 480px;
 }
 
@@ -141,7 +263,7 @@ $dark:                            #444 !default;
 }
 
 .first_page_image {
-  max-width:50%;
+  max-width:30%;
 }
 
 #image_container{
@@ -161,8 +283,14 @@ $dark:                            #444 !default;
   font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
 
+.arrow {
+  color:#2FD69E;
+  background-color: #2FD69E;
+}
+
 .question_questions{
-  font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif;
+  /*font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif;*/
+  background-color:#2FD69E;
   /*min-height:90px;*/
 }
 
@@ -200,14 +328,10 @@ $dark:                            #444 !default;
   padding-top:10px;
 }
 
-.progress-text{
-  margin-top:-20px;
-  font-family:"DiscoFont",sans-serif;
-  font-size:20px;
-}
+
 
 .timer{
-  margin-top:10px;
+  margin-top:20px;
   margin-bottom:-0px;
   text-align:center;
   /*z-index:11;*/
@@ -217,7 +341,7 @@ $dark:                            #444 !default;
   /*position:relative;*/
   position:absolute;
   /*top:-13px;*/
-  top:111px;
+  top:34px;
   /*text-align:center;*/
   left:161px;
   height:20px;
@@ -242,7 +366,6 @@ $dark:                            #444 !default;
   src: url("../lib/ionic/fonts/DISCO___.ttf");
   font-weight:400;
 }
-
 
 
 
@@ -2957,7 +3080,7 @@ ion-infinite-scroll {
   bottom: 44px; }
 
 .has-subfooter {
-  bottom: 88px; }
+  bottom: 0px; }
 
 .has-tabs, .bar-footer.has-tabs {
   bottom: 49px; }
@@ -3671,7 +3794,7 @@ a.subdued {
   border-top-width: 1px;
   border-bottom-width: 0;
   background-position: top;
-  height: 44px; }
+  height: 0px; }
   .bar-footer.item-input-inset {
     position: absolute; }
 
@@ -3679,12 +3802,12 @@ a.subdued {
   padding: 0; }
 
 .bar-subheader {
-  top: 44px;
+  top: 104px;
   display: block;
-  height: 44px; }
+  height: 104px; }
 
 .bar-subfooter {
-  bottom: 44px;
+  bottom: 0px;
   display: block;
   height: 44px; }
 
@@ -5304,14 +5427,19 @@ a.item-content {
     margin-top: 16px;
     margin-bottom: 16px; }
 
+
+
 .item-divider {
   padding-top: 8px;
   padding-bottom: 8px;
   min-height: 30px;
-  background-color: #f5f5f5;
+  background-color: #f7f7f7;
   color: #222;
-  font-weight: 500; }
+  font-weight: 4s00; }
 
+.card .question_questions{
+  background-color:#89E894;
+}
 .platform-ios .item-divider-platform, .item-divider-ios {
   padding-top: 26px;
   text-transform: uppercase;
@@ -5539,13 +5667,14 @@ a.item-content {
  */
 .card, .list-inset {
   overflow: hidden;
-  margin: 20px 10px;
+  margin: 11px 10px;
   border-radius: 2px;
   background-color: #fff; }
 
+
 .card {
   padding-top: 1px;
-  padding-bottom: 1px;
+  padding-bottom: 0px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); }
   .card .item {
     border-left: 0;
@@ -6454,6 +6583,8 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
 
 .item-radio .item-content {
   /* give some room to the right for the checkmark icon */
+  /*background-color:#ECEBF3;*/
+  height:80px;
   padding-right: 64px; }
 
 .item-radio .radio-icon {
@@ -6473,10 +6604,11 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
   left: -9999px; }
   .item-radio input:checked ~ .item-content {
     /* style the item content when its checked */
-    background: #f7f7f7; }
+    background: #CF1332;
+    color:white;}
   .item-radio input:checked ~ .radio-icon {
     /* show the checkmark icon when its checked */
-    visibility: visible; }
+    visibility: invisible; }
 
 .platform-android.grade-b .item-radio, .platform-android.grade-c .item-radio {
   -webkit-animation: androidCheckedbugfix infinite 1s; }

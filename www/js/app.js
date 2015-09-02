@@ -495,7 +495,14 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
     //$state.transitionTo('quiz');
   }
 }]).controller('QuizController',['$scope','Data','$state','$rootScope','$ionicPopup','Stats','$interval',"$timeout","$cordovaVibration","currInfo",function($scope,Data,$state,$rootScope,$ionicPopup,Stats,$interval, $timeout,$cordovaVibration,currInfo){
+  $scope.$on('$ionicView.beforeLeave', function(){
+    $timeout.cancel($scope.timeLimit);
+    $scope.timeLimit=undefined;
+    $interval.cancel(timerInterval);
+    timerInterval=undefined;
+  });
   $scope.moneyOptions=Data.moneyOptions;
+  $scope.currentCategory="";
   $scope.timeLimit;
   $scope.timeOut=function(){
     if ($scope.isQuizActive===true){
@@ -535,7 +542,7 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
   $scope.restartQuiz=function(){
     $scope.questionNumber=Data.questionNumberS;
     $scope.displayNumber=Data.questionNumberS;
-    $scope.progress=0-(0-$scope.quizObjectJSON.length);
+    // $scope.progress=0-(0-$scope.quizObjectJSON.length);
     $scope.isQuizActive=true;
     $scope.scoreQuizNow=false;
     $scope.quizIsDone=false;
@@ -554,6 +561,7 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
     currInfo.unanswered=[];
     $scope.restartTimer();
     $scope.restartTimeout();
+    $scope.currentCategory=$scope.answeredQuiz[0].category;
   }
   $scope.setNewTopic=function(){
       $scope.answeredQuiz=Data.finalObject;
@@ -870,8 +878,17 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
     // console.log(ionic.Platform.device());
     $scope.restartTimer();
     $scope.restartTimeout();
+    $scope.currentCategory=$scope.answeredQuiz[$scope.questionNumber].category;
 
   }
+
+  $scope.$on('$ionicView.beforeLeave', function(){
+    $timeout.cancel($scope.timeLimit);
+    $scope.timeLimit=undefined;
+    $interval.cancel(timerInterval);
+    timerInterval=undefined;
+  });
+
 }]).controller("currInfoContr",function($scope,currInfo,$rootScope){
   console.log('test');
   $scope.incorrectAnswers=[];
