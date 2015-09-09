@@ -108,7 +108,6 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
     {"category":"history","question": "First China War was fought between", "choices": ["China and Britain","China and France","China and Egypt","China and Greece"], "correctAnswer":0},
     {"category":"world","question": "Famous Indian sculptures depicting art of love built some time in 950 AD - 1050 AD are at", "choices": ["Mahabalipuram temples","Jama Masjid","Khajuraho temples","Sun temple"], "correctAnswer":2},
     {"category":"science","question":"Friction can be reduced by changing from","choices":["sliding to rolling","rolling to sliding","potential energy to kinetic energy","dynamic to static"],"correctAnswer":0},
-    //{"category":"history","question":"During World War II, when did Germany attack France?","choices":["1915","1940","1943","1962"],"correctAnswer":1},
     {"category":"science","question":"The ozone layer restricts which of the following types of radiation?","choices":["Visible light","Infrared radiation","X-rays and gamma rays","Ultraviolet radiation"],"correctAnswer":3},
     {"category":"history","question":"During World War II, when did Germany attack France?","choices":["1915","1940","1943","1962"],"correctAnswer":1},
     {"category":"general","question":"Eugenics is the study of","choices":["people of European origin","different races of mankind","altering human beings by changing their genetic components","genetics of plants"],"correctAnswer":2},
@@ -127,14 +126,74 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
     {"category":"entertainment","question":"Which female artist has the most top ten Billboard hits?","choices":["Madonna","Whitney Houston","Britney Spears","Janet Jackson"],"correctAnswer":0},
     {"category":"history","question":"Who was the last president of the Soviet Union?","choices":["Nikita Khrushchev","Gennady Yanayev","Vladimir Lenin","Mikhail Gorbachev"],"correctAnswer":3},
     {"category":"entertainment","question":"Which 1990s musical group was heavily criticized for releasing a song written by Charles Manson?","choices":["Pearl Jam","Marilyn Manson","Guns and Roses","The Beastie Boys"],"correctAnswer":2},
-    {"category":"entertainment","question":"Which is the largest Sesame Street Puppet?","choices":["Mr. Snuffleupagus","Big Bird","Elmo","this"],"correctAnswer":0},
+    {"category":"entertainment","question":"Which is the largest Sesame Street Puppet?","choices":["Mr. Snuffleupagus","Big Bird","Elmo","Blake"],"correctAnswer":0},
     {"category":"science","question":"Who discovered penicillin?","choices":["Louis Pasteur","Joseph Lister","Robert Koch","Alexander Fleming"],"correctAnswer":3},
     {"category":"science","question":"Approximately how long does light from the sun need to reach the earth?","choices":["8 minutes","24 hours","45 seconds","365 days"],"correctAnswer":0},
     {"category":"general","question":"What is the smallest country in the world?","choices":["Grenada","Monaco","Vatican","Tuvalu"],"correctAnswer":2},
     {"category":"general","question":"Which disease is the focus of oncology?","choices":["Glaucoma","HIV","Diabetes","Cancer"],"correctAnswer":3},
     {"category":"general","question":"What is the most popular sport in the world?","choices":["Hockey","Football/soccer","Basketball","Tennis"],"correctAnswer":1},
     {"category":"general","question":"What is the hardest substance found in nature?","choices":["Iron","Wurtzite boron nitride","Diamond","Alumina"],"correctAnswer":1},
-    // {"category":"general","question":"this","choices":["this","this","this","this"],"correctAnswer":},
+    {"category":"world","question":"What is the capital of Egypt?","choices":["Lagos","Casablanca","Cairo","Durban"],"correctAnswer":2},
+    {"category":"entertainment","question":"In the US TV show 'Friends', what is Chandler's last name?","choices":["Parsons","Bing","Owen","Riggs"],"correctAnswer":1},
+    {"category":"history","question":"What was ship on which the first Pilgrims came to America called?","choices":["HMS Victory","Santa Maria","Mayflower","Baltimore"],"correctAnswer":2},
+    {"category":"entertainment","question":"Which TV character said 'Live long and Prosper?'","choices":["Leonard McCoy","Luke Skywalker","James Sully","Mr. Spock"],"correctAnswer":3},
+    {"category":"general","question":"What is the common name for a black leopard?","choices":["Panther","Cougar","Jaguar","Snow leopard"],"correctAnswer":0},
+    {"category":"history","question":"When did India and Pakistan gain official independence from Great Britain?","choices":["1950","1776","1961","1947"],"correctAnswer":3},
+    {"category":"entertainment","question":"Which rock and roll frontman was knighted in 2003 in a move which was criticized by his bandmate Keith Richards?","choices":["Steven Tyler","Mick Jagger","Robert Plant","Bruce Springsteen"],"correctAnswer":1},
+    {"category":"general","question":"Which planet in our solar system is named after the Roman god of war?","choices":["Mars","Jupiter","Saturn","Neptune"],"correctAnswer":0},
+    {"category":"entertainment","question":"Who sang the popular song 'Rolling in the Deep'?","choices":["Ziggy Marley","Alicia Keys","Lady Gaga","Adele"],"correctAnswer":3},
+    {"category":"entertainment","question":"Which author first wrote the three laws of robotics?","choices":["Douglas Adams","William Gibson","Isaac Asimov","Arther C. Clarke"],"correctAnswer":2},
+    {"category":"general","question":"How many gallons of beer is in a firkin?","choices":["4","50","9","0.6"],"correctAnswer":3},
+    {"category":"history","question":"Which popular fast foot chain was started in the year 1955?","choices":["McDonald's","Burger King","Wendy's","Chipotle"],"correctAnswer":0},
+    {"category":"general","question":"If dogs are canine, what are sheep?","choices":["Feline","Ovine","Equine","Ursine"],"correctAnswer":1},
+    {"category":"science","question":"What is the energy source in hydrogen bombs?","choices":["Nuclear fission","Chemical","Nuclear fusion","Solar"],"correctAnswer":2},
+    {"category":"science","question":"The largest unicellular organism, which can grow up to 20cm in diameter, belongs to which kingdom?","choices":["Plants","Archaebacteria","Fungi","Protists"],"correctAnswer":3},
+    {"category":"general","question":"How is the number 50 written in Roman numerals?","choices":["L","V","X","M"],"correctAnswer":0},
+    {"category":"history","question":"Who assissinated President John F. Kennedy?","choices":["John Wilkes Booth","Lee Harvey Oswald","James Earl Ray","Marcus Julius Brutus"],"correctAnswer":1},
+    {"category":"entertainment","question":"Which of these popular bands had no bass guitar?","choices":["The Doors","Pink Floyd","The Beatles","Jefferson Airplane"],"correctAnswer":0},
+    {"category":"history","question":"When was the first Nobel prize awarded?","choices":["1901","1920","1940","1890"],"correctAnswer":0},
+    {"category":"general","question":"Statistically, what is the most deadly animal in Australia?","choices":["Jellyfish","Honey bee","Horse","Bull shark"],"correctAnswer":2},
+    {"category":"general","question":"What is a baby seal called?","choices":["Calf","Kid","Cub","Pup"],"correctAnswer":3},
+    {"category":"entertainment","question":"What actor plays the role of Wolverine in modern X-Men movies from 2001-2014?","choices":["Jack Nickolson","Channing Tatum","Hugh Jackman","Brad Pitt"],"correctAnswer":2},
+    {"category":"entertainment","question":"What was Disney's first sci-fi animation?","choices":["Lilo and Stitch","Atlantis","Treasure Planet","Wall E"],"correctAnswer":1},
+    {"category":"entertainment","question":"Who is the author of the Harry Potter series?","choices":["George R.R. Martin","Robin Hobb","J.K. Rowling","Glen Cook"],"correctAnswer":2},
+    {"category":"history","question":"What was Henry Ford's profession?","choices":["Electrician","Enterpreneur","Scientist","Architect"],"correctAnswer":1},
+    {"category":"history","question":"In which country was Protestantism born?","choices":["England","France","Spain","Germany"],"correctAnswer":3},
+    {"category":"history","question":"When did the Titanic sink?","choices":["1912","1918","1925","1908"],"correctAnswer":0},
+    {"category":"history","question":"How long was the Hundred Years War?","choices":["93","100","116","105"],"correctAnswer":2},
+    {"category":"science","question":"Which chemical element is the primary ingredient in semiconductors?","choices":["Carbon","Silicon","Nitrogen","Barium"],"correctAnswer":1},
+    {"category":"science","question":"Which of these body parts is located in the abdomen?","choices":["Liver","Kidney","Heart","Hypothalamus"],"correctAnswer":0},
+    {"category":"science","question":"What do you call the rate of change of velocity?","choices":["Speed","Momentum","Friction","Acceleration"],"correctAnswer":3},
+    {"category":"world","question":"How many volcanos are on the surface of the earth (approximately)?","choices":["550","1250","300","10200"],"correctAnswer":0},
+    {"category":"world","question":"Which country has the highest population density in the world?","choices":["China","Monaco","India","Vatican City"],"correctAnswer":1},
+    {"category":"world","question":"In which ocean is the Mariana trench?","choices":["Atlantic","Indian","Pacific","Antarctic"],"correctAnswer":2},
+    {"category":"world","question":"Which is the driest continent in the world?","choices":["Australia","Africa","North America","Antarctica"],"correctAnswer":3},
+    {"category":"world","question":"What is the largest lake in the world?","choices":["Lake Superior","Lake Michigan","Lake Victoria","Caspian Sea"],"correctAnswer":3},
+    {"category":"world","question":"What is the total number of time zones in the world?","choices":["24","10","4","50"],"correctAnswer":0},
+    {"category":"world","question":"Which metropolitan city has the highest population?","choices":["Shanghai","Tokyo","New York","Delhi"],"correctAnswer":1},
+    {"category":"world","question":"Which of the Seven Wonders of the World can be seen from space?","choices":["Machu Picchu","Great Pyramid of Giza","Great Wall of China","Your mom"],"correctAnswer":2},
+    {"category":"world","question":"What is the longest river in the world?","choices":["Amazon","Nile","Yangtze","Mississippi"],"correctAnswer":1},
+    {"category":"general","question":"How many total dots are on a pair of dice?","choices":["12","54","42","21"],"correctAnswer":2},
+    {"category":"history","question":"What was the name of the first successfully launched man-made satellite?","choices":["Sputnik 1","Explorer 1","Echo 1","Vanguard TV3"],"correctAnswer":0},
+    {"category":"science","question":"Which teeth are used to grind food?","choices":["Incisors","Canines","Comb","Molar"],"correctAnswer":3},
+    {"category":"science","question":"How many of the solar system's planets (maximum) can be placed edge-to-edge into the space between the earth and the moon?","choices":["3","4","6","8"],"correctAnswer":3},
+    {"category":"sports","question":"Whose 100-meter dash record was broken by Usain Bolt in 2008?","choices":["Asafa Powell","Maurice Greene","Carl Lewis","Justin Gatlin"],"correctAnswer":3},
+    {"category":"sports","question":"Which NBA team won 72 out of 82 games in a season?","choices":["Los Angeles Lakers","Boston Celtics","Chicago Bulls","San Antonio Spurs"],"correctAnswer":2},
+    {"category":"sports","question":"Which city hosted the Summer Olympics in 2008","choices":["London","Beijing","Seoul","Athens"],"correctAnswer":1},
+    {"category":"sports","question":"Who is the oldest boxer to win a major heavyweight title?","choices":["George Foreman","Muhammad Ali","Mike Tyson","Joe Frazier"],"correctAnswer":0},
+    {"category":"sports","question":"Which team suffered the worst ever defeat (in goal-differential) in a semifinal at the FIFA World Cup?","choices":["South Korea","United States","Brazil","Belgium"],"correctAnswer":2},
+    {"category":"sports","question":"In which country was the first FIFA World Cup held?","choices":["Brazil","Uruguay","Italy","United States"],"correctAnswer":1},
+    {"category":"sports","question":"Who won the first ever Super Bowl?","choices":["Green Bay Packers","Kansas City Chiefs","New England Patriots","Pittsburgh Steelers"],"correctAnswer":0},
+    {"category":"sports","question":"What kind of cue sport involves only awards points if the target ball is rebounded off the table cushion into a designated pocket?","choices":["8-ball pool","Speed pool","Straight pool","Bank pool"],"correctAnswer":3},
+    {"category":"sports","question":"Who is the only athlete to play in both the Super Bowl and the Baseball World Series?","choices":["Russell Wilson","Michael Jordan","Deion Sanders","Drew Brees"],"correctAnswer":2},
+    {"category":"sports","question":"Which coach of the Los Angeles Lakers trademarked the term 'three-peat'?","choices":["Pat Riley","Phil Jackson","Byron Scott","Jerry West"],"correctAnswer":0},
+    {"category":"sports","question":"When was the last time England participated in the men's FIFA World Cup final match?","choices":["2006","1966","1986","1974"],"correctAnswer":1},
+    {"category":"sports","question":"Which tennis player has won the most Grand Slams in history?","choices":["Andre Agassi","Pete Sampras","John McEnroe","Roger Federer"],"correctAnswer":3},
+    {"category":"sports","question":"What is the only rule that has remained unchanged in cricket laws since 1744 AD?","choices":["Number of players per team","Type of ball","Length of the pitch","Size of the field"],"correctAnswer":2},
+    {"category":"sports","question":"Which cricketer has the most 'Man of the Match' awards in one-day international matches?","choices":["Ricky Ponting","Sanath Jayasurya","Sachin Tendulkar","Jacques Kallis"],"correctAnswer":2},
+    {"category":"sports","question":"In table tennis, a typical game ends when a player scores how many points?","choices":["21","10","15","11"],"correctAnswer":3},
+    {"category":"sports","question":"In the longest tennis Grand Slam final ever, Novak Djokovic beat which top tennis talent to win the 2012 Australian Open?","choices":["Roger Federer","Rafael Nadal","Andy Murray","David Ferrer"],"correctAnswer":1},
+    // {"category":"this","question":"this","choices":["this","this","this","this"],"correctAnswer":},
     // {"category":"this","question":"this","choices":["this","this","this","this"],"correctAnswer":},
     // {"category":"this","question":"this","choices":["this","this","this","this"],"correctAnswer":},
   ];
@@ -263,7 +322,8 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
   {"category":"science","individualScores":[],"correctlyAnswered":0,"wronglyAnswered":0,"unanswered":0,"percentage":0},
   {"category":"world","individualScores":[],"correctlyAnswered":0,"wronglyAnswered":0,"unanswered":0,"percentage":0},
   {"category":"history","individualScores":[],"correctlyAnswered":0,"wronglyAnswered":0,"unanswered":0,"percentage":0},
-  {"category":"entertainment","individualScores":[],"correctlyAnswered":0,"wronglyAnswered":0,"unanswered":0,"percentage":0}];
+  {"category":"entertainment","individualScores":[],"correctlyAnswered":0,"wronglyAnswered":0,"unanswered":0,"percentage":0},
+  {"category":"sports","individualScores":[],"correctlyAnswered":0,"wronglyAnswered":0,"unanswered":0,"percentage":0}];
   factory.determineIndividualPercents=function(){
     for (var s=0;s<factory.scoresByCategory.length;s++){
       factory.scoresByCategory[s].percentage=((100*factory.scoresByCategory[s].correctlyAnswered)/(factory.scoresByCategory[s].wronglyAnswered+factory.scoresByCategory[s].unanswered+factory.scoresByCategory[s].correctlyAnswered));
@@ -537,6 +597,12 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
     timerInterval=undefined;
     $scope.runTimer();
   }
+  $scope.$watch(function(scope){return scope.timer},
+    function(){
+      if ($scope.timer>=15){
+        $cordovaVibration.vibrate(20);
+      }
+    });
   $scope.noCategory=false;
   if (Data.finalObject.length===0){$scope.noCategory=true;}
   $scope.restartQuiz=function(){
@@ -555,7 +621,7 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
     Stats.currentFinalScore=0;
     Stats.currentNumQuestions=0;
     currInfo.score=0;
-    currInfo.total=0;
+    currInfo.total=$scope.quizObjectJSON.length;
     currInfo.userAnswersWrong=[];
     currInfo.incorrectAnswers=[];
     currInfo.unanswered=[];
@@ -702,6 +768,7 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
           if ($scope.answeredQuiz[$scope.questionNumber].userAnswer===0){
             $scope.questionNumber++;
             $scope.displayNumber++;
+            currInfo.score++;
             goOn=true;
           }
           else {
@@ -711,6 +778,7 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
         else {
           $scope.questionNumber++;
           $scope.displayNumber++;
+          currInfo.score++;
           goOn=true;
         }
         Stats.allRightTimes.push($scope.timer);
@@ -816,8 +884,8 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
         // }
       }
       // currInfo.incorrectAnswers.push($scope)
-      Stats.recordCurrentQuizPercentage($scope.finalScore,Data.answeredQuiz.length);
-      Stats.allScores.push($scope.finalScore);
+      Stats.recordCurrentQuizPercentage(currInfo.score,Data.answeredQuiz.length);
+      Stats.allScores.push(currInfo.score);
       Stats.allTotals.push(Data.answeredQuiz.length);
       Stats.determineIndividualPercents();
       for (var j=0;j<Stats.scoresByCategory.length;j++){
@@ -825,7 +893,7 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
       }
       // $scope.scoreQuizNow=true;
       // $scope.isQuizDone=true;
-      if ($scope.finalScore===Data.answeredQuiz.length){
+      if (currInfo.score===Data.answeredQuiz.length){
         $scope.perfectQuiz=true;
         Stats.numPerfectQuiz++;
       }
@@ -872,6 +940,7 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
   $scope.nextButtonOnclick=function(){
     $scope.optionClick=false;
     $scope.doTheFlip();
+    $cordovaVibration.vibrate(70);
     // if (ionic.Platform.isIOS() || ionic.Platform.isAndroid()){
     //   $cordovaVibration.vibrate(70);
     // }
@@ -917,7 +986,7 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
     $scope.showOverall=true;
     $scope.showAverage=true;
     $scope.showCategory=true;
-    $scope.listCategories=['general','science','world','history','entertainment'];
+    $scope.listCategories=['general','science','world','history','entertainment','sports'];
     $scope.allCategories=[
       {"category":"all","chosen":true},
       {"category":"general","chosen":false},
@@ -925,6 +994,7 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
       {"category":"world","chosen":false},
       {"category":"history","chosen":false},
       {"category":"entertainment","chosen":false},
+      {"category":"sports","chosen":false}
     ];
     $scope.chosenCategory="";
     $scope.getCategoryStats=function(thisOne){

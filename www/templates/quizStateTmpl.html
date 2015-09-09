@@ -37,10 +37,10 @@
       <div class="item-animate timer srow" ng-show="isQuizActive">
         <div class="progress_bar"
           round-progress
-          max="20"
+          max="19"
           current="timer"
-          color="#ffff7f"
-          bgcolor="#9b9b9b"
+          color="#d3d7ee"
+          bgcolor="#197319"
           semi='false'
           radius="28"
           stroke="10"
@@ -59,7 +59,7 @@
             <div id="flipCard" class="flipper">
                 <div id="cardContent" class="front">
                   <div class="card list-borderless question-container">
-                      <div class="item item-divider item-text-wrap question_questions brow"><b>{{quizObjectJSON[questionNumber].question}}</b></div>
+                      <div class="item item-divider item-text-wrap question_questions brow2"><b>{{quizObjectJSON[questionNumber].question}}</b></div>
                       <ion-radio class="item item-text-wrap question_options brow" ng-repeat="choice in quizObjectJSON[questionNumber].choices track by $index" ng-model="answeredQuiz[questionNumber].userAnswer" ng-value="$index" ng-click="optionOnclick()">{{choice}}</ion-radio>
                   </div>
                 </div>

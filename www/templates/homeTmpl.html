@@ -1,0 +1,61 @@
+<ion-view title="Home">
+	<!-- <ion-nav-buttons side="left">
+    	<button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons> -->
+    <ion-content class="first_page">
+      <div class="home-container">
+        <div class="srow3i">
+          <img class="first_page_image" src="img/Quiz-Games.png"><br>
+          <b>AVI'S QUIZ</b>
+        </div>
+
+    	<!-- <div class="list">
+    		<div class="item item-divider">Please select your desired categories</div>
+    		<label ng-repeat="item in finalCategors">
+    			<ion-checkbox ng-model="item.chosen">{{item.category|uppercase}}</ion-checkbox>
+    		</label>
+    	</div> -->
+      <!-- <div class="button-bar">
+        <a class='button start_quiz_button'  ng-click='startQuiz()'>Reset and Start Quiz</a>
+      </div> -->
+      <!-- <div class="buttons-here"> -->
+      </div>
+        <div class="card">
+          <a class="item item-avatar" ng-click="openPopover($event)">
+            <!-- <i class="icon ion-arrow-right-b"></i> -->
+            <img src="lib/img/start.jpg">
+            <!-- https://static.pexels.com/photos/2923/young-game-match-kids.jpg -->
+            <h2>Start the game</h2>
+            <p>200 seconds of pain!</p>
+          </a>
+        </div>
+        <div class="card">
+          <a class="item item-avatar" ng-click="goInstructions()">
+            <!-- <i class="icon ion-help"></i> -->
+            <img src="lib/img/instructions.png">
+            <!-- http://40.media.tumblr.com/d41888195734da4b366837b9ad0d9fec/tumblr_npdo0umLmQ1slhhf0o1_1280.jpg -->
+            <h2>Instructions</h2>
+            <p>It's pretty simple, I promise</p>
+          </a>
+        </div>
+        <div class="card">
+          <a class="item item-avatar" ng-click="setPage('statistics')">
+            <!-- <i class="icon ion-stats-bars"></i> -->
+            <img src="lib/img/statistics.jpg">
+            <!-- https://static.pexels.com/photos/5775/calculator-scientific.jpg -->
+            <h2>Statistics</h2>
+            <p>Don't worry, they're already calculated</p>
+          </a>
+        </div>
+        <div class="card">
+          <a class="item item-avatar" ng-click="setPage('acknowledgements')">
+            <!-- <i class="icon ion-beer"></i> -->
+            <img src="lib/img/acknowledgements.jpg">
+            <!-- https://static.pexels.com/photos/519/light-sign-typography-lighting.jpg -->
+            <h2>Acknowledgements</h2>
+            <p>Question and image sources</p>
+          </a>
+        </div>
+      <!-- </div> -->
+    </ion-content>
+</ion-view>

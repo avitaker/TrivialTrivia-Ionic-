@@ -62,7 +62,7 @@ $dark:                            #444 !default;
 .bar.bar-cornflowerBlue {
   border-color: #64a0ed;
   background-color: #6495ed;
-  background-image: linear-gradient(0deg, #e42112, #e42112 50%, transparent 50%);
+  background-image: linear-gradient(0deg, #a9caf5, #a9caf5 50%, transparent 50%);
   color: #fff; }
   .bar.bar-assertive .title {
     color: #fff; }
@@ -315,7 +315,7 @@ progress[value]::-webkit-progress-value {
 }
 
 .instructions_page{
-  background-color:#eed3d7;
+  background-color:#a9caf5;
 }
 
 .statistics_page{
@@ -5667,14 +5667,14 @@ a.item-content {
  */
 .card, .list-inset {
   overflow: hidden;
-  margin: 20px 10px;
+  margin: 11px 10px;
   border-radius: 2px;
   background-color: #fff; }
 
 
 .card {
   padding-top: 1px;
-  padding-bottom: 1px;
+  padding-bottom: 0px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); }
   .card .item {
     border-left: 0;
