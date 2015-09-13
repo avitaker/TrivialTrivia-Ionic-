@@ -600,7 +600,7 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
   $scope.$watch(function(scope){return scope.timer},
     function(){
       if ($scope.timer>=15){
-        $cordovaVibration.vibrate(20);
+        // $cordovaVibration.vibrate(20);
       }
     });
   $scope.noCategory=false;
@@ -938,9 +938,9 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
   }
 
   $scope.nextButtonOnclick=function(){
-    $scope.optionClick=false;
+    // $scope.optionClick=false;
     $scope.doTheFlip();
-    $cordovaVibration.vibrate(70);
+    // $cordovaVibration.vibrate(70);
     // if (ionic.Platform.isIOS() || ionic.Platform.isAndroid()){
     //   $cordovaVibration.vibrate(70);
     // }

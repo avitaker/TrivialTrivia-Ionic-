@@ -465,7 +465,7 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
 
   $scope.nextButtonOnclick=function(){
     $scope.doTheFlip();
-    $cordovaVibration.vibrate(70);
+    // $cordovaVibration.vibrate(70);
     $scope.restartTimer();
     $scope.restartTimeout();
 

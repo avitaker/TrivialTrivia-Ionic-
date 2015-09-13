@@ -4,7 +4,7 @@
           <div class="list card">
               <div class="item item-divider item-text-wrap question_questions"><b>{{quizObjectJSON[questionNumber].question}}</b></div>
                   <!-- <div id="choices_here"> -->
-              <ion-radio class="item item-text-wrap question_options" ng-repeat="choice in quizObjectJSON[questionNumber].choices track by $index" ng-model="answeredQuiz[questionNumber].userAnswer" ng-value="$index">{{choice}}</ion-radio>
+              <ion-radio class="item item-text-wrap question_options" ng-repeat="choice in quizObjectJSON[questionNumber].choices track by $index" ng-model="answeredQuiz[questionNumber].userAnswer" ng-value="$index" ng-click="nextButtonOnclick()">{{choice}}</ion-radio>
 
                   <!-- </div> -->
           </div>

@@ -37,9 +37,31 @@
       </div>
         <div class="card" ng-show="noCategory"><div class="item item-text-wrap">You must pick a category before continuing</div></div>
         <!-- <div id="welcome_div" ng-hide="hideWelcomeDiv">Welcome to my quiz. Please click "Next" to continue <a href='google.com'></a></div> -->
-        <div>
-          <question-div id="quiz_area" ng-show='isQuizActive' ng-hide="noCategory"></question-div>
-        </div>
+        <!-- <div> -->
+          <!-- <question-div id="quiz_area" ng-show='isQuizActive' ng-hide="noCategory"></question-div> -->
+          <div id="flipCard" class="flipper">
+              <div id="cardContent" class="front">
+                <div class="list card">
+                    <div class="item item-divider item-text-wrap question_questions"><b>{{quizObjectJSON[questionNumber].question}}</b></div>
+                        <!-- <div id="choices_here"> -->
+                    <ion-radio class="item item-text-wrap question_options" ng-repeat="choice in quizObjectJSON[questionNumber].choices track by $index" ng-model="answeredQuiz[questionNumber].userAnswer" ng-value="$index" ng-click="nextButtonOnclick()">{{choice}}</ion-radio>
+
+                        <!-- </div> -->
+                </div>
+              </div>
+              <!-- <div class="back">
+                <div class="card">
+                    <div class="item item-divider item-text-wrap question_questions" ng-click="nextButtonOnclick()"><b>{{quizObjectJSON[questionNumber].question}}</b></div>
+                        <div id="choices_here">
+                            <label><ion-radio class="item item-text-wrap question_options" ng-model="answeredQuiz[questionNumber].userAnswer" ng-value="0">1. {{quizObjectJSON[questionNumber].choices[0]}}</ion-radio></label>
+                            <label><ion-radio class="item item-text-wrap question_options" ng-model="answeredQuiz[questionNumber].userAnswer" ng-value="1">2. {{quizObjectJSON[questionNumber].choices[1]}}</ion-radio></label>
+                            <label><ion-radio class="item item-text-wrap question_options" ng-model="answeredQuiz[questionNumber].userAnswer" ng-value="2">3. {{quizObjectJSON[questionNumber].choices[2]}}</ion-radio></label>
+                            <label><ion-radio class="item item-text-wrap question_options" ng-model="answeredQuiz[questionNumber].userAnswer" ng-value="3">4. {{quizObjectJSON[questionNumber].choices[3]}}</ion-radio></label>
+                        </div>
+                      </div>
+              </div> -->
+          </div>
+        <!-- </div> -->
         <div class ="card" id="final_results" ng-show="scoreQuizNow">
             <p class="item item-divider" id="final_score_number">You scored {{finalScore}} out of {{answeredQuiz.length}} on the quiz </p>
             <p class="item item-text-wrap" id="perfect_score" ng-show="perfectQuiz">Nicely done! You answered all the questions correctly</p>
