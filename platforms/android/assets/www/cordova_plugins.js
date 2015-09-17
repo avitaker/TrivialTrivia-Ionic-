@@ -27,13 +27,6 @@ module.exports = [
         "runs": true
     },
     {
-        "file": "plugins/org.apache.cordova.statusbar/www/statusbar.js",
-        "id": "org.apache.cordova.statusbar.statusbar",
-        "clobbers": [
-            "window.StatusBar"
-        ]
-    },
-    {
         "file": "plugins/cordova-plugin-vibration/www/vibration.js",
         "id": "cordova-plugin-vibration.notification",
         "merges": [
@@ -186,6 +179,13 @@ module.exports = [
             "cordova"
         ],
         "runs": true
+    },
+    {
+        "file": "plugins/cordova-plugin-statusbar/www/statusbar.js",
+        "id": "cordova-plugin-statusbar.statusbar",
+        "clobbers": [
+            "window.StatusBar"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -196,9 +196,9 @@ module.exports.metadata =
     "cordova-plugin-device": "1.0.0",
     "cordova-plugin-splashscreen": "2.0.0",
     "cordova-plugin-whitelist": "1.0.0",
-    "org.apache.cordova.statusbar": "0.1.10",
     "cordova-plugin-vibration": "1.2.0",
-    "cordova-plugin-file": "2.1.0"
+    "cordova-plugin-file": "2.1.0",
+    "cordova-plugin-statusbar": "2.0.0-dev"
 }
 // BOTTOM OF METADATA
 });

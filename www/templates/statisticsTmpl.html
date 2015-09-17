@@ -41,10 +41,12 @@
           <select ng-options="thing for thing in listCategories" ng-model="chosenCategory" class="col" ng-change="getCategoryStats(chosenCategory)">
             <!-- <option ng-repeat="thing in allCategories track by $index" ng-model="thing.chosen" ng-click="getCategoryStats($index)">{{thing.category|uppercase}}</option> -->
           </select>
-        </label></div>
-        <div class="item item-text-wrap row" ng-repeat="thing in statsList"><p class="col">{{thing.name}}</p><p class="col">{{thing.val}}</p></div>
+        </label>
+      </div>
+      <div class="item item-text-wrap row" ng-repeat="thing in statsList"><p class="col">{{thing.name}}</p><p class="col">{{thing.val}}</p>
       </div>
     </div>
+  </div>
 
     <!-- <div class="card">
 
