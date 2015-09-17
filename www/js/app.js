@@ -91,6 +91,140 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
 //     }
 //   }
 // }])
+.factory('FileService', function($q) {
+
+    return {
+        checkDir: function (dir) {
+            var deferred = $q.defer();
+
+            getFilesystem().then(
+                function(filesystem) {
+                    filesystem.root.getDirectory(dir, {create: false},
+                        function() {
+                            //Dir exist
+                            deferred.resolve();
+                        },
+                        function() {
+                            //Dir dont exist
+                            deferred.reject();
+                        }
+                    );
+                }
+            );
+
+            return deferred.promise;
+        },
+
+        createDir: function (dir) {
+            getFilesystem().then(
+                function(filesystem) {
+                    filesystem.root.getDirectory(dir, {create: true});
+                }
+            );
+        },
+
+        checkFile: function (dir, file) {
+            var deferred = $q.defer();
+
+            getFilesystem().then(
+                function(filesystem) {
+                    filesystem.root.getFile('/'+ dir +'/'+ file, {create: false},
+                        function() {
+                            //File exist
+                            deferred.resolve();
+                        },
+                        function() {
+                            //File dont exist
+                            deferred.reject();
+                        }
+                    );
+                }
+            );
+
+            return deferred.promise;
+        },
+
+        createFile: function (dir, file) {
+            getFilesystem().then(
+                function(filesystem) {
+                    filesystem.root.getFile('/'+ dir +'/'+ file, {create: true});
+                }
+            );
+        },
+
+        removeFile: function (dir, file) {
+            var deferred = $q.defer();
+
+            getFilesystem().then(
+                function(filesystem) {
+                    filesystem.root.getFile('/'+ dir +'/'+ file, {create: false}, function(fileEntry){
+                        fileEntry.remove(function() {
+                            deferred.resolve();
+                        });
+                    });
+                }
+            );
+
+            return deferred.promise;
+        },
+
+        writeFile: function (dir, file) {
+            var deferred = $q.defer();
+
+            getFilesystem().then(
+                function(filesystem) {
+                    filesystem.root.getFile('/'+ dir +'/'+ file, {create: false},
+                        function(fileEntry) {
+                            fileEntry.createWriter(function(fileWriter) {
+                                deferred.resolve(fileWriter);
+                            });
+                        }
+                    );
+                }
+            );
+
+            return deferred.promise;
+        },
+
+        readeFile: function (dir, file) {
+            var deferred = $q.defer();
+
+            getFilesystem().then(
+                function(filesystem) {
+                    filesystem.root.getFile('/'+ dir +'/'+ file, {create: false},
+                        function(fileEntry) {
+
+                            fileEntry.file(function(file) {
+                                var reader = new FileReader();
+
+                                reader.onloadend = function() {
+                                    deferred.resolve(this.result);
+                                };
+
+                                reader.readAsText(file);
+
+                            });
+                        }
+                    );
+                }
+            );
+
+            return deferred.promise;
+        }
+
+    };
+
+    function getFilesystem() {
+        var deferred = $q.defer();
+
+        window.requestFileSystem(window.PERSISTENT, 1024*1024, function(filesystem) {
+            deferred.resolve(filesystem);
+        });
+
+        return deferred.promise;
+    }
+})
+
 .factory("Data",function(){
   var factory={};
   factory.chosenLength={};
@@ -116,7 +250,7 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
     {"category":"world","question":"Headquarters of UNO are located at","choices":["Geneva (Switzerland)","Paris (France)","Hague (Netherlands)","New York (USA)"],"correctAnswer":3},
     {"category":"general","question":"For seeing objects at the surface of water from a submarine under water, the instrument used is","choices":["Telescope","Spectroscope","Periscope","No scope 360"],"correctAnswer":2},
     {"category":"entertainment","question":"Which 1990's TV series won the Emmy Award as best comedy in five consecutive years?","choices":["Friends","Days of our Lives","Ally McBeal","Frasier"],"correctAnswer":3},
-    {"category":"history","question":"Which US holiday came to exist as a result of a presidential Proclamation in 1863?","choices":["Thanksgiving","Labor Day","Veteran's Day","4th of July"],"correctAnswer":0},
+    {"category":"history","question":"Which US holiday came to exist as a result of a presidential Proclamation in 1863?","choices":["Thanksgiving","Labor Day","Veteran's Day","4th of July"],"correctAnswer":1},
     {"category":"entertainment","question":"Who wrote 'The Raven'?","choices":["Daniel Defoe","Mark Twain","Edgar Allan Poe","Nathaniel Hawthorne"],"correctAnswer":2},
     {"category":"world","question":"After Los Angeles, which California city not starting with an 'S' has the highest population?","choices":["Long Beach","Fresno","Oakland","Fremont"],"correctAnswer":1},
     {"category":"entertainment","question":"In which year was the first talkie film, 'The Jazz Singer', released?","choices":["1905","1916","1927","1939"],"correctAnswer":2},
@@ -385,6 +519,7 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
     return longestStreak;
   }
   factory.determineAveRightTime=function(){
+    // console.log('should be calculating');
     var totalTime=0;
     var numTime=factory.allRightTimes.length;
     for (i=0;i<factory.allRightTimes.length;i++){
@@ -593,13 +728,16 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
     );
   };
   $scope.restartTimer=function(){
+    $scope.timerBackup=$scope.timer;
     $interval.cancel(timerInterval);
     timerInterval=undefined;
     $scope.runTimer();
   }
   $scope.$watch(function(scope){return scope.timer},
     function(){
+      // var t=angular.element(document.querySelector('timeText'));
       if ($scope.timer>=15){
+        // t.removeClass('timer-text').addClass('timer-text-red');
         // $cordovaVibration.vibrate(20);
       }
     });
@@ -676,14 +814,7 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
    $scope.optionOnclick=function(){
      $scope.optionClick=true;
    }
-  //  $scope.wrongVibration=function(){
-  //    if (ionic.Platform.isAndroid()){
-  //      $cordovaVibration.vibrate([70,70]);
-  //    }
-  //    else {
-  //      $cordovaVibration.vibrate(140);
-  //    }
-  //  }
+  //
   //  var rotation =0;
   // $scope.ifWrong=function(){
   //   $scope.isQuizActive=false;
@@ -761,11 +892,12 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
   $scope.moveOn=function(){
     var goOn=false;
     $scope.isQuizActive=true;
-    // $cordovaVibration.vibrate(70);
     if ($scope.questionNumber<$scope.quizObjectJSON.length-1) {
       if ($scope.answeredQuiz[$scope.questionNumber].userAnswer===Data.finalObject[$scope.questionNumber].correctAnswer){
         if (!$scope.answeredQuiz[$scope.questionNumber].userAnswer){
           if ($scope.answeredQuiz[$scope.questionNumber].userAnswer===0){
+            Stats.allRightTimes.push($scope.timerBackup);
+            console.log(Stats.allRightTimes);
             $scope.questionNumber++;
             $scope.displayNumber++;
             currInfo.score++;
@@ -780,13 +912,13 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
           $scope.displayNumber++;
           currInfo.score++;
           goOn=true;
+          Stats.allRightTimes.push($scope.timerBackup);
+          console.log(Stats.allRightTimes);
         }
-        Stats.allRightTimes.push($scope.timer);
         // $scope.finalScore+=1;
-        // $cordovaVibration.vibrate(70);
       }
       else if ($scope.answeredQuiz[$scope.questionNumber].userAnswer!=Data.finalObject[$scope.questionNumber].correctAnswer && $scope.answeredQuiz[$scope.questionNumber].userAnswer!=null|undefined){
-        Stats.allWrongTimes.push($scope.timer);
+        Stats.allWrongTimes.push($scope.timerBackup);
         currInfo.userAnswersWrong.push($scope.answeredQuiz[$scope.questionNumber].userAnswer);
         currInfo.incorrectAnswers[currInfo.incorrectAnswers.length]=(Data.answeredQuiz[$scope.questionNumber]);
         // $scope.anyWrong=true;
@@ -799,7 +931,7 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
         console.log('not answered');
         currInfo.unanswered.push(Data.answeredQuiz[$scope.questionNumber]);
         $scope.anyMissed=true;
-        Stats.allWrongTimes.push($scope.timer);
+        Stats.allWrongTimes.push($scope.timerBackup);
         // $scope.anyWrong=true;
         // for (var l=0;l<Stats.scoresByCategory.length;l++){
         //   if (Data.answeredQuiz[$scope.questionNumber].category===Stats.scoresByCategory[l].category){
@@ -824,17 +956,17 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
       $scope.anyWrong=true;
       $scope.isQuizActive=false;
       $scope.scoreQuizNow=true;
-      // $cordovaVibration.vibrate(140);
       if (Data.answeredQuiz[Data.answeredQuiz.length-1].userAnswer===Data.answeredQuiz[Data.answeredQuiz.length-1].correctAnswer){
         $scope.displayNumber+=1;
         $scope.questionNumber++;
+        currInfo.score++;
       }
-      else if (Data.answeredQuiz[Data.answeredQuiz.length-1].userAnswer!=Data.answeredQuiz[Data.answeredQuiz.length-1].correctAnswer  && Data.answeredQuiz[Data.answeredQuiz.length-1].userAnswer!=null|undefined){
-        Stats.allWrongTimes.push($scope.timer);
+      else if (Data.answeredQuiz[Data.answeredQuiz.length-1].userAnswer!=Data.answeredQuiz[Data.answeredQuiz.length-1].correctAnswer && Data.answeredQuiz[Data.answeredQuiz.length-1].userAnswer!=null|undefined){
+        Stats.allWrongTimes.push($scope.timerBackup);
         currInfo.incorrectAnswers.push($scope.answeredQuiz[$scope.answeredQuiz.length-1]);
       }
-      else if (Data.answeredQuiz[$scope.questionNumber].userAnswer===null|undefined){
-        currInfo.unanswered.push(Data.answeredQuiz[$scope.questionNumber]);
+      else if (Data.answeredQuiz[Data.answeredQuiz.length-1].userAnswer===null|undefined){
+        currInfo.unanswered.push(Data.answeredQuiz[Data.answeredQuiz.length-1]);
         $scope.anyMissed=true;
         // $scope.anyWrong=true;
         for (var l=0;l<Stats.scoresByCategory.length;l++){
@@ -846,9 +978,9 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
         }
       }
       for (var i=0;i<Data.answeredQuiz.length;i++){
-        currInfo.total+=1;
+        // currInfo.total+=1;
         if (Data.answeredQuiz[i].userAnswer===Data.answeredQuiz[i].correctAnswer){
-          currInfo.score+=1;
+          // currInfo.score+=1;
           for (var l=0;l<Stats.scoresByCategory.length;l++){
             if (Data.answeredQuiz[i].category===Stats.scoresByCategory[l].category){
               Stats.scoresByCategory[l].correctlyAnswered+=1;
@@ -902,7 +1034,9 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
       // angular.element(questionContainer).addClass('item-animate1');
       // $scope.questionNumber++;
       // $scope.ifWrong();
-      $state.go('quizFeedback');
+      $scope.feedbackTimer=$timeout(function(){
+        $state.go('quizFeedback');
+      },150);
     }
     // console.log($scope.finalScore);
     $scope.$watch(function(scope){return scope.answeredQuiz},
@@ -925,13 +1059,34 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
     angular.element(questionContainer).removeClass('flip');
     $scope.moveOn();
   }
+
+  $scope.nextButtonTimer=undefined;
+  $scope.timedFlip=function(whichWay){
+    var howLong=200;
+    if (whichWay==='back'){
+      $scope.nextButtonTimer=$timeout(function(){
+        $scope.flipToBack();
+        $timeout.cancel($scope.nextButtonTimer);
+        $scope.nextButtonTimer=undefined;
+      },howLong)
+    }
+    else if (whichWay==='front'){
+      $scope.nextButtonTimer=$timeout(function(){
+        $scope.flipToFront();
+        $timeout.cancel($scope.nextButtonTimer);
+        $scope.nextButtonTimer=undefined;
+      },howLong)
+    }
+  }
+
   $scope.doTheFlip=function(){
+    // $cordovaVibration.vibrate(70);
     if (angular.element(cardContent).hasClass('front')){
-      return $scope.flipToBack();
+      return $scope.timedFlip('back');
       // $scope.flipToggle=true;
     }
     else {
-      return $scope.flipToFront();
+      return $scope.timedFlip('front');
       // $scope.flipToggle=false;
       // angular.element(questionContainer).toggleClass('flip');
     }
@@ -956,9 +1111,11 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
     $scope.timeLimit=undefined;
     $interval.cancel(timerInterval);
     timerInterval=undefined;
+    $timeout.cancel($scope.feedbackTimer);
+    $scope.feedbackTimer=undefined;
   });
 
-}]).controller("currInfoContr",function($scope,currInfo,$rootScope){
+}]).controller("currInfoContr",function($scope,currInfo,$rootScope,$ionicHistory,$state){
   console.log('test');
   $scope.incorrectAnswers=[];
   $scope.userAnswersWrong=[];
@@ -975,12 +1132,33 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
     $scope.total=currInfo.total;
   }
   $scope.resetField();
+  $scope.goHome=function(){
+    $ionicHistory.goBack(-2);
+  }
+  $scope.goStatistics=function(){
+    $state.go('statistics');
+  }
   // $rootScope.$on('$stateChangeStart',
   //   function(){
   //     $scope.resetField();
   //   });
+
 }).controller('AcknowledgementsContr',function($scope,Data){
-    $scope.thankYou=Data;
+    $scope.thankYou=[
+    {'name':'IndiaBIX','link':'http://www.indiabix.com/'},
+    {'name':'Mental Floss','link':'http://mentalfloss.com/'},
+    {'name':'ActionQuiz','link':'http://www.actionquiz.com/'},
+    {'name':'Businessballs','link':'http://www.businessballs.com/'},
+    {'name':'The People History','link':'http://www.thepeoplehistory.com/'},
+    {'name':'Table Quiz Central','link':'http://www.tablequizcentral.com/'},
+    {'name':'Maps of World','link':'http://www.mapsofworld.com/'},
+    {'name':'The Science Spot','link':'http://sciencespot.net/'},
+    {'name':'Wikipedia','link':'https://www.wikipedia.org/'},
+    {'name':'Think Fact Youtube Video','link':'https://youtu.be/n5-vhdkggws'}
+  ];
+  // $scope.goToLink=function(){
+  //
+  // }
 }).controller('StatisticsContr',['$scope','$rootScope','Stats',function($scope,$rootScope,Stats){
   $scope.startThisUp=function(){
     $scope.showOverall=true;

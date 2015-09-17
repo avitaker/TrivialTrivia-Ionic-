@@ -1,4 +1,19 @@
 <ion-view title="Quiz Score">
+  <ion-nav-bar class="bar bar-transparent">
+    <ion-nav-buttons side="left">
+      <button class="button  icon-left ion-chevron-left button-clear button-light" ng-click="goHome()">
+        Home
+      </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+      <button class="button  icon-right ion-calculator button-clear button-light" ng-click="goStatistics()">
+        Statistics
+      </button>
+    </ion-nav-buttons>
+    <!-- <ion-nav-back-button class="button-clear button-light">
+      <i class="ion-arrow-left-c"></i> Back
+    </ion-nav-back-button> -->
+  </ion-nav-bar>
   <ion-content class="done_quiz_page">
     <div class="fab red">
       <div class="finalScoreDisplay">{{score}}/{{total}}</div>

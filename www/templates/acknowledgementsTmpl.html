@@ -8,9 +8,14 @@
             <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
           </ion-nav-buttons> -->
         <ion-content class="first_page">
-        <div class='card'>
-            <div class="item item-text-wrap">
-                I'd like to thank <a href='http://www.indiabix.com/general-knowledge/basic-general-knowledge/'>Indiabix</a> for providing material for use in this app
+        <div class='list'>
+            <div class="item item-divider">
+                Thank you to the following online sources
+            </div>
+            <div class="item item-text-wrap" ng-repeat-start="thing in thankYou">
+              <a href="{{thing.link}}" target="_blank">{{thing.name}}</a>
+            </div>
+            <div ng-repeat-end>
             </div>
         </div>
     </ion-content>

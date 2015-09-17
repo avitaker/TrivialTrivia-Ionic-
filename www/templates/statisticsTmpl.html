@@ -4,13 +4,13 @@
       <!-- <i class="ion-arrow-left-c"></i> Back -->
     </ion-nav-back-button>
   </ion-nav-bar>
-  <ion-content class="statistics_page" scroll=true>
+  <ion-content class="quiz_page" scroll=true>
     <div class="card">
       <div class="item item-divider item-icon-right" id="overall_perf_stats" ng-click="convertThem('showOverall')">Overall Performance <i class="icon ion-ios-arrow-down" ng-hide="showOverall"></i> <i class="icon ion-ios-arrow-up" ng-show="showOverall"></i> </div>
       <div class="item-animate1" ng-show="showOverall">
         <!-- <div class="item item-text-wrap row"><p class="col">Percentage Score Per Quiz </p><p class="col">{{overallPercentage|number:2}}%</p></div> -->
         <div class="item item-text-wrap row"><p class="col">Total Number of Quizzes taken </p><p class="col">{{totalQuizzes}}</p></div>
-        <div class="item item-text-wrap row"><p class="col">Longest Streak </p><p class="col">{{longestStreak}}</p></div>
+        <div class="item item-text-wrap row"><p class="col">Highest Score </p><p class="col">{{longestStreak}}</p></div>
         <div class="item item-text-wrap row"><p class="col">Perfect Quizzes </p><p class="col">{{numPerf}}</p></div>
       </div>
       </div>

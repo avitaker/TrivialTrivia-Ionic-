@@ -37,7 +37,7 @@ $dark:                            #444 !default;
     .fab {
       margin-left: auto;
       margin-right: auto;
-      margin-top;: 20px;
+      margin-top: 10px;
       display: block;
       position: relative;
       width: 150px;
@@ -195,7 +195,7 @@ progress[value]::-webkit-progress-value {
 	                           rgba(255, 255, 255, .25),
 	                           rgba(0, 0, 0, .25)),
 	   -webkit-linear-gradient(left, #09c, #f44);*/
-    background-color: #886AEA;
+    background-color: #00AA26;
     border-radius: 1px;
     background-size: 35px 20px, 100% 100%, 100% 100%;
     -webkit-animation: animate-stripes 5s linear infinite;
@@ -222,7 +222,7 @@ progress[value]::-webkit-progress-value {
 .question-container {
      display: flex;
      flex-direction: column;
-     height: 70%;
+     height: 75%;
 }
 
 .srow{
@@ -234,7 +234,7 @@ progress[value]::-webkit-progress-value {
 }
 
 .question-container > .brow2 {
-     flex: 2;
+     flex: 1.5;
 }
 
 .home-container {
@@ -270,7 +270,7 @@ progress[value]::-webkit-progress-value {
 
 .flip-container {
 	perspective: 1000;
-	margin-top: 32px;
+	margin-top: 37px;
 }
 
   .flip-container.flip .flipper {
@@ -339,14 +339,14 @@ progress[value]::-webkit-progress-value {
 }
 
 .question_questions{
-  /*font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif;*/
+  font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif;
   background-color:#2FD69E;
   padding-top: 40px !important;
   /*min-height:90px;*/
 }
 
 .question_options{
-  /*min-height:90px;*/
+  min-height:10px;
 }
 
 #choices_here label {
@@ -362,7 +362,7 @@ progress[value]::-webkit-progress-value {
 }
 
 .done_quiz_page{
-  background-color:white;
+  background-color:#F0F0F0;
 }
 
 .instructions_page{
@@ -386,6 +386,33 @@ progress[value]::-webkit-progress-value {
 	text-align: center;
 	z-index: 15 !important;
 	position: fixed;
+}
+
+.background-circle{
+  /*left:auto;*/
+  left:13px;
+  right:auto;
+  background-color:#F0F0F0;
+  height:37px;
+  width:37px;
+  border-radius:100%;
+  position:absolute;
+  /*top:-13px;*/
+  top:13px;
+}
+
+.timer-text{
+  text-align:center;
+  margin-top:8px;
+  font-family:'DiscoFont',sans-serif;
+  /*weight:bold;*/
+}
+
+.timer-text-red{
+  text-align:center;
+  margin-top:8px;
+  font-family:'DiscoFont',sans-serif;
+  color:red;
 }
 
 .next_button{
@@ -415,7 +442,7 @@ progress[value]::-webkit-progress-value {
 @font-face{
   font-family:"DiscoFont";
   src: url("../lib/ionic/fonts/DISCO___.ttf");
-  font-weight:400;
+  font-weight:600;
 }
 
 
@@ -5489,7 +5516,7 @@ a.item-content {
   font-weight: 4s00; }
 
 .card .question_questions{
-	background-color: #2BA790;
+	background-color: #005B6C;
 	color: white;
 }
 .platform-ios .item-divider-platform, .item-divider-ios {
@@ -6656,7 +6683,7 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
   left: -9999px; }
   .item-radio input:checked ~ .item-content {
     /* style the item content when its checked */
-    background: #CF1332;
+    background: #00AA26;
     color:white;}
   .item-radio input:checked ~ .radio-icon {
     /* show the checkmark icon when its checked */

@@ -27,6 +27,54 @@ $dark:                            #444 !default;
   Modified icons to fit ionicon’s grid from original.
 */
 
+.finalScoreDisplay{
+  text-align: center;
+  margin-top: 66px;
+  font-size: 50px;
+
+}
+/* FAB */
+    .fab {
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 10px;
+      display: block;
+      position: relative;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      color: #fff;
+      overflow: hidden;
+      transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      transition-delay: 0.2s;
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    }
+
+    .fab.red {
+      background-color: #d23f31;
+    }
+
+    .fab.blue {
+      background-color: #4285f4;
+    }
+
+    .fab.green {
+      background-color: #0f9d58;
+    }
+
+    .fab:active {
+      box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2);
+      transition-delay: 0s;
+    }
+
+    .fab > core-icon {
+      margin: 16px;
+    }
+
+    .fab > core-icon::shadow path {
+      fill: #fff;
+    }
+
 .item-animate.ng-hide {
   height:0;
   opacity:0;
@@ -147,7 +195,7 @@ progress[value]::-webkit-progress-value {
 	                           rgba(255, 255, 255, .25),
 	                           rgba(0, 0, 0, .25)),
 	   -webkit-linear-gradient(left, #09c, #f44);*/
-    background-color: #886AEA;
+    background-color: #00AA26;
     border-radius: 1px;
     background-size: 35px 20px, 100% 100%, 100% 100%;
     -webkit-animation: animate-stripes 5s linear infinite;
@@ -174,7 +222,7 @@ progress[value]::-webkit-progress-value {
 .question-container {
      display: flex;
      flex-direction: column;
-     height: 70%;
+     height: 75%;
 }
 
 .srow{
@@ -186,7 +234,7 @@ progress[value]::-webkit-progress-value {
 }
 
 .question-container > .brow2 {
-     flex: 2;
+     flex: 1.5;
 }
 
 .home-container {
@@ -222,6 +270,7 @@ progress[value]::-webkit-progress-value {
 
 .flip-container {
 	perspective: 1000;
+	margin-top: 37px;
 }
 
   .flip-container.flip .flipper {
@@ -253,6 +302,7 @@ progress[value]::-webkit-progress-value {
 /* front pane, placed above back */
 .front {
 	z-index: 2;
+
 	/* for firefox 31 */
 	transform: rotateY(0deg);
 }
@@ -289,13 +339,14 @@ progress[value]::-webkit-progress-value {
 }
 
 .question_questions{
-  /*font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif;*/
+  font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif;
   background-color:#2FD69E;
+  padding-top: 40px !important;
   /*min-height:90px;*/
 }
 
 .question_options{
-  /*min-height:90px;*/
+  min-height:10px;
 }
 
 #choices_here label {
@@ -303,15 +354,15 @@ progress[value]::-webkit-progress-value {
 }
 
 .first_page{
-  background-color:#E8E8E8;
+  background-color:#F0F0F0;
 }
 
 .quiz_page{
-  background-color:#d3d7ee;
+  background-color:#F0F0F0;
 }
 
 .done_quiz_page{
-  background-color:#77DD77;
+  background-color:#F0F0F0;
 }
 
 .instructions_page{
@@ -328,13 +379,40 @@ progress[value]::-webkit-progress-value {
   padding-top:10px;
 }
 
-
-
 .timer{
-  margin-top:20px;
-  margin-bottom:-0px;
+	margin-top: 16px;
+	margin-left: 41vw;
+	margin-bottom: -0px;
+	text-align: center;
+	z-index: 15 !important;
+	position: fixed;
+}
+
+.background-circle{
+  /*left:auto;*/
+  left:13px;
+  right:auto;
+  background-color:#F0F0F0;
+  height:37px;
+  width:37px;
+  border-radius:100%;
+  position:absolute;
+  /*top:-13px;*/
+  top:13px;
+}
+
+.timer-text{
   text-align:center;
-  /*z-index:11;*/
+  margin-top:8px;
+  font-family:'DiscoFont',sans-serif;
+  /*weight:bold;*/
+}
+
+.timer-text-red{
+  text-align:center;
+  margin-top:8px;
+  font-family:'DiscoFont',sans-serif;
+  color:red;
 }
 
 .next_button{
@@ -348,8 +426,8 @@ progress[value]::-webkit-progress-value {
 }
 
 .bar.bar-transparent{
-  background-color:#D1D1D1;
-  color:black;
+	background-color: #009DB7;
+	color: white;
 }
 
 .item.item-clear{
@@ -364,7 +442,7 @@ progress[value]::-webkit-progress-value {
 @font-face{
   font-family:"DiscoFont";
   src: url("../lib/ionic/fonts/DISCO___.ttf");
-  font-weight:400;
+  font-weight:600;
 }
 
 
@@ -5438,7 +5516,8 @@ a.item-content {
   font-weight: 4s00; }
 
 .card .question_questions{
-  background-color:#89E894;
+	background-color: #005B6C;
+	color: white;
 }
 .platform-ios .item-divider-platform, .item-divider-ios {
   padding-top: 26px;
@@ -6604,7 +6683,7 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
   left: -9999px; }
   .item-radio input:checked ~ .item-content {
     /* style the item content when its checked */
-    background: #CF1332;
+    background: #00AA26;
     color:white;}
   .item-radio input:checked ~ .radio-icon {
     /* show the checkmark icon when its checked */

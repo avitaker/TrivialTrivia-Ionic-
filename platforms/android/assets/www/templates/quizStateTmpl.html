@@ -1,5 +1,5 @@
 <ion-view title="Quiz">
-  <ion-nav-bar class="bar-royal">
+  <ion-nav-bar class="bar bar-transparent">
     <ion-nav-back-button class="button-clear button-light">
       <!-- <i class="ion-arrow-left-c"></i> Back -->
     </ion-nav-back-button>
@@ -34,20 +34,25 @@
         <div class="progress-text" ng-show="perfectQuiz">PERFECT!</div>
         <div class="progress-text" ng-show="scoreQuizNow">Quiz Complete</div>
       </div> -->
+      <div class="timerBackground"></div>
+
       <div class="item-animate timer srow" ng-show="isQuizActive">
         <div class="progress_bar"
           round-progress
-          max="19"
+          max="20"
           current="timer"
-          color="#d3d7ee"
-          bgcolor="#197319"
+          color="#005B6C"
+          bgcolor="#009DB7"
           semi='false'
-          radius="28"
-          stroke="10"
+          radius="32"
+          stroke="15"
           rounded="false"
           clockwise="true"
           iterations="10"
-          animation="linearEase">
+          animation="easeOutElastic">
+        </div>
+        <div class="background-circle">
+          <div id="timeText" class="timer-text">{{20-timer}}</div>
         </div>
         <button class="button-icon button-small arrow icon ion-arrow-right-a next_button" ng-show="optionClick" ng-click="nextButtonOnclick()"></button>
       </div>
@@ -60,7 +65,7 @@
                 <div id="cardContent" class="front">
                   <div class="card list-borderless question-container">
                       <div class="item item-divider item-text-wrap question_questions brow2"><b>{{quizObjectJSON[questionNumber].question}}</b></div>
-                      <ion-radio class="item item-text-wrap question_options brow" ng-repeat="choice in quizObjectJSON[questionNumber].choices track by $index" ng-model="answeredQuiz[questionNumber].userAnswer" ng-value="$index" ng-click="optionOnclick()">{{choice}}</ion-radio>
+                      <ion-radio class="item item-text-wrap brow" ng-repeat="choice in quizObjectJSON[questionNumber].choices track by $index" ng-model="answeredQuiz[questionNumber].userAnswer" ng-value="$index" ng-click="nextButtonOnclick()">{{choice}}</ion-radio>
                   </div>
                 </div>
 
