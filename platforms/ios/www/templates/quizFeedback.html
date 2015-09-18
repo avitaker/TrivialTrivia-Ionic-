@@ -1,0 +1,42 @@
+<ion-view title="Quiz Score">
+  <ion-nav-bar class="bar bar-transparent">
+    <ion-nav-buttons side="left">
+      <button class="button  icon-left ion-chevron-left button-clear button-light" ng-click="goHome()">
+        Home
+      </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+      <button class="button  icon-right ion-calculator button-clear button-light" ng-click="goStatistics()">
+        Statistics
+      </button>
+    </ion-nav-buttons>
+    <!-- <ion-nav-back-button class="button-clear button-light">
+      <i class="ion-arrow-left-c"></i> Back
+    </ion-nav-back-button> -->
+  </ion-nav-bar>
+  <ion-content class="done_quiz_page">
+    <div class="fab red">
+      <div class="finalScoreDisplay">{{score}}/{{total}}</div>
+    </div>
+    <!-- <div class="list">
+      <p class="item item-divider"> You scored {{score}} out of {{total}} </p>
+      <p class="item item-text-wrap">You left {{unanswered.length}} questions unanswered </p>
+      <p class="item item-text-wrap">You wrongly answered {{incorrectAnswers.length}} questions </p>
+    </div> -->
+    <div class="card" ng-repeat-start="wrongAnswer in incorrectAnswers track by $index" background-color="red">
+        <div class="item item-divider" >Wrongly answered question</div>
+        <div class="item item-text-wrap">Q: <b>{{wrongAnswer.question}}</b> </div>
+          <div class="item item-text-wrap"><b>You selected:</b> <span class="wrong_choice"> {{wrongAnswer.choices[userAnswersWrong[$index]]}} </span> </div>
+          <div class="item item-text-wrap"><b>Correct Answer:</b> <span class="correct_choice">{{wrongAnswer.choices[wrongAnswer.correctAnswer]}} </span> </div>
+    </div>
+    <div ng-repeat-end>
+    </div>
+    <div class="card">
+      <div class="item item-divider" ng-repeat-start="unanswer in unanswered">Unanswered question</div>
+      <div class="item item-text-wrap">Q: <b>{{unanswer.question}}</b></div>
+      <div class="item item-text-wrap">The correct answer is: <span class="correct_choice">{{unanswer.choices[unanswer.correctAnswer]}}</span></div>
+      <div ng-repeat-end>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

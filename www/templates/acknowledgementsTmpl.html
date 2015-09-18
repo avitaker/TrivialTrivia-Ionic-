@@ -9,14 +9,32 @@
           </ion-nav-buttons> -->
         <ion-content class="first_page">
         <div class='list'>
+            <a class="item item-avatar">
+              <img src="lib/img/Hand-thumbs-up-3-icon.png">
+              <h2>Thank you to the following</h2>
+              <p>Click on any item to visit the website</p>
+            </a>
             <div class="item item-divider">
-                Thank you to the following online sources
+                Question Sources
             </div>
-            <div class="item item-text-wrap" ng-repeat-start="thing in thankYou">
-              <a href="{{thing.link}}" target="_blank">{{thing.name}}</a>
+            <a class="item item-text-wrap" ng-repeat-start="thing in thankYou track by $index" ng-click="goToLink(thing.link)">
+              {{thing.name}}
+            </a>
+            <a ng-repeat-end>
+            </a>
+<!--        </div>-->
+            <div class="item item-divider">
+                Image sources
             </div>
-            <div ng-repeat-end>
-            </div>
+            <a class="item item-text-wrap" ng-click='goToLink("https://www.iconfinder.com/quizanswers")'>
+                Vlad Marin on Iconfinder (app icon before modification)
+            </a>
+            <a class="item item-text-wrap" ng-click='goToLink("https://www.pexels.com/")'>
+                Pexels (icons on Home page)
+            </a>
+            <a class="item item-text-wrap" ng-click='goToLink("http://www.iconarchive.com/")'>
+                IconArchive (icon on Acknowledgments page)
+            </a>
         </div>
     </ion-content>
 </ion-view>

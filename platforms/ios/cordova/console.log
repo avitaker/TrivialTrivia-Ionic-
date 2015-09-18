@@ -223,3 +223,197 @@
 2015-08-04 12:47:54.414 Quiz app tabs[5173:507991] [CDVTimer][TotalPluginStartup] 291.512012ms
 2015-08-04 12:47:54.842 Quiz app tabs[5173:507991] Resetting plugins due to page load.
 2015-08-04 12:47:55.421 Quiz app tabs[5173:507991] Finished load of: file:///Users/avinashdavid/Library/Developer/CoreSimulator/Devices/7E65C545-D4C3-48C1-8936-3A958328E7CD/data/Containers/Bundle/Application/EEAE1DE5-8892-4C77-AD8A-C11D6547BF78/Quiz%20app%20tabs.app/www/index.html#/choose
+2015-09-18 08:29:06.553 Trivial Trivia[4529:38776] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/avinashdavid/Library/Developer/CoreSimulator/Devices/7E65C545-D4C3-48C1-8936-3A958328E7CD/data/Containers/Data/Application/1E6E5A34-A975-41D0-A9E5-94A2ED44CE79/Library/Cookies/Cookies.binarycookies
+2015-09-18 08:29:06.958 Trivial Trivia[4529:38776] Apache Cordova native platform version 3.8.0 is starting.
+2015-09-18 08:29:06.958 Trivial Trivia[4529:38776] Multi-tasking -> Device: YES, App: YES
+2015-09-18 08:29:06.982 Trivial Trivia[4529:38776] Unlimited access to network resources
+2015-09-18 08:29:07.506 Trivial Trivia[4529:38776] [CDVTimer][keyboard] 0.060022ms
+2015-09-18 08:29:07.757 Trivial Trivia[4529:38776] [CDVTimer][splashscreen] 250.735998ms
+2015-09-18 08:29:07.768 Trivial Trivia[4529:38776] [CDVTimer][file] 10.791957ms
+2015-09-18 08:29:07.774 Trivial Trivia[4529:38776] [CDVTimer][statusbar] 5.342960ms
+2015-09-18 08:29:07.774 Trivial Trivia[4529:38776] [CDVTimer][TotalPluginStartup] 268.760026ms
+2015-09-18 08:29:08.001 Trivial Trivia[4529:38776] Resetting plugins due to page load.
+2015-09-18 08:29:08.594 Trivial Trivia[4529:38776] Finished load of: file:///Users/avinashdavid/Library/Developer/CoreSimulator/Devices/7E65C545-D4C3-48C1-8936-3A958328E7CD/data/Containers/Bundle/Application/451B9B39-155B-467C-8E26-67E2C8A359D4/Trivial%20Trivia.app/www/index.html#/choose
+2015-09-18 08:29:15.684 Trivial Trivia[4529:38776] CDVWebViewDelegate: Navigation started when state=1
+2015-09-18 08:29:15.684 Trivial Trivia[4529:38776] Failed to load webpage with error: CDVWebViewDelegate: Navigation started when state=1
+2015-09-18 08:29:15.685 Trivial Trivia[4529:38776] Resetting plugins due to page load.
+2015-09-18 08:29:18.790 Trivial Trivia[4529:38776] Finished load of: http://www.indiabix.com/
+2015-09-18 08:39:27.192 Trivial Trivia[5273:42553] Apache Cordova native platform version 3.8.0 is starting.
+2015-09-18 08:39:27.192 Trivial Trivia[5273:42553] Multi-tasking -> Device: YES, App: YES
+2015-09-18 08:39:27.194 Trivial Trivia[5273:42553] Unlimited access to network resources
+2015-09-18 08:39:27.268 Trivial Trivia[5273:42553] [CDVTimer][keyboard] 0.062048ms
+2015-09-18 08:39:27.286 Trivial Trivia[5273:42553] [CDVTimer][splashscreen] 17.305017ms
+2015-09-18 08:39:27.288 Trivial Trivia[5273:42553] [CDVTimer][file] 1.626015ms
+2015-09-18 08:39:27.292 Trivial Trivia[5273:42553] [CDVTimer][statusbar] 3.791034ms
+2015-09-18 08:39:27.292 Trivial Trivia[5273:42553] [CDVTimer][TotalPluginStartup] 23.359954ms
+2015-09-18 08:39:27.424 Trivial Trivia[5273:42553] Resetting plugins due to page load.
+2015-09-18 08:39:27.599 Trivial Trivia[5273:42553] Finished load of: file:///Users/avinashdavid/Library/Developer/CoreSimulator/Devices/7E65C545-D4C3-48C1-8936-3A958328E7CD/data/Containers/Bundle/Application/C8DB3E1D-2259-455B-A83F-828FBD604D47/Trivial%20Trivia.app/www/index.html
+2015-09-18 08:45:40.134 Trivial Trivia[6014:46179] Apache Cordova native platform version 3.8.0 is starting.
+2015-09-18 08:45:40.135 Trivial Trivia[6014:46179] Multi-tasking -> Device: YES, App: YES
+2015-09-18 08:45:40.137 Trivial Trivia[6014:46179] Unlimited access to network resources
+2015-09-18 08:45:40.215 Trivial Trivia[6014:46179] [CDVTimer][keyboard] 0.055015ms
+2015-09-18 08:45:40.241 Trivial Trivia[6014:46179] [CDVTimer][splashscreen] 24.895012ms
+2015-09-18 08:45:40.244 Trivial Trivia[6014:46179] [CDVTimer][file] 3.238022ms
+2015-09-18 08:45:40.248 Trivial Trivia[6014:46179] [CDVTimer][statusbar] 3.699005ms
+2015-09-18 08:45:40.248 Trivial Trivia[6014:46179] [CDVTimer][TotalPluginStartup] 32.442987ms
+2015-09-18 08:45:40.382 Trivial Trivia[6014:46179] Resetting plugins due to page load.
+2015-09-18 08:45:40.692 Trivial Trivia[6014:46179] Finished load of: file:///Users/avinashdavid/Library/Developer/CoreSimulator/Devices/7E65C545-D4C3-48C1-8936-3A958328E7CD/data/Containers/Bundle/Application/07C6333A-4045-4399-BBD0-47B0EDD1A863/Trivial%20Trivia.app/www/index.html#/choose
+2015-09-18 08:45:45.561 Trivial Trivia[6014:46179] THREAD WARNING: ['InAppBrowser'] took '192.988770' ms. Plugin should use a background thread.
+2015-09-18 08:45:49.334 Trivial Trivia[6014:46179] THREAD WARNING: ['InAppBrowser'] took '48.765869' ms. Plugin should use a background thread.
+2015-09-18 08:45:49.360 Trivial Trivia[6014:46179] webView:didFailLoadWithError - -1100: The requested URL was not found on this server.
+2015-09-18 08:46:06.852 Trivial Trivia[6689:47303] Apache Cordova native platform version 3.8.0 is starting.
+2015-09-18 08:46:06.853 Trivial Trivia[6689:47303] Multi-tasking -> Device: YES, App: YES
+2015-09-18 08:46:06.857 Trivial Trivia[6689:47303] Unlimited access to network resources
+2015-09-18 08:46:06.949 Trivial Trivia[6689:47303] [CDVTimer][keyboard] 0.057995ms
+2015-09-18 08:46:06.962 Trivial Trivia[6689:47303] [CDVTimer][splashscreen] 12.768030ms
+2015-09-18 08:46:06.964 Trivial Trivia[6689:47303] [CDVTimer][file] 1.670957ms
+2015-09-18 08:46:06.968 Trivial Trivia[6689:47303] [CDVTimer][statusbar] 4.063010ms
+2015-09-18 08:46:06.968 Trivial Trivia[6689:47303] [CDVTimer][TotalPluginStartup] 19.173026ms
+2015-09-18 08:46:07.071 Trivial Trivia[6689:47303] Resetting plugins due to page load.
+2015-09-18 08:46:07.709 Trivial Trivia[6689:47303] Finished load of: file:///Users/avinashdavid/Library/Developer/CoreSimulator/Devices/7E65C545-D4C3-48C1-8936-3A958328E7CD/data/Containers/Bundle/Application/EE72374C-DD01-4EBB-A787-9BCC0A7BC08C/Trivial%20Trivia.app/www/index.html#/choose
+2015-09-18 08:46:10.172 Trivial Trivia[6689:47303] THREAD WARNING: ['InAppBrowser'] took '84.687012' ms. Plugin should use a background thread.
+2015-09-18 08:46:10.205 Trivial Trivia[6689:47303] webView:didFailLoadWithError - -1100: The requested URL was not found on this server.
+2015-09-18 08:46:14.596 Trivial Trivia[6689:47303] THREAD WARNING: ['InAppBrowser'] took '49.120850' ms. Plugin should use a background thread.
+2015-09-18 08:46:14.621 Trivial Trivia[6689:47303] webView:didFailLoadWithError - -1100: The requested URL was not found on this server.
+2015-09-18 08:46:23.010 Trivial Trivia[6689:47303] THREAD WARNING: ['InAppBrowser'] took '49.991211' ms. Plugin should use a background thread.
+2015-09-18 08:46:23.047 Trivial Trivia[6689:47303] webView:didFailLoadWithError - -1100: The requested URL was not found on this server.
+2015-09-18 08:46:42.785 Trivial Trivia[7371:48500] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/avinashdavid/Library/Developer/CoreSimulator/Devices/7E65C545-D4C3-48C1-8936-3A958328E7CD/data/Containers/Data/Application/2094429E-4BC2-4A03-BBE3-46EEA416D09E/Library/Cookies/Cookies.binarycookies
+2015-09-18 08:46:42.999 Trivial Trivia[7371:48500] Apache Cordova native platform version 3.8.0 is starting.
+2015-09-18 08:46:43.000 Trivial Trivia[7371:48500] Multi-tasking -> Device: YES, App: YES
+2015-09-18 08:46:43.003 Trivial Trivia[7371:48500] Unlimited access to network resources
+2015-09-18 08:46:43.084 Trivial Trivia[7371:48500] [CDVTimer][keyboard] 0.057995ms
+2015-09-18 08:46:43.098 Trivial Trivia[7371:48500] [CDVTimer][splashscreen] 14.081001ms
+2015-09-18 08:46:43.100 Trivial Trivia[7371:48500] [CDVTimer][file] 1.731992ms
+2015-09-18 08:46:43.104 Trivial Trivia[7371:48500] [CDVTimer][statusbar] 4.099011ms
+2015-09-18 08:46:43.104 Trivial Trivia[7371:48500] [CDVTimer][TotalPluginStartup] 20.533025ms
+2015-09-18 08:46:43.217 Trivial Trivia[7371:48500] Resetting plugins due to page load.
+2015-09-18 08:46:43.417 Trivial Trivia[7371:48500] Finished load of: file:///Users/avinashdavid/Library/Developer/CoreSimulator/Devices/7E65C545-D4C3-48C1-8936-3A958328E7CD/data/Containers/Bundle/Application/47B165B7-6366-43E9-AC6F-FCFFBD70830D/Trivial%20Trivia.app/www/index.html#/choose
+2015-09-18 08:47:35.091 Trivial Trivia[8048:49790] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/avinashdavid/Library/Developer/CoreSimulator/Devices/7E65C545-D4C3-48C1-8936-3A958328E7CD/data/Containers/Data/Application/814B286F-60BB-4BD3-91E6-31638C27745E/Library/Cookies/Cookies.binarycookies
+2015-09-18 08:47:35.315 Trivial Trivia[8048:49790] Apache Cordova native platform version 3.8.0 is starting.
+2015-09-18 08:47:35.316 Trivial Trivia[8048:49790] Multi-tasking -> Device: YES, App: YES
+2015-09-18 08:47:35.318 Trivial Trivia[8048:49790] Unlimited access to network resources
+2015-09-18 08:47:35.426 Trivial Trivia[8048:49790] [CDVTimer][keyboard] 0.081956ms
+2015-09-18 08:47:35.447 Trivial Trivia[8048:49790] [CDVTimer][splashscreen] 20.798028ms
+2015-09-18 08:47:35.451 Trivial Trivia[8048:49790] [CDVTimer][file] 3.203988ms
+2015-09-18 08:47:35.456 Trivial Trivia[8048:49790] [CDVTimer][statusbar] 5.433977ms
+2015-09-18 08:47:35.456 Trivial Trivia[8048:49790] [CDVTimer][TotalPluginStartup] 30.402958ms
+2015-09-18 08:47:35.592 Trivial Trivia[8048:49790] Resetting plugins due to page load.
+2015-09-18 08:47:36.275 Trivial Trivia[8048:49790] Finished load of: file:///Users/avinashdavid/Library/Developer/CoreSimulator/Devices/7E65C545-D4C3-48C1-8936-3A958328E7CD/data/Containers/Bundle/Application/134A9FE7-14C9-4D32-B0A7-B44EE3E03802/Trivial%20Trivia.app/www/index.html#/choose
+2015-09-18 08:51:18.490 Trivial Trivia[8742:51876] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/avinashdavid/Library/Developer/CoreSimulator/Devices/7E65C545-D4C3-48C1-8936-3A958328E7CD/data/Containers/Data/Application/17A27492-5604-4217-A572-9E0E3D99CBA1/Library/Cookies/Cookies.binarycookies
+2015-09-18 08:51:18.584 Trivial Trivia[8742:51876] Apache Cordova native platform version 3.8.0 is starting.
+2015-09-18 08:51:18.585 Trivial Trivia[8742:51876] Multi-tasking -> Device: YES, App: YES
+2015-09-18 08:51:18.587 Trivial Trivia[8742:51876] Unlimited access to network resources
+2015-09-18 08:51:18.685 Trivial Trivia[8742:51876] [CDVTimer][keyboard] 0.072002ms
+2015-09-18 08:51:18.715 Trivial Trivia[8742:51876] [CDVTimer][splashscreen] 30.474961ms
+2015-09-18 08:51:18.720 Trivial Trivia[8742:51876] [CDVTimer][file] 3.933966ms
+2015-09-18 08:51:18.725 Trivial Trivia[8742:51876] [CDVTimer][statusbar] 5.437016ms
+2015-09-18 08:51:18.725 Trivial Trivia[8742:51876] [CDVTimer][TotalPluginStartup] 40.710986ms
+2015-09-18 08:51:18.863 Trivial Trivia[8742:51876] Resetting plugins due to page load.
+2015-09-18 08:51:19.033 Trivial Trivia[8742:51876] Finished load of: file:///Users/avinashdavid/Library/Developer/CoreSimulator/Devices/7E65C545-D4C3-48C1-8936-3A958328E7CD/data/Containers/Bundle/Application/A5A59602-05B8-447B-BA2C-13173FC5F67B/Trivial%20Trivia.app/www/index.html
+2015-09-18 08:51:39.030 Trivial Trivia[9417:53031] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/avinashdavid/Library/Developer/CoreSimulator/Devices/7E65C545-D4C3-48C1-8936-3A958328E7CD/data/Containers/Data/Application/D433C1B8-7F2B-4F19-A4D7-D97F41900959/Library/Cookies/Cookies.binarycookies
+2015-09-18 08:51:39.230 Trivial Trivia[9417:53031] Apache Cordova native platform version 3.8.0 is starting.
+2015-09-18 08:51:39.230 Trivial Trivia[9417:53031] Multi-tasking -> Device: YES, App: YES
+2015-09-18 08:51:39.233 Trivial Trivia[9417:53031] Unlimited access to network resources
+2015-09-18 08:51:39.348 Trivial Trivia[9417:53031] [CDVTimer][keyboard] 0.074983ms
+2015-09-18 08:51:39.370 Trivial Trivia[9417:53031] [CDVTimer][splashscreen] 22.122025ms
+2015-09-18 08:51:39.374 Trivial Trivia[9417:53031] [CDVTimer][file] 3.610969ms
+2015-09-18 08:51:39.383 Trivial Trivia[9417:53031] [CDVTimer][statusbar] 8.754969ms
+2015-09-18 08:51:39.383 Trivial Trivia[9417:53031] [CDVTimer][TotalPluginStartup] 35.481989ms
+2015-09-18 08:51:39.511 Trivial Trivia[9417:53031] Resetting plugins due to page load.
+2015-09-18 08:51:40.092 Trivial Trivia[9417:53031] Finished load of: file:///Users/avinashdavid/Library/Developer/CoreSimulator/Devices/7E65C545-D4C3-48C1-8936-3A958328E7CD/data/Containers/Bundle/Application/D38173A1-2DA6-44B4-A6B4-175A8070B856/Trivial%20Trivia.app/www/index.html
+2015-09-18 08:52:10.106 Trivial Trivia[10099:54255] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/avinashdavid/Library/Developer/CoreSimulator/Devices/7E65C545-D4C3-48C1-8936-3A958328E7CD/data/Containers/Data/Application/87C052AD-F597-46DF-86FA-A8E8F78BA0C8/Library/Cookies/Cookies.binarycookies
+2015-09-18 08:52:10.292 Trivial Trivia[10099:54255] Apache Cordova native platform version 3.8.0 is starting.
+2015-09-18 08:52:10.293 Trivial Trivia[10099:54255] Multi-tasking -> Device: YES, App: YES
+2015-09-18 08:52:10.295 Trivial Trivia[10099:54255] Unlimited access to network resources
+2015-09-18 08:52:10.405 Trivial Trivia[10099:54255] [CDVTimer][keyboard] 0.074029ms
+2015-09-18 08:52:10.429 Trivial Trivia[10099:54255] [CDVTimer][splashscreen] 23.009002ms
+2015-09-18 08:52:10.431 Trivial Trivia[10099:54255] [CDVTimer][file] 2.551973ms
+2015-09-18 08:52:10.438 Trivial Trivia[10099:54255] [CDVTimer][statusbar] 5.928993ms
+2015-09-18 08:52:10.438 Trivial Trivia[10099:54255] [CDVTimer][TotalPluginStartup] 32.406986ms
+2015-09-18 08:52:10.604 Trivial Trivia[10099:54255] Resetting plugins due to page load.
+2015-09-18 08:52:11.179 Trivial Trivia[10099:54255] Finished load of: file:///Users/avinashdavid/Library/Developer/CoreSimulator/Devices/7E65C545-D4C3-48C1-8936-3A958328E7CD/data/Containers/Bundle/Application/444CF0C7-3B25-479B-91AB-2CBA4D4B1E45/Trivial%20Trivia.app/www/index.html
+2015-09-18 08:54:12.725 Trivial Trivia[10808:56265] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/avinashdavid/Library/Developer/CoreSimulator/Devices/7E65C545-D4C3-48C1-8936-3A958328E7CD/data/Containers/Data/Application/EB47346D-905F-4718-A884-5FCE3436B653/Library/Cookies/Cookies.binarycookies
+2015-09-18 08:54:12.807 Trivial Trivia[10808:56265] Apache Cordova native platform version 3.8.0 is starting.
+2015-09-18 08:54:12.808 Trivial Trivia[10808:56265] Multi-tasking -> Device: YES, App: YES
+2015-09-18 08:54:12.810 Trivial Trivia[10808:56265] Unlimited access to network resources
+2015-09-18 08:54:12.886 Trivial Trivia[10808:56265] [CDVTimer][keyboard] 0.052035ms
+2015-09-18 08:54:12.910 Trivial Trivia[10808:56265] [CDVTimer][splashscreen] 23.259044ms
+2015-09-18 08:54:12.912 Trivial Trivia[10808:56265] [CDVTimer][file] 2.588034ms
+2015-09-18 08:54:12.917 Trivial Trivia[10808:56265] [CDVTimer][statusbar] 4.065037ms
+2015-09-18 08:54:12.917 Trivial Trivia[10808:56265] [CDVTimer][TotalPluginStartup] 30.555010ms
+2015-09-18 08:54:13.037 Trivial Trivia[10808:56265] Resetting plugins due to page load.
+2015-09-18 08:54:13.229 Trivial Trivia[10808:56265] Finished load of: file:///Users/avinashdavid/Library/Developer/CoreSimulator/Devices/7E65C545-D4C3-48C1-8936-3A958328E7CD/data/Containers/Bundle/Application/ADBE22A9-B022-424A-98EB-D014DD7A454D/Trivial%20Trivia.app/www/index.html#/choose
+2015-09-18 08:54:16.935 Trivial Trivia[10808:56265] THREAD WARNING: ['InAppBrowser'] took '60.615967' ms. Plugin should use a background thread.
+2015-09-18 08:54:16.966 Trivial Trivia[10808:56265] webView:didFailLoadWithError - -1100: The requested URL was not found on this server.
+2015-09-18 08:54:48.364 Trivial Trivia[11484:57452] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/avinashdavid/Library/Developer/CoreSimulator/Devices/7E65C545-D4C3-48C1-8936-3A958328E7CD/data/Containers/Data/Application/963F3029-4C71-4ACA-AD1B-A2133F6659D3/Library/Cookies/Cookies.binarycookies
+2015-09-18 08:54:48.417 Trivial Trivia[11484:57452] Apache Cordova native platform version 3.8.0 is starting.
+2015-09-18 08:54:48.417 Trivial Trivia[11484:57452] Multi-tasking -> Device: YES, App: YES
+2015-09-18 08:54:48.419 Trivial Trivia[11484:57452] Unlimited access to network resources
+2015-09-18 08:54:48.490 Trivial Trivia[11484:57452] [CDVTimer][keyboard] 0.055015ms
+2015-09-18 08:54:48.503 Trivial Trivia[11484:57452] [CDVTimer][splashscreen] 12.512028ms
+2015-09-18 08:54:48.505 Trivial Trivia[11484:57452] [CDVTimer][file] 1.594007ms
+2015-09-18 08:54:48.509 Trivial Trivia[11484:57452] [CDVTimer][statusbar] 3.539979ms
+2015-09-18 08:54:48.509 Trivial Trivia[11484:57452] [CDVTimer][TotalPluginStartup] 18.278003ms
+2015-09-18 08:54:48.638 Trivial Trivia[11484:57452] Resetting plugins due to page load.
+2015-09-18 08:54:49.374 Trivial Trivia[11484:57452] Finished load of: file:///Users/avinashdavid/Library/Developer/CoreSimulator/Devices/7E65C545-D4C3-48C1-8936-3A958328E7CD/data/Containers/Bundle/Application/9647BB88-A925-4BDE-BC4D-1C4A6870196C/Trivial%20Trivia.app/www/index.html#/choose
+2015-09-18 09:16:10.383 Trivial Trivia[12207:60782] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/avinashdavid/Library/Developer/CoreSimulator/Devices/7E65C545-D4C3-48C1-8936-3A958328E7CD/data/Containers/Data/Application/9C12FB20-EBCA-49B0-B1EC-F51FE501EF24/Library/Cookies/Cookies.binarycookies
+2015-09-18 09:16:10.472 Trivial Trivia[12207:60782] Apache Cordova native platform version 3.8.0 is starting.
+2015-09-18 09:16:10.472 Trivial Trivia[12207:60782] Multi-tasking -> Device: YES, App: YES
+2015-09-18 09:16:10.476 Trivial Trivia[12207:60782] Unlimited access to network resources
+2015-09-18 09:16:10.603 Trivial Trivia[12207:60782] [CDVTimer][keyboard] 0.084996ms
+2015-09-18 09:16:10.633 Trivial Trivia[12207:60782] [CDVTimer][splashscreen] 29.745996ms
+2015-09-18 09:16:10.637 Trivial Trivia[12207:60782] [CDVTimer][file] 3.875971ms
+2015-09-18 09:16:10.643 Trivial Trivia[12207:60782] [CDVTimer][statusbar] 6.285012ms
+2015-09-18 09:16:10.644 Trivial Trivia[12207:60782] [CDVTimer][TotalPluginStartup] 40.892005ms
+2015-09-18 09:16:10.798 Trivial Trivia[12207:60782] Resetting plugins due to page load.
+2015-09-18 09:16:11.098 Trivial Trivia[12207:60782] Finished load of: file:///Users/avinashdavid/Library/Developer/CoreSimulator/Devices/7E65C545-D4C3-48C1-8936-3A958328E7CD/data/Containers/Bundle/Application/ECC901BF-B9AF-41A2-8B1F-7AA1BA2E4193/Trivial%20Trivia.app/www/index.html#/choose
+2015-09-18 09:20:06.429 Trivial Trivia[12917:63676] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/avinashdavid/Library/Developer/CoreSimulator/Devices/7E65C545-D4C3-48C1-8936-3A958328E7CD/data/Containers/Data/Application/CF557386-2B06-44C9-B60A-C43603680940/Library/Cookies/Cookies.binarycookies
+2015-09-18 09:20:06.514 Trivial Trivia[12917:63676] Apache Cordova native platform version 3.8.0 is starting.
+2015-09-18 09:20:06.514 Trivial Trivia[12917:63676] Multi-tasking -> Device: YES, App: YES
+2015-09-18 09:20:06.517 Trivial Trivia[12917:63676] Unlimited access to network resources
+2015-09-18 09:20:06.619 Trivial Trivia[12917:63676] [CDVTimer][keyboard] 0.093997ms
+2015-09-18 09:20:06.646 Trivial Trivia[12917:63676] [CDVTimer][splashscreen] 26.586950ms
+2015-09-18 09:20:06.650 Trivial Trivia[12917:63676] [CDVTimer][file] 3.522992ms
+2015-09-18 09:20:06.654 Trivial Trivia[12917:63676] [CDVTimer][statusbar] 4.436016ms
+2015-09-18 09:20:06.655 Trivial Trivia[12917:63676] [CDVTimer][TotalPluginStartup] 35.381973ms
+2015-09-18 09:20:06.805 Trivial Trivia[12917:63676] Resetting plugins due to page load.
+2015-09-18 09:20:07.002 Trivial Trivia[12917:63676] Finished load of: file:///Users/avinashdavid/Library/Developer/CoreSimulator/Devices/7E65C545-D4C3-48C1-8936-3A958328E7CD/data/Containers/Bundle/Application/85D6F1B2-082C-4F6B-8EA7-FA1EAAB95185/Trivial%20Trivia.app/www/index.html#/choose
+2015-09-18 09:20:09.653 Trivial Trivia[12917:63676] THREAD WARNING: ['InAppBrowser'] took '61.715820' ms. Plugin should use a background thread.
+2015-09-18 09:20:19.205 Trivial Trivia[12917:63676] THREAD WARNING: ['InAppBrowser'] took '50.168213' ms. Plugin should use a background thread.
+2015-09-18 09:20:20.426 Trivial Trivia[12917:63676] webView:didFailLoadWithError - -999: The operation couldn’t be completed. (NSURLErrorDomain error -999.)
+2015-09-18 09:59:10.869 Trivial Trivia[13896:81282] Apache Cordova native platform version 3.8.0 is starting.
+2015-09-18 09:59:10.870 Trivial Trivia[13896:81282] Multi-tasking -> Device: YES, App: YES
+2015-09-18 09:59:10.902 Trivial Trivia[13896:81282] Unlimited access to network resources
+2015-09-18 09:59:11.458 Trivial Trivia[13896:81282] [CDVTimer][keyboard] 0.052989ms
+2015-09-18 09:59:11.700 Trivial Trivia[13896:81282] [CDVTimer][splashscreen] 242.018998ms
+2015-09-18 09:59:11.712 Trivial Trivia[13896:81282] [CDVTimer][file] 12.118995ms
+2015-09-18 09:59:11.718 Trivial Trivia[13896:81282] [CDVTimer][statusbar] 5.585015ms
+2015-09-18 09:59:11.718 Trivial Trivia[13896:81282] [CDVTimer][TotalPluginStartup] 261.541963ms
+2015-09-18 09:59:11.977 Trivial Trivia[13896:81282] Resetting plugins due to page load.
+2015-09-18 09:59:12.326 Trivial Trivia[13896:81282] Finished load of: file:///Users/avinashdavid/Library/Developer/CoreSimulator/Devices/7E65C545-D4C3-48C1-8936-3A958328E7CD/data/Containers/Bundle/Application/DD8EB829-BEA4-4C1C-8400-9DC9A49C382C/Trivial%20Trivia.app/www/index.html#/choose
+2015-09-18 09:59:20.095 Trivial Trivia[13896:81282] THREAD WARNING: ['InAppBrowser'] took '125.030029' ms. Plugin should use a background thread.
+2015-09-18 09:59:20.144 Trivial Trivia[13896:81282] webView:didFailLoadWithError - -1100: The requested URL was not found on this server.
+2015-09-18 10:00:36.825 Trivial Trivia[14580:83042] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/avinashdavid/Library/Developer/CoreSimulator/Devices/7E65C545-D4C3-48C1-8936-3A958328E7CD/data/Containers/Data/Application/81569EE2-A7A7-4300-857F-D247C71053CB/Library/Cookies/Cookies.binarycookies
+2015-09-18 10:00:36.920 Trivial Trivia[14580:83042] Apache Cordova native platform version 3.8.0 is starting.
+2015-09-18 10:00:36.921 Trivial Trivia[14580:83042] Multi-tasking -> Device: YES, App: YES
+2015-09-18 10:00:36.923 Trivial Trivia[14580:83042] Unlimited access to network resources
+2015-09-18 10:00:37.045 Trivial Trivia[14580:83042] [CDVTimer][keyboard] 0.075996ms
+2015-09-18 10:00:37.085 Trivial Trivia[14580:83042] [CDVTimer][splashscreen] 40.174007ms
+2015-09-18 10:00:37.090 Trivial Trivia[14580:83042] [CDVTimer][file] 4.740000ms
+2015-09-18 10:00:37.097 Trivial Trivia[14580:83042] [CDVTimer][statusbar] 6.114006ms
+2015-09-18 10:00:37.097 Trivial Trivia[14580:83042] [CDVTimer][TotalPluginStartup] 51.985025ms
+2015-09-18 10:00:37.268 Trivial Trivia[14580:83042] Resetting plugins due to page load.
+2015-09-18 10:00:37.921 Trivial Trivia[14580:83042] Finished load of: file:///Users/avinashdavid/Library/Developer/CoreSimulator/Devices/7E65C545-D4C3-48C1-8936-3A958328E7CD/data/Containers/Bundle/Application/3166F651-5184-4D04-AB5E-0502574588FD/Trivial%20Trivia.app/www/index.html#/choose
+2015-09-18 10:00:57.851 Trivial Trivia[14580:83042] THREAD WARNING: ['InAppBrowser'] took '60.924072' ms. Plugin should use a background thread.
+2015-09-18 10:00:57.879 Trivial Trivia[14580:83042] webView:didFailLoadWithError - -1100: The requested URL was not found on this server.
+2015-09-18 10:03:50.260 Trivial Trivia[15267:84911] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/avinashdavid/Library/Developer/CoreSimulator/Devices/7E65C545-D4C3-48C1-8936-3A958328E7CD/data/Containers/Data/Application/377EA71B-6D9E-450B-BABE-55C970F5EFB5/Library/Cookies/Cookies.binarycookies
+2015-09-18 10:03:50.347 Trivial Trivia[15267:84911] Apache Cordova native platform version 3.8.0 is starting.
+2015-09-18 10:03:50.348 Trivial Trivia[15267:84911] Multi-tasking -> Device: YES, App: YES
+2015-09-18 10:03:50.350 Trivial Trivia[15267:84911] Unlimited access to network resources
+2015-09-18 10:03:50.476 Trivial Trivia[15267:84911] [CDVTimer][keyboard] 0.095010ms
+2015-09-18 10:03:50.511 Trivial Trivia[15267:84911] [CDVTimer][splashscreen] 34.628987ms
+2015-09-18 10:03:50.516 Trivial Trivia[15267:84911] [CDVTimer][file] 4.251003ms
+2015-09-18 10:03:50.523 Trivial Trivia[15267:84911] [CDVTimer][statusbar] 7.003009ms
+2015-09-18 10:03:50.523 Trivial Trivia[15267:84911] [CDVTimer][TotalPluginStartup] 46.930015ms
+2015-09-18 10:03:50.683 Trivial Trivia[15267:84911] Resetting plugins due to page load.
+2015-09-18 10:03:50.977 Trivial Trivia[15267:84911] Finished load of: file:///Users/avinashdavid/Library/Developer/CoreSimulator/Devices/7E65C545-D4C3-48C1-8936-3A958328E7CD/data/Containers/Bundle/Application/E82CB6A1-658E-4A75-9D57-2DDBB0042ACC/Trivial%20Trivia.app/www/index.html#/choose

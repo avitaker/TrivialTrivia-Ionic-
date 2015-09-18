@@ -19,7 +19,7 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
       else {StatusBar.backgroundColorByHexString("#00879e")}
     }
   });
-}).config(['$stateProvider','$urlRouterProvider',function($stateProvider, $urlRouterProvider){
+}).config(['$stateProvider','$urlRouterProvider',function($stateProvider, $urlRouterProvider, $cordovaInAppBrowserProvider){
   $stateProvider
   .state('choose',{
     url:'/choose',
@@ -329,6 +329,7 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
     return returnArray.slice(0,desiredLength);
   }
   factory.finalObject=[];
+  factory.quizObjectDone=[];
   factory.questionNumberS=0;
   factory.sortCategories=function(arr,chosenLength){
     factory.questionNumberS=0;
@@ -349,6 +350,18 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
       }
     }
     factory.finalObject=randomizeArray(quizObjectJSON,chosenLength);
+    for (l=0;l<10;l++){
+      console.log("l="+l);
+      for (i=0;i<quizObjectRaw.length;i++){
+        console.log("i="+i);
+        if (factory.finalObject[l].question===quizObjectRaw[i].question){
+          factory.quizObjectDone.push(quizObjectRaw[i]);
+          quizObjectRaw.splice(i,1);
+          factory.quizObjectRaw=quizObjectRaw;
+        }
+        else {continue;}
+      }
+    }
     factory.answeredQuiz=[];
     factory.answeredQuiz=factory.finalObject;
   }
@@ -1004,22 +1017,24 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
   }
 
 
-}).controller('AcknowledgementsContr',function($scope,Data){
+}).controller('AcknowledgementsContr',function($scope,Data,$cordovaInAppBrowser,$ionicPlatform){
     $scope.thankYou=[
-    {'name':'IndiaBIX','link':'http://www.indiabix.com/'},
-    {'name':'Mental Floss','link':'http://mentalfloss.com/'},
-    {'name':'ActionQuiz','link':'http://www.actionquiz.com/'},
-    {'name':'Businessballs','link':'http://www.businessballs.com/'},
-    {'name':'The People History','link':'http://www.thepeoplehistory.com/'},
-    {'name':'Table Quiz Central','link':'http://www.tablequizcentral.com/'},
-    {'name':'Maps of World','link':'http://www.mapsofworld.com/'},
-    {'name':'The Science Spot','link':'http://sciencespot.net/'},
-    {'name':'Wikipedia','link':'https://www.wikipedia.org/'},
-    {'name':'Think Fact Youtube Video','link':'https://youtu.be/n5-vhdkggws'}
+        {'name':'IndiaBIX','link':'http://www.indiabix.com/'},
+        {'name':'Mental Floss','link':'http://mentalfloss.com/'},
+        {'name':'ActionQuiz','link':'http://www.actionquiz.com/'},
+        {'name':'Businessballs','link':'http://www.businessballs.com/'},
+        {'name':'The People History','link':'http://www.thepeoplehistory.com/'},
+        {'name':'Table Quiz Central','link':'http://www.tablequizcentral.com/'},
+        {'name':'Maps of World','link':'http://www.mapsofworld.com/'},
+        {'name':'The Science Spot','link':'http://sciencespot.net/'},
+        {'name':'Wikipedia','link':'https://www.wikipedia.org/'},
+        {'name':'Think Fact Youtube Video','link':'https://youtu.be/n5-vhdkggws'}
   ];
-  // $scope.goToLink=function(){
-  //
-  // }
+    $scope.iconAck= {'name':"Vlad Marin on Iconfinder",'link':'https://www.iconfinder.com/quizanswers'}
+   $scope.goToLink=function(linkHere){
+    $ionicPlatform.ready(function(){$cordovaInAppBrowser.open(linkHere,'_blank',{location:'yes',clearcache:'yes'});});
+
+   }
 }).controller('StatisticsContr',['$scope','$rootScope','Stats',function($scope,$rootScope,Stats,$ionicPlatform,$ionicHistory){
   $scope.startThisUp=function(){
     $scope.showOverall=true;

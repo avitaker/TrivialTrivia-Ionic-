@@ -1,13 +1,29 @@
 
 <ion-view title="Instructions">
-  <ion-content class="instructions_page">
+  <ion-nav-bar class="bar bar-transparent">
+    <ion-nav-back-button class="button-clear button-light">
+      <!-- <i class="ion-arrow-left-c"></i> Back -->
+    </ion-nav-back-button>
+  </ion-nav-bar>
+  <ion-content class="quiz_page">
     <div id="instructions_div">
       <ion-list>
-        <p class="item item-text-wrap item-clear">This quiz is a multiple-choice trivia quiz</p>
-        <p class="item item-text-wrap item-clear">Each question has a twenty-second time limit </p>
-        <p class="item item-text-wrap item-clear">Tap your answer choice and <b>then tap the question to lock it in</b> </p>
-        <p class="item item-text-wrap item-clear">When the timer runs out, any selected option will be locked in</p>
-        <p class="item item-text-wrap item-clear">That's it, have fun </p>
+        <div class="item item-text-wrap item-clear">
+            <h2>&#8594; This is a multiple-choice trivia quiz with 10 questions</h2>
+        <!-- <p class="item item-text-wrap item-clear">You can choose the number of questions you want on the quiz</p> -->
+        <!-- <p class="item item-text-wrap item-clear">The quiz will continue till you complete it or get an answer wrong</p> -->
+<!--            <p class="item item-text-wrap item-clear">-->
+        </div>
+        <div class="item item-text-wrap item-clear">
+            <h2>&#8594; You can view your progress and the current question's category in the bottom bar </h2><br>
+            <h2>&#8594; Each question has a twenty-second time limit </h2><br>
+            <h2>&#8594; Tap your chosen answer to submit it. The first selected answer is submitted </h2><br>
+            <h2>&#8594; When the timer runs out, the next question will be loaded and no points awarded</h2>
+        </div>
+        <div class="item item-text-wrap item-clear">
+            <h2>&#8594; You can view a number of statistics about your performance in the "Statistics" page </h2><br>
+            <h2>&#8594; That's it! I hope you enjoy the game </h2>
+        </div>
       </ion-list>
     </div>
   </ion-content>

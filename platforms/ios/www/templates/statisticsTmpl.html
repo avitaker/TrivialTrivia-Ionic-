@@ -1,20 +1,53 @@
-<ion-view title="Statistics">
-  <ion-content class="statistics_page">
+<ion-view title="Session Statistics">
+  <ion-nav-bar class="bar bar-transparent">
+    <ion-nav-back-button class="button-clear button-light">
+      <!-- <i class="ion-arrow-left-c"></i> Back -->
+    </ion-nav-back-button>
+  </ion-nav-bar>
+  <ion-content class="quiz_page" scroll=true>
     <div class="card">
-      <p class="item item-divider" id="overall_perf_stats">Overall Performance</p>
-        <p class="item item-text-wrap">Percentage Score Per Quiz: {{overallPercentage|number:2}}%</p>
-        <p class="item item-text-wrap">Total Number of Quizzes taken: {{totalQuizzes}}</p>
-      <p class="item item-divider" id="question_perf_stats">Performance by Question</p>
+      <div class="item item-divider item-icon-right" id="overall_perf_stats" ng-click="convertThem('showOverall')">Overall Performance <i class="icon ion-ios-arrow-down" ng-hide="showOverall"></i> <i class="icon ion-ios-arrow-up" ng-show="showOverall"></i> </div>
+      <div class="item-animate1" ng-show="showOverall">
+        <!-- <div class="item item-text-wrap row"><p class="col">Percentage Score Per Quiz </p><p class="col">{{overallPercentage|number:2}}%</p></div> -->
+        <div class="item item-text-wrap row"><p class="col">Total Number of Quizzes taken </p><p class="col">{{totalQuizzes}}</p></div>
+        <div class="item item-text-wrap row"><p class="col">Highest Score </p><p class="col">{{longestStreak}}</p></div>
+        <div class="item item-text-wrap row"><p class="col">Perfect Quizzes </p><p class="col">{{numPerf}}</p></div>
+      </div>
+      </div>
+      <div class="card">
+      <div class="item item-divider item-icon-right" id="overall_perf_stats" ng-click="convertThem('showAverage')">Averages <i class="icon ion-ios-arrow-down" ng-hide="showAverage"></i> <i class="icon ion-ios-arrow-up" ng-show="showAverage"></i></div>
+      <div class="item-animate1" ng-show="showAverage">
+        <!-- <div class="item item-text-wrap row"><p class="col">Average Length of Attempted Quiz </p><p class="col">{{aveAttempted|number:2}} questions</p></div>
+        <div class="item item-text-wrap row"><p class="col">Average Length of Quiz Completed </p><p class="col">{{aveCompleted|number:2}} questions</p></div> -->
+        <div class="item item-text-wrap row"><p class="col">Average Percentage Score </p><p class="col">{{aveRate|number:2}}%</p></div>
+        <div class="item item-text-wrap row"><p class="col">Average Time on Right Answers </p><p class="col">{{aveRightTime|number:2}} seconds</p></div>
+        <div class="item item-text-wrap row"><p class="col">Average Time on Wrong Answers </p><p class="col">{{aveWrongTime|number:2}} seconds</p></div>
+      </div>
+      <!-- <p class="item item-divider" id="question_perf_stats">Performance by Question</p>
         <p class="item item-text-wrap">Percentage Score Per Question: {{byQuestionPercentage|number:2}}%</p>
-        <p class="item item-text-wrap">Total Number of Questions answered: {{byQuestionTotal}}</p>
+        <p class="item item-text-wrap">Total Number of Questions attempted: {{byQuestionTotal}}</p> -->
     </div>
     <div class="card">
-      <p class="item item-divider" id="category_records_stats">Category Records</p>
-        <p class="item item-text-wrap">Best Category: {{bestCategory|uppercase}}</p>
-        <p class="item item-text-wrap">Percentage: {{bestCategoryPercent|number:2}}</p>
-        <p class="item item-text-wrap">Worst Category: {{worstCategory|uppercase}}</p>
-        <p class="item item-text-wrap">Percentage: {{worstCategoryPercent|number:2}}</p>
+      <div class="item item-divider item-icon-right" id="category_records_stats" ng-click="convertThem('showCategory')">Category Records <i class="icon ion-ios-arrow-down" ng-hide="showCategory"></i> <i class="icon ion-ios-arrow-up" ng-show="showCategory"></i> </div>
+      <div class="item-animate1" ng-show="showCategory">
+        <div class="item item-text-wrap row"><p class="col">Best Category </p><p class="col">{{bestCategory|uppercase}}</p></div>
+        <div class="item item-text-wrap row"><p class="col">Percentage </p><p class="col">{{bestCategoryPercent|number:2}}%</p></div>
+        <div class="item item-text-wrap row"><p class="col">Worst Category </p><p class="col">{{worstCategory|uppercase}}</p></div>
+        <div class="item item-text-wrap row"><p class="col">Percentage </p><p class="col">{{worstCategoryPercent|number:2}}%</p></div>
+        <div class="item row"><label class="item-input item-select col">
+          <div class="input-label">
+            Select category
+          </div>
+          <select ng-options="thing for thing in listCategories" ng-model="chosenCategory" class="col" ng-change="getCategoryStats(chosenCategory)">
+            <!-- <option ng-repeat="thing in allCategories track by $index" ng-model="thing.chosen" ng-click="getCategoryStats($index)">{{thing.category|uppercase}}</option> -->
+          </select>
+        </label>
+      </div>
+      <div class="item item-text-wrap row" ng-repeat="thing in statsList"><p class="col">{{thing.name}}</p><p class="col">{{thing.val}}</p>
+      </div>
     </div>
+  </div>
+
     <!-- <div class="card">
 
     </div> -->
