@@ -61,9 +61,6 @@
         "com.ionic.keyboard": {
             "PACKAGE_NAME": "com.ionicframework.myapp291672"
         },
-        "cordova-plugin-console": {
-            "PACKAGE_NAME": "com.ionicframework.myapp291672"
-        },
         "cordova-plugin-device": {
             "PACKAGE_NAME": "com.ionicframework.myapp291672"
         },

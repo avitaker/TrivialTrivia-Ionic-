@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
 
-.run(function ($ionicPlatform) {
+.run(function ($ionicPlatform,$localstorage) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -52,22 +52,22 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
   });
   $urlRouterProvider.otherwise('/choose');
 }])
-// .factory('$localstorage', ['$window', function($window) {
-//   return {
-//     set: function(key, value) {
-//       $window.localStorage[key] = value;
-//     },
-//     get: function(key, defaultValue) {
-//       return $window.localStorage[key] || defaultValue;
-//     },
-//     setObject: function(key, value) {
-//       $window.localStorage[key] = JSON.stringify(value);
-//     },
-//     getObject: function(key) {
-//       return JSON.parse($window.localStorage[key] || '{}');
-//     }
-//   }
-// }])
+.factory('$localstorage', ['$window', function($window) {
+  return {
+    set: function(key, value) {
+      $window.localStorage[key] = value;
+    },
+    get: function(key, defaultValue) {
+      return $window.localStorage[key] || defaultValue;
+    },
+    setObject: function(key, value) {
+      $window.localStorage[key] = JSON.stringify(value);
+    },
+    getObject: function(key) {
+      return JSON.parse($window.localStorage[key] || '{}');
+    }
+  }
+}])
 .factory('FileService', function($q) {
 
     return {
@@ -361,7 +361,7 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
   factory.score=0;
   factory.total=0;
   return factory;
-}).factory("Stats",function($filter){
+}).factory("Stats",function($filter,$localstorage){
   if (!factory){
     var factory={};
   }
@@ -369,13 +369,36 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
   factory.currentQuizPercentage=function(score,total){
     return ((score/total)*100);
   }
-  if (!factory.allPercentages){
-    factory.allPercentages=[];
-    factory.allScores=[];
-    factory.allTotals=[];
-    factory.allRightTimes=[];
-    factory.allWrongTimes=[];
-  }
+  factory.allPercentages=[];
+  factory.allScores=[];
+  factory.allTotals=[];
+  factory.allRightTimes=[];
+  factory.allWrongTimes=[];
+  factory.scoresByCategory=[{"category":"all","individualScores":[],"correctlyAnswered":0,"wronglyAnswered":0,"unanswered":0,"percentage":0},
+  {"category":"general","individualScores":[],"correctlyAnswered":0,"wronglyAnswered":0,"unanswered":0,"percentage":0},
+  {"category":"science","individualScores":[],"correctlyAnswered":0,"wronglyAnswered":0,"unanswered":0,"percentage":0},
+  {"category":"world","individualScores":[],"correctlyAnswered":0,"wronglyAnswered":0,"unanswered":0,"percentage":0},
+  {"category":"history","individualScores":[],"correctlyAnswered":0,"wronglyAnswered":0,"unanswered":0,"percentage":0},
+  {"category":"entertainment","individualScores":[],"correctlyAnswered":0,"wronglyAnswered":0,"unanswered":0,"percentage":0},
+  {"category":"sports","individualScores":[],"correctlyAnswered":0,"wronglyAnswered":0,"unanswered":0,"percentage":0}];
+  // factory.addToFile=function(whichStat,toBeAdded){
+  //   var fileHere=$localstorage.getObject('statsBackup');
+  //   if (whichStat==='allPercentages'){
+  //     fileHere.allPercentages.push(toBeAdded)
+  //   }
+  //   else if (whichStat==='allScores'){
+  //     fileHere.allScores.push(toBeAdded)
+  //   }
+  //   else if (whichStat==='allTotals'){
+  //     fileHere.allTotals.push(toBeAdded)
+  //   }
+  //   else if (whichStat==='allRightTimes')
+  //     fileHere.allRightTimes.push(toBeAdded)
+  //   }
+  //   else if (whichStat==='allWrongTimes'){
+  //     fileHere.allWrongTimes.push(toBeAdded)
+  //   }
+  // }
   factory.determineAverageAttempted=function(){
     var totes=0;
     var nums=factory.allTotals.length;
@@ -425,13 +448,6 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
     return [overallPer,numberOfQuizzes]
   }
   factory.currentCategoryNum=0;
-  factory.scoresByCategory=[{"category":"all","individualScores":[],"correctlyAnswered":0,"wronglyAnswered":0,"unanswered":0,"percentage":0},
-  {"category":"general","individualScores":[],"correctlyAnswered":0,"wronglyAnswered":0,"unanswered":0,"percentage":0},
-  {"category":"science","individualScores":[],"correctlyAnswered":0,"wronglyAnswered":0,"unanswered":0,"percentage":0},
-  {"category":"world","individualScores":[],"correctlyAnswered":0,"wronglyAnswered":0,"unanswered":0,"percentage":0},
-  {"category":"history","individualScores":[],"correctlyAnswered":0,"wronglyAnswered":0,"unanswered":0,"percentage":0},
-  {"category":"entertainment","individualScores":[],"correctlyAnswered":0,"wronglyAnswered":0,"unanswered":0,"percentage":0},
-  {"category":"sports","individualScores":[],"correctlyAnswered":0,"wronglyAnswered":0,"unanswered":0,"percentage":0}];
   factory.determineIndividualPercents=function(){
     for (var s=0;s<factory.scoresByCategory.length;s++){
       factory.scoresByCategory[s].percentage=((100*factory.scoresByCategory[s].correctlyAnswered)/(factory.scoresByCategory[s].wronglyAnswered+factory.scoresByCategory[s].unanswered+factory.scoresByCategory[s].correctlyAnswered));
@@ -875,7 +891,7 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
       Stats.allTotals.push(Data.answeredQuiz.length);
       Stats.determineIndividualPercents();
       for (var j=0;j<Stats.scoresByCategory.length;j++){
-        Stats.scoresByCategory[j].individualScores.push({"score":$scope.finalScore,"totalQuestions":$scope.wrongAnswers.length+$scope.notAnswereds.length})
+        Stats.scoresByCategory[j].individualScores.push({"score":currInfo.score,"totalQuestions":$scope.wrongAnswers.length+$scope.notAnswereds.length})
       }
       if (currInfo.score===Data.answeredQuiz.length){
         $scope.perfectQuiz=true;
