@@ -3,9 +3,9 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
+angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova','ngStorage'])
 
-.run(function ($ionicPlatform,$localstorage) {
+.run(function ($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -19,7 +19,7 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
       else {StatusBar.backgroundColorByHexString("#00879e")}
     }
   });
-}).config(['$stateProvider','$urlRouterProvider',function($stateProvider, $urlRouterProvider, $cordovaInAppBrowserProvider){
+}).config(['$stateProvider','$urlRouterProvider',function($stateProvider, $urlRouterProvider, $localStorageProvider, $localStorage){
   $stateProvider
   .state('choose',{
     url:'/choose',
@@ -51,156 +51,164 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
     templateUrl:'templates/instructionsTmpl.html',
   });
   $urlRouterProvider.otherwise('/choose');
+  // if ($localStorageProvider.get('fullObject')){
+  //   console.log('its here');
+  //   console.log($localStorage.fullObject);
+  // }
+  // else {
+  //   $localStorageProvider.set('fullObject',[{'test':0},{'test':1}]);
+  //   console.log('hope this worked');
+  // }
 }])
-.factory('$localstorage', ['$window', function($window) {
-  return {
-    set: function(key, value) {
-      $window.localStorage[key] = value;
-    },
-    get: function(key, defaultValue) {
-      return $window.localStorage[key] || defaultValue;
-    },
-    setObject: function(key, value) {
-      $window.localStorage[key] = JSON.stringify(value);
-    },
-    getObject: function(key) {
-      return JSON.parse($window.localStorage[key] || '{}');
-    }
-  }
-}])
-.factory('FileService', function($q) {
-
-    return {
-        checkDir: function (dir) {
-            var deferred = $q.defer();
-
-            getFilesystem().then(
-                function(filesystem) {
-                    filesystem.root.getDirectory(dir, {create: false},
-                        function() {
-                            //Dir exist
-                            deferred.resolve();
-                        },
-                        function() {
-                            //Dir dont exist
-                            deferred.reject();
-                        }
-                    );
-                }
-            );
-
-            return deferred.promise;
-        },
-
-        createDir: function (dir) {
-            getFilesystem().then(
-                function(filesystem) {
-                    filesystem.root.getDirectory(dir, {create: true});
-                }
-            );
-        },
-
-        checkFile: function (dir, file) {
-            var deferred = $q.defer();
-
-            getFilesystem().then(
-                function(filesystem) {
-                    filesystem.root.getFile('/'+ dir +'/'+ file, {create: false},
-                        function() {
-                            //File exist
-                            deferred.resolve();
-                        },
-                        function() {
-                            //File dont exist
-                            deferred.reject();
-                        }
-                    );
-                }
-            );
-
-            return deferred.promise;
-        },
-
-        createFile: function (dir, file) {
-            getFilesystem().then(
-                function(filesystem) {
-                    filesystem.root.getFile('/'+ dir +'/'+ file, {create: true});
-                }
-            );
-        },
-
-        removeFile: function (dir, file) {
-            var deferred = $q.defer();
-
-            getFilesystem().then(
-                function(filesystem) {
-                    filesystem.root.getFile('/'+ dir +'/'+ file, {create: false}, function(fileEntry){
-                        fileEntry.remove(function() {
-                            deferred.resolve();
-                        });
-                    });
-                }
-            );
-
-            return deferred.promise;
-        },
-
-        writeFile: function (dir, file) {
-            var deferred = $q.defer();
-
-            getFilesystem().then(
-                function(filesystem) {
-                    filesystem.root.getFile('/'+ dir +'/'+ file, {create: false},
-                        function(fileEntry) {
-                            fileEntry.createWriter(function(fileWriter) {
-                                deferred.resolve(fileWriter);
-                            });
-                        }
-                    );
-                }
-            );
-
-            return deferred.promise;
-        },
-
-        readeFile: function (dir, file) {
-            var deferred = $q.defer();
-
-            getFilesystem().then(
-                function(filesystem) {
-                    filesystem.root.getFile('/'+ dir +'/'+ file, {create: false},
-                        function(fileEntry) {
-
-                            fileEntry.file(function(file) {
-                                var reader = new FileReader();
-
-                                reader.onloadend = function() {
-                                    deferred.resolve(this.result);
-                                };
-
-                                reader.readAsText(file);
-
-                            });
-                        }
-                    );
-                }
-            );
-
-            return deferred.promise;
-        }
-
-    };
-
-    function getFilesystem() {
-        var deferred = $q.defer();
-
-        window.requestFileSystem(window.PERSISTENT, 1024*1024, function(filesystem) {
-            deferred.resolve(filesystem);
-        });
-
-        return deferred.promise;
-    }
-})
+// .factory('$localstorage', ['$window', function($window) {
+//   return {
+//     set: function(key, value) {
+//       $window.localStorage[key] = value;
+//     },
+//     get: function(key, defaultValue) {
+//       return $window.localStorage[key] || defaultValue;
+//     },
+//     setObject: function(key, value) {
+//       $window.localStorage[key] = JSON.stringify(value);
+//     },
+//     getObject: function(key) {
+//       return JSON.parse($window.localStorage[key] || '{}');
+//     }
+//   }
+// }])
+// .factory('FileService', function($q) {
+//
+//     return {
+//         checkDir: function (dir) {
+//             var deferred = $q.defer();
+//
+//             getFilesystem().then(
+//                 function(filesystem) {
+//                     filesystem.root.getDirectory(dir, {create: false},
+//                         function() {
+//                             //Dir exist
+//                             deferred.resolve();
+//                         },
+//                         function() {
+//                             //Dir dont exist
+//                             deferred.reject();
+//                         }
+//                     );
+//                 }
+//             );
+//
+//             return deferred.promise;
+//         },
+//
+//         createDir: function (dir) {
+//             getFilesystem().then(
+//                 function(filesystem) {
+//                     filesystem.root.getDirectory(dir, {create: true});
+//                 }
+//             );
+//         },
+//
+//         checkFile: function (dir, file) {
+//             var deferred = $q.defer();
+//
+//             getFilesystem().then(
+//                 function(filesystem) {
+//                     filesystem.root.getFile('/'+ dir +'/'+ file, {create: false},
+//                         function() {
+//                             //File exist
+//                             deferred.resolve();
+//                         },
+//                         function() {
+//                             //File dont exist
+//                             deferred.reject();
+//                         }
+//                     );
+//                 }
+//             );
+//
+//             return deferred.promise;
+//         },
+//
+//         createFile: function (dir, file) {
+//             getFilesystem().then(
+//                 function(filesystem) {
+//                     filesystem.root.getFile('/'+ dir +'/'+ file, {create: true});
+//                 }
+//             );
+//         },
+//
+//         removeFile: function (dir, file) {
+//             var deferred = $q.defer();
+//
+//             getFilesystem().then(
+//                 function(filesystem) {
+//                     filesystem.root.getFile('/'+ dir +'/'+ file, {create: false}, function(fileEntry){
+//                         fileEntry.remove(function() {
+//                             deferred.resolve();
+//                         });
+//                     });
+//                 }
+//             );
+//
+//             return deferred.promise;
+//         },
+//
+//         writeFile: function (dir, file) {
+//             var deferred = $q.defer();
+//
+//             getFilesystem().then(
+//                 function(filesystem) {
+//                     filesystem.root.getFile('/'+ dir +'/'+ file, {create: false},
+//                         function(fileEntry) {
+//                             fileEntry.createWriter(function(fileWriter) {
+//                                 deferred.resolve(fileWriter);
+//                             });
+//                         }
+//                     );
+//                 }
+//             );
+//
+//             return deferred.promise;
+//         },
+//
+//         readeFile: function (dir, file) {
+//             var deferred = $q.defer();
+//
+//             getFilesystem().then(
+//                 function(filesystem) {
+//                     filesystem.root.getFile('/'+ dir +'/'+ file, {create: false},
+//                         function(fileEntry) {
+//
+//                             fileEntry.file(function(file) {
+//                                 var reader = new FileReader();
+//
+//                                 reader.onloadend = function() {
+//                                     deferred.resolve(this.result);
+//                                 };
+//
+//                                 reader.readAsText(file);
+//
+//                             });
+//                         }
+//                     );
+//                 }
+//             );
+//
+//             return deferred.promise;
+//         }
+//
+//     };
+//
+//     function getFilesystem() {
+//         var deferred = $q.defer();
+//
+//         window.requestFileSystem(window.PERSISTENT, 1024*1024, function(filesystem) {
+//             deferred.resolve(filesystem);
+//         });
+//
+//         return deferred.promise;
+//     }
+// })
 
 .factory("Data",function(){
   var factory={};
@@ -351,9 +359,7 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
     }
     factory.finalObject=randomizeArray(quizObjectJSON,chosenLength);
     for (l=0;l<10;l++){
-      console.log("l="+l);
       for (i=0;i<quizObjectRaw.length;i++){
-        console.log("i="+i);
         if (factory.finalObject[l].question===quizObjectRaw[i].question){
           factory.quizObjectDone.push(quizObjectRaw[i]);
           quizObjectRaw.splice(i,1);
@@ -374,26 +380,57 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
   factory.score=0;
   factory.total=0;
   return factory;
-}).factory("Stats",function($filter,$localstorage){
+}).factory("Stats",function($filter,$localStorage){
   if (!factory){
     var factory={};
   }
+  if (!$localStorage.fullObject || !$localStorage.fullObject.allTotals){
+    $localStorage.fullObject={
+      'allPercentages':[],
+      'allScores':[],
+      'allTotals':[],
+      'allRightTimes':[],
+      'allWrongTimes':[],
+      'scoresByCategory':[{"category":"all","individualScores":[],"correctlyAnswered":0,"wronglyAnswered":0,"unanswered":0,"percentage":0},
+      {"category":"general","individualScores":[],"correctlyAnswered":0,"wronglyAnswered":0,"unanswered":0,"percentage":0},
+      {"category":"science","individualScores":[],"correctlyAnswered":0,"wronglyAnswered":0,"unanswered":0,"percentage":0},
+      {"category":"world","individualScores":[],"correctlyAnswered":0,"wronglyAnswered":0,"unanswered":0,"percentage":0},
+      {"category":"history","individualScores":[],"correctlyAnswered":0,"wronglyAnswered":0,"unanswered":0,"percentage":0},
+      {"category":"entertainment","individualScores":[],"correctlyAnswered":0,"wronglyAnswered":0,"unanswered":0,"percentage":0},
+      {"category":"sports","individualScores":[],"correctlyAnswered":0,"wronglyAnswered":0,"unanswered":0,"percentage":0}]
+    }
+    factory.allPercentages=$localStorage.fullObject.allPercentages;
+    factory.allScores=$localStorage.fullObject.allScores;
+    factory.allTotals=$localStorage.fullObject.allTotals;
+    factory.allRightTimes=$localStorage.fullObject.allRightTimes;
+    factory.allWrongTimes=$localStorage.fullObject.allWrongTimes;
+    factory.scoresByCategory=$localStorage.fullObject.scoresByCategory;
+  }
+  else {
+    factory.allPercentages=$localStorage.fullObject.allPercentages;
+    factory.allScores=$localStorage.fullObject.allScores;
+    factory.allTotals=$localStorage.fullObject.allTotals;
+    factory.allRightTimes=$localStorage.fullObject.allRightTimes;
+    factory.allWrongTimes=$localStorage.fullObject.allWrongTimes;
+    factory.scoresByCategory=$localStorage.fullObject.scoresByCategory;
+    console.log($localStorage.fullObject)
+  };
   factory.numPerfectQuiz=0;
   factory.currentQuizPercentage=function(score,total){
     return ((score/total)*100);
   }
-  factory.allPercentages=[];
-  factory.allScores=[];
-  factory.allTotals=[];
-  factory.allRightTimes=[];
-  factory.allWrongTimes=[];
-  factory.scoresByCategory=[{"category":"all","individualScores":[],"correctlyAnswered":0,"wronglyAnswered":0,"unanswered":0,"percentage":0},
-  {"category":"general","individualScores":[],"correctlyAnswered":0,"wronglyAnswered":0,"unanswered":0,"percentage":0},
-  {"category":"science","individualScores":[],"correctlyAnswered":0,"wronglyAnswered":0,"unanswered":0,"percentage":0},
-  {"category":"world","individualScores":[],"correctlyAnswered":0,"wronglyAnswered":0,"unanswered":0,"percentage":0},
-  {"category":"history","individualScores":[],"correctlyAnswered":0,"wronglyAnswered":0,"unanswered":0,"percentage":0},
-  {"category":"entertainment","individualScores":[],"correctlyAnswered":0,"wronglyAnswered":0,"unanswered":0,"percentage":0},
-  {"category":"sports","individualScores":[],"correctlyAnswered":0,"wronglyAnswered":0,"unanswered":0,"percentage":0}];
+  // factory.allPercentages=[];
+  // factory.allScores=[];
+  // factory.allTotals=[];
+  // factory.allRightTimes=[];
+  // factory.allWrongTimes=[];
+  // factory.scoresByCategory=[{"category":"all","individualScores":[],"correctlyAnswered":0,"wronglyAnswered":0,"unanswered":0,"percentage":0},
+  // {"category":"general","individualScores":[],"correctlyAnswered":0,"wronglyAnswered":0,"unanswered":0,"percentage":0},
+  // {"category":"science","individualScores":[],"correctlyAnswered":0,"wronglyAnswered":0,"unanswered":0,"percentage":0},
+  // {"category":"world","individualScores":[],"correctlyAnswered":0,"wronglyAnswered":0,"unanswered":0,"percentage":0},
+  // {"category":"history","individualScores":[],"correctlyAnswered":0,"wronglyAnswered":0,"unanswered":0,"percentage":0},
+  // {"category":"entertainment","individualScores":[],"correctlyAnswered":0,"wronglyAnswered":0,"unanswered":0,"percentage":0},
+  // {"category":"sports","individualScores":[],"correctlyAnswered":0,"wronglyAnswered":0,"unanswered":0,"percentage":0}];
   // factory.addToFile=function(whichStat,toBeAdded){
   //   var fileHere=$localstorage.getObject('statsBackup');
   //   if (whichStat==='allPercentages'){
@@ -440,6 +477,7 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
   }
   factory.recordCurrentQuizPercentage=function(score,total){
     factory.allPercentages.push(factory.currentQuizPercentage(score,total));
+    $localStorage.fullObject.allPercentages.push(factory.currentQuizPercentage(score,total));
   }
   factory.determineByQuestionPercentage=function(){
     var scoreSum=0;
@@ -667,7 +705,7 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
   $scope.openPopover=function($event){
     $scope.thisIsIt=[];
     $scope.chosenLength.chosen=10;
-    console.log(Data.chosenLength.chosen);
+    // console.log(Data.chosenLength.chosen);
     if ($scope.chosenLength.chosen>=1 && $scope.chosenLength.chosen<=37){
       Data.chosenLength.chosen=$scope.chosenLength.chosen;
       $scope.lengthPopover.hide();
@@ -681,13 +719,14 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
     }
 
   }
-}]).controller('QuizController',['$scope','Data','$state','$rootScope','$ionicPopup','Stats','$interval',"$timeout","$cordovaVibration","currInfo",function($scope,Data,$state,$rootScope,$ionicPopup,Stats,$interval, $timeout,$cordovaVibration,currInfo){
-  $scope.$on('$ionicView.beforeLeave', function(){
-    $timeout.cancel($scope.timeLimit);
-    $scope.timeLimit=undefined;
-    $interval.cancel(timerInterval);
-    timerInterval=undefined;
-  });
+}]).controller('QuizController',['$scope','Data','$state','$rootScope','$ionicPopup','Stats','$interval',"$timeout","$cordovaVibration","currInfo","$localStorage",function($scope,Data,$state,$rootScope,$ionicPopup,Stats,$interval, $timeout,$cordovaVibration,currInfo,$localStorage){
+  // $scope.$on('$ionicView.beforeLeave', function(){
+  //   $timeout.cancel($scope.timeLimit);
+  //   $scope.timeLimit=undefined;
+  //   $interval.cancel(timerInterval);
+  //   timerInterval=undefined;
+  // });
+  $scope.$storage=$localStorage;
   $scope.moneyOptions=Data.moneyOptions;
   $scope.currentCategory="";
   $scope.timeLimit;
@@ -730,7 +769,7 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
 
       if ($scope.timer>=15){
 
-        $cordovaVibration.vibrate(20);
+        // $cordovaVibration.vibrate(20);
       }
     });
   $scope.noCategory=false;
@@ -809,6 +848,7 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
         if (!$scope.answeredQuiz[$scope.questionNumber].userAnswer){
           if ($scope.answeredQuiz[$scope.questionNumber].userAnswer===0){
             Stats.allRightTimes.push($scope.timerBackup);
+            $scope.$storage.fullObject.allRightTimes.push($scope.timerBackup);
             console.log(Stats.allRightTimes);
             $scope.questionNumber++;
             $scope.displayNumber++;
@@ -825,12 +865,14 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
           currInfo.score++;
           goOn=true;
           Stats.allRightTimes.push($scope.timerBackup);
+          $scope.$storage.fullObject.allRightTimes.push($scope.timerBackup);
           console.log(Stats.allRightTimes);
         }
 
       }
       else if ($scope.answeredQuiz[$scope.questionNumber].userAnswer!=Data.finalObject[$scope.questionNumber].correctAnswer && $scope.answeredQuiz[$scope.questionNumber].userAnswer!=null|undefined){
         Stats.allWrongTimes.push($scope.timerBackup);
+        $scope.$storage.fullObject.allWrongTimes.push($scope.timerBackup);
         currInfo.userAnswersWrong.push($scope.answeredQuiz[$scope.questionNumber].userAnswer);
         currInfo.incorrectAnswers[currInfo.incorrectAnswers.length]=(Data.answeredQuiz[$scope.questionNumber]);
 
@@ -844,7 +886,7 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
         currInfo.unanswered.push(Data.answeredQuiz[$scope.questionNumber]);
         $scope.anyMissed=true;
         Stats.allWrongTimes.push($scope.timerBackup);
-
+        $scope.$storage.fullObject.allWrongTimes.push($scope.timerBackup);
         $scope.questionNumber++;
         $scope.displayNumber++;
         goOn=true;
@@ -862,6 +904,7 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
       }
       else if (Data.answeredQuiz[Data.answeredQuiz.length-1].userAnswer!=Data.answeredQuiz[Data.answeredQuiz.length-1].correctAnswer && Data.answeredQuiz[Data.answeredQuiz.length-1].userAnswer!=null|undefined){
         Stats.allWrongTimes.push($scope.timerBackup);
+        $scope.$storage.fullObject.allWrongTimes.push($scope.timerBackup);
         currInfo.incorrectAnswers.push($scope.answeredQuiz[$scope.answeredQuiz.length-1]);
       }
       else if (Data.answeredQuiz[Data.answeredQuiz.length-1].userAnswer===null|undefined){
@@ -901,7 +944,9 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
       // currInfo.incorrectAnswers.push($scope)
       Stats.recordCurrentQuizPercentage(currInfo.score,Data.answeredQuiz.length);
       Stats.allScores.push(currInfo.score);
+      $scope.$storage.fullObject.allScores.push(currInfo.score);
       Stats.allTotals.push(Data.answeredQuiz.length);
+      $scope.$storage.fullObject.allTotals.push(Data.answeredQuiz.length);
       Stats.determineIndividualPercents();
       for (var j=0;j<Stats.scoresByCategory.length;j++){
         Stats.scoresByCategory[j].individualScores.push({"score":currInfo.score,"totalQuestions":$scope.wrongAnswers.length+$scope.notAnswereds.length})
@@ -955,7 +1000,7 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
   }
 
   $scope.doTheFlip=function(){
-    $cordovaVibration.vibrate(70);
+    // $cordovaVibration.vibrate(70);
     if (angular.element(cardContent).hasClass('front')){
       return $scope.timedFlip('back');
 
@@ -1035,7 +1080,8 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova'])
     $ionicPlatform.ready(function(){$cordovaInAppBrowser.open(linkHere,'_blank',{location:'yes',clearcache:'yes'});});
 
    }
-}).controller('StatisticsContr',['$scope','$rootScope','Stats',function($scope,$rootScope,Stats,$ionicPlatform,$ionicHistory){
+}).controller('StatisticsContr',['$scope','$rootScope','Stats','$ionicPlatform','$ionicHistory','$localStorage',function($scope,$rootScope,Stats,$ionicPlatform,$ionicHistory,$localStorage){
+  $scope.$storage = $localStorage;
   $scope.startThisUp=function(){
     $scope.showOverall=true;
     $scope.showAverage=true;
