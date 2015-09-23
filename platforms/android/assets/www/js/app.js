@@ -1139,7 +1139,7 @@ angular.module('quizApp', ['ionic','angular-svg-round-progress','ngCordova','ngS
     $scope.byQuestionTotal=$scope.byQuestionPercentages[1];
     $scope.byQuizPercentages=Stats.determineByQuizPercentage();
     $scope.overallPercentage=$scope.byQuizPercentages[0];
-    $scope.totalQuizzes=$scope.byQuizPercentages[1];
+    $scope.totalQuizzes=($scope.byQuizPercentages[1]/2);
     $scope.bestCategoryInfo=Stats.determineBestCategory();
     $scope.bestCategory=$scope.bestCategoryInfo[0];
     $scope.bestCategoryPercent=$scope.bestCategoryInfo[1];

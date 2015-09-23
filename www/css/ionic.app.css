@@ -173,7 +173,7 @@ progress[value] {
   -webkit-appearance: none;
    appearance: none;
 
-  width: 375px;
+  width: 100%;
   height: 5px;
   margin-left: -5px;
   margin-top:-7px;
@@ -222,7 +222,7 @@ progress[value]::-webkit-progress-value {
 .question-container {
      display: flex;
      flex-direction: column;
-     height: 75%;
+     height: 87%;
 }
 
 .srow{
@@ -234,7 +234,7 @@ progress[value]::-webkit-progress-value {
 }
 
 .question-container > .brow2 {
-     flex: 1.5;
+     flex: 1.2;
 }
 
 .home-container {
@@ -278,7 +278,7 @@ progress[value]::-webkit-progress-value {
   }
 
 .flip-container, .front, .back {
-	width: 360px;
+	width: 100%;
 	height: 480px;
 }
 
